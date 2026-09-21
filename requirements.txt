@@ -1,0 +1,6 @@
+gradio==6.2.0
+numpy
+soundfile
+torch
+huggingface_hub
+python-dotenv
