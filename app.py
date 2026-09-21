@@ -12,7 +12,11 @@ import gradio as gr
 import numpy as np
 import soundfile as sf
 import torch
+from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download, snapshot_download
+
+# Load local environment variables (HF_TOKEN, etc.).
+load_dotenv()
 
 # Make local/project imports available.
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
