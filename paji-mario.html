@@ -358,7 +358,37 @@ canvas {
     font-style: normal;
 }
 */
-@font-face{font-family:'Press Start';src:url('https://raw.githubusercontent.com/karol-f/FullScreenMario/master/Fonts/pressstart2p-webfont.woff') format('woff');font-weight:normal;font-style:normal}#pajiTitle{position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:109;color:#fff;font:bold 18px Arial;text-shadow:0 2px 4px #000;pointer-events:none}#pajiMenu{position:fixed;right:8px;top:8px;z-index:110;display:flex;gap:5px}#pajiMenu button{background:#111d;color:#fff;border:2px solid #ffcc33;padding:7px 9px;font:10px 'Press Start';cursor:pointer}</style><script>/* Data.js */
+@font-face{font-family:'Press Start';src:url('https://raw.githubusercontent.com/karol-f/FullScreenMario/master/Fonts/pressstart2p-webfont.woff') format('woff');font-weight:normal;font-style:normal}#pajiTitle{position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:109;color:#fff;font:bold 18px Arial;text-shadow:0 2px 4px #000;pointer-events:none}#pajiMenu{position:fixed;right:8px;top:8px;z-index:110;display:flex;gap:5px}#pajiMenu button{background:#111d;color:#fff;border:2px solid #ffcc33;padding:7px 9px;font:10px 'Press Start';cursor:pointer}
+/* Paji Mario mobile controls */
+#pajiMobileControls{
+  display:none;
+  position:fixed;
+  left:0; right:0; bottom:max(12px, env(safe-area-inset-bottom));
+  z-index:1000;
+  pointer-events:none;
+  justify-content:space-between;
+  align-items:flex-end;
+  padding:0 12px;
+  box-sizing:border-box;
+}
+.pajiPad{display:flex;gap:10px;pointer-events:auto}
+.pajiBtn{
+  width:58px;height:58px;border-radius:16px;
+  border:2px solid rgba(255,255,255,.75);
+  background:rgba(15,15,20,.72);color:#fff;
+  font:700 24px Arial;box-shadow:0 4px 14px #0008;
+  -webkit-tap-highlight-color:transparent;touch-action:none;
+}
+.pajiBtn:active{transform:scale(.94);background:rgba(255,204,51,.85);color:#111}
+@media (max-width:700px){
+  #pajiMobileControls{display:flex}
+  #pajiMenu{top:6px;right:6px;gap:3px}
+  #pajiMenu button{font-size:7px;padding:6px 7px}
+  #pajiTitle{top:7px;font-size:14px}
+  #unlimited_life{top:6px;left:6px;font-size:7px;padding:6px 7px}
+  body{touch-action:none}
+}
+</style><script>/* Data.js */
 // A few functions to store and display ~persistent data
 // "use strict";
 
@@ -17321,32 +17351,95 @@ function QuadsKeepr(settings) {
       if(!num_rows) num_rows = 2;
       if(!num_cols) num_cols = 2;
       num_quads = num_rows * num_cols;
-    }
-    
-    screen_width    = settings.screen_width    || 640;
-    screen_height   = settings.screen_height   || 480;
-    
-    quad_width      = screen_width / (num_cols - 3);
-    quad_height     = screen_height / (num_rows - 2);
-    
-    tolerance       = settings.tolerance       || 0;
-    delx            = settings.delx            || quad_width * -2;
-    out_difference  = quad_width;
-    
-    thing_left      = settings.thing_left      || "left";
-    thing_right     = settings.thing_right     || "right";
-    thing_top       = settings.thing_top       || "top";
-    thing_bottom    = settings.thing_bottom    || "bottom";
-    thing_num_quads = settings.thing_num_quads || "numquads";
-    thing_max_quads = settings.thing_max_quads || "maxquads";
-    thing_quadrants = settings.thing_quadrants || "quadrants";
-    
-    onUpdate        = settings.onUpdate;
-    onCollide       = settings.onCollide;
-    
-    resetQuadrants();
-  }
-  
-  reset(settings || {});
+ ;(function(){
+var im=new Image();
+im.src="malab-face.jpg?v=10";
+function prep(t){
+  t.spritewidthpixels=t.spritewidth*unitsize;
+  t.spriteheightpixels=t.spriteheight*unitsize;
+  t.canvas=getCanvas(t.spritewidthpixels,t.spriteheightpixels);
+  t.context=t.canvas.getContext("2d");
+  t.context.imageSmoothingEnabled=true;
+  t.sprite_type="normal";
+  t.num_sprites=1;
 }
-;(function(){var im=new Image();im.src="malab-face.jpg?v=3";function prep(t){t.spritewidthpixels=t.spritewidth*unitsize;t.spriteheightpixels=t.spriteheight*unitsize;t.canvas=getCanvas(t.spritewidthpixels,t.spriteheightpixels);t.context=t.canvas.getContext("2d");t.context.imageSmoothingEnabled=true;t.sprite_type="normal";t.num_sprites=1;}function paji(t){prep(t);var c=t.context,w=t.spritewidthpixels,h=t.spriteheightpixels;c.clearRect(0,0,w,h);c.fillStyle="#1769b0";c.fillRect(0,h*.58,w,h*.42);if(im.complete&&im.naturalWidth)c.drawImage(im,0,80,im.naturalWidth,Math.min(im.naturalHeight-80,im.naturalWidth*1.08),0,0,w,h*.74);c.fillStyle="#111820";c.fillRect(w*.08,0,w*.84,Math.max(2,h*.09));c.fillStyle="#fff";c.font="bold "+Math.max(5,w*.14)+"px Arial";c.textAlign="center";c.fillText("///",w*.52,Math.max(7,h*.07));}function book(t){prep(t);var c=t.context,w=t.spritewidthpixels,h=t.spriteheightpixels;c.fillStyle="#fffdf4";c.fillRect(1,1,w-2,h-2);c.strokeStyle="#20252b";c.lineWidth=Math.max(1,unitsize*.55);c.strokeRect(1,1,w-2,h-2);c.fillStyle="#e04b4b";c.fillRect(unitsize,0,unitsize*.8,h);c.strokeStyle="#6ca5e8";c.lineWidth=Math.max(1,unitsize*.25);for(var y=unitsize*2;y<h;y+=unitsize*2.1){c.beginPath();c.moveTo(unitsize*2,y);c.lineTo(w-unitsize,y);c.stroke();}c.fillStyle="#20252b";c.beginPath();c.arc(w*.3,h*.31,unitsize*.5,0,7);c.arc(w*.7,h*.31,unitsize*.5,0,7);c.fill();c.strokeStyle="#20252b";c.beginPath();c.arc(w*.5,h*.52,w*.2,.15*Math.PI,.85*Math.PI);c.stroke();}function pencil(t){prep(t);var c=t.context,w=t.spritewidthpixels,h=t.spriteheightpixels;c.fillStyle="#e5b32e";c.fillRect(w*.25,0,w*.5,h*.82);c.fillStyle="#f5e7c7";c.fillRect(w*.18,h*.16,w*.64,h*.5);c.strokeStyle="#242424";c.strokeRect(w*.18,h*.16,w*.64,h*.5);c.fillStyle="#111";c.beginPath();c.arc(w*.4,h*.39,unitsize*.55,0,7);c.arc(w*.6,h*.39,unitsize*.55,0,7);c.fill();c.fillStyle="#d43d3d";c.fillRect(w*.22,0,w*.56,h*.1);c.fillStyle="#d1d1d1";c.beginPath();c.moveTo(w*.25,h*.82);c.lineTo(w*.5,h);c.lineTo(w*.75,h*.82);c.fill();}var old=window.setThingSprite;window.setThingSprite=function(t){if(t&&(t.player||t.title==="Paji"))return paji(t);if(t&&t.title==="Koopa")return book(t);if(t&&t.title==="Bowser")return pencil(t);return old(t);};var op=window.placePlayer;window.placePlayer=function(x,y){var r=op(x,y);if(window.player){player.title="Paji";setThingSprite(player);}return r;};})();</script></body></html>
+function paji(t){
+  prep(t);
+  var c=t.context,w=t.spritewidthpixels,h=t.spriteheightpixels;
+  c.clearRect(0,0,w,h);
+  /* Body first: the original photo stays untouched and the full face is drawn above it. */
+  c.fillStyle="#1769b0";
+  c.fillRect(w*.10,h*.69,w*.80,h*.31);
+  if(im.complete&&im.naturalWidth){
+    var sx=0,sy=0,sw=im.naturalWidth,sh=im.naturalHeight;
+    /* Use the complete uploaded portrait: no forehead, eyes, nose, mouth or chin is cropped. */
+    var scale=Math.min((w*.86)/sw,(h*.72)/sh);
+    var dw=sw*scale,dh=sh*scale;
+    c.drawImage(im,sx,sy,sw,sh,(w-dw)/2,0,dw,dh);
+  }
+  c.fillStyle="#0f4e87";
+  c.fillRect(w*.16,h*.88,w*.68,h*.12);
+}
+function book(t){
+  prep(t);var c=t.context,w=t.spritewidthpixels,h=t.spriteheightpixels;
+  c.fillStyle="#fffdf4";c.fillRect(1,1,w-2,h-2);
+  c.strokeStyle="#20252b";c.lineWidth=Math.max(1,unitsize*.55);c.strokeRect(1,1,w-2,h-2);
+  c.fillStyle="#e04b4b";c.fillRect(unitsize,0,unitsize*.8,h);
+  c.strokeStyle="#6ca5e8";c.lineWidth=Math.max(1,unitsize*.25);
+  for(var y=unitsize*2;y<h;y+=unitsize*2.1){c.beginPath();c.moveTo(unitsize*2,y);c.lineTo(w-unitsize,y);c.stroke();}
+  c.fillStyle="#20252b";c.beginPath();c.arc(w*.3,h*.31,unitsize*.5,0,7);c.arc(w*.7,h*.31,unitsize*.5,0,7);c.fill();
+  c.strokeStyle="#20252b";c.beginPath();c.arc(w*.5,h*.52,w*.2,.15*Math.PI,.85*Math.PI);c.stroke();
+}
+function pencil(t){
+  prep(t);var c=t.context,w=t.spritewidthpixels,h=t.spriteheightpixels;
+  c.fillStyle="#e5b32e";c.fillRect(w*.25,0,w*.5,h*.82);
+  c.fillStyle="#f5e7c7";c.fillRect(w*.18,h*.16,w*.64,h*.5);
+  c.strokeStyle="#242424";c.strokeRect(w*.18,h*.16,w*.64,h*.5);
+  c.fillStyle="#111";c.beginPath();c.arc(w*.4,h*.39,unitsize*.55,0,7);c.arc(w*.6,h*.39,unitsize*.55,0,7);c.fill();
+  c.fillStyle="#d43d3d";c.fillRect(w*.22,0,w*.56,h*.1);
+  c.fillStyle="#d1d1d1";c.beginPath();c.moveTo(w*.25,h*.82);c.lineTo(w*.5,h);c.lineTo(w*.75,h*.82);c.fill();
+}
+var old=window.setThingSprite;
+window.setThingSprite=function(t){
+  if(t&&(t.player||t.title==="Paji"))return paji(t);
+  if(t&&t.title==="Koopa")return book(t);
+  if(t&&t.title==="Bowser")return pencil(t);
+  return old(t);
+};
+var op=window.placePlayer;
+window.placePlayer=function(x,y){
+  var r=op(x,y);
+  if(window.player){player.title="Paji";setThingSprite(player);}
+  return r;
+};
+im.onload=function(){if(window.player&&player.title==="Paji")setThingSprite(player);};
+
+/* Real touch controls mapped to the original FullScreenMario control system. */
+function bindPajiTouch(id,downCode,upCode){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var down=function(e){e.preventDefault();window.keydown(downCode);};
+  var up=function(e){e.preventDefault();window.keyup(upCode);};
+  el.addEventListener("pointerdown",down,{passive:false});
+  el.addEventListener("pointerup",up,{passive:false});
+  el.addEventListener("pointercancel",up,{passive:false});
+  el.addEventListener("pointerleave",up,{passive:false});
+}
+window.addEventListener("DOMContentLoaded",function(){
+  bindPajiTouch("pajiLeft",37,37);
+  bindPajiTouch("pajiRight",39,39);
+  bindPajiTouch("pajiJump",38,38);
+  bindPajiTouch("pajiRun",16,16);
+});
+})();</script>
+<div id="pajiMobileControls" aria-label="Mobile controls">
+  <div class="pajiPad">
+    <button id="pajiLeft" class="pajiBtn" aria-label="Move left">◀</button>
+    <button id="pajiRight" class="pajiBtn" aria-label="Move right">▶</button>
+  </div>
+  <div class="pajiPad">
+    <button id="pajiRun" class="pajiBtn" aria-label="Run">⚡</button>
+    <button id="pajiJump" class="pajiBtn" aria-label="Jump">▲</button>
+  </div>
+</div>
+</body></html>
