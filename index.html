@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>Flappy Bird Demo</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#111827;font-family:Arial,sans-serif;overflow:hidden}
+#game{position:relative;width:min(420px,100vw);height:min(700px,100vh);overflow:hidden;background:linear-gradient(#70c9f5 0 72%,#d7c26b 72%);touch-action:none}
+#sky{position:absolute;inset:0;background:radial-gradient(circle at 75% 18%,#fff8 0 35px,transparent 36px),linear-gradient(#69c8f2,#b8e7f7 72%,#d8c36c 72%);z-index:0}
+#bird{position:absolute;width:34px;height:26px;border-radius:55% 50% 50% 45%;background:#ffd447;border:3px solid #a87500;z-index:3;transform:rotate(-5deg)}
+#bird:after{content:"";position:absolute;width:7px;height:7px;background:#111;border-radius:50%;right:4px;top:4px}
+.pipe{position:absolute;width:64px;background:#55b83e;border:4px solid #287c22;z-index:2}
+.top{top:0;border-radius:0 0 8px 8px}.bottom{bottom:0;border-radius:8px 8px 0 0}
+#ground{position:absolute;bottom:0;height:12px;width:100%;background:#b4943c;border-top:3px solid #80652b;z-index:4}
+#hud{position:absolute;top:18px;width:100%;text-align:center;z-index:5;color:#fff;text-shadow:2px 2px #333;font-size:42px;font-weight:900}
+#message{position:absolute;inset:0;display:grid;place-items:center;z-index:6;pointer-events:none}
+.card{background:#000b;color:#fff;padding:22px 28px;border-radius:16px;text-align:center;font-size:18px}
+button{border:0;border-radius:10px;padding:11px 20px;background:#ffd447;font-weight:800;font-size:16px;cursor:pointer}
+.small{font-size:13px;opacity:.8}
+</style>
+</head>
+<body>
+<div id="game">
+<div id="sky"></div><div id="hud">0</div><div id="bird"></div><div id="ground"></div>
+<div id="message"><div class="card"><h2>Flappy Demo</h2><p>Tap / Space to flap</p><button id="start">Start Game</button><p class="small">Demo game only</p></div></div>
+</div>
+<script>
+const game=document.getElementById('game'),bird=document.getElementById('bird'),hud=document.getElementById('hud'),msg=document.getElementById('message'),start=document.getElementById('start');
+let y=300,vy=0,score=0,running=false,raf,last=0,pipes=[],spawn=0;
+function reset(){document.querySelectorAll('.pipe').forEach(x=>x.remove());pipes=[];y=300;vy=0;score=0;spawn=0;hud.textContent='0';bird.style.left='70px';bird.style.top=y+'px';}
+function flap(){if(!running){begin();return}vy=-430}
+function begin(){reset();running=true;msg.style.display='none';last=performance.now();raf=requestAnimationFrame(loop)}
+function end(){running=false;cancelAnimationFrame(raf);msg.innerHTML='<div class="card"><h2>Game Over</h2><p>Score: '+score+'</p><button id="again">Play Again</button></div>';msg.style.display='grid';document.getElementById('again').onclick=begin}
+function addPipe(){const gap=165,min=90,max=430,topH=Math.floor(Math.random()*(max-min))+min;const top=document.createElement('div'),bot=document.createElement('div');top.className='pipe top';bot.className='pipe bottom';top.style.height=topH+'px';bot.style.height=(700-topH-gap)+'px';top.style.left=game.clientWidth+'px';bot.style.left=game.clientWidth+'px';game.append(top,bot);pipes.push({x:game.clientWidth,top:topH,scored:false,a:top,b:bot})}
+function hit(p){const bx=70,by=y,bw=34,bh=26,px=p.x,pw=64;return bx+bw>px&&bx<px+pw&&(by<p.top||by+bh>p.top+165)}
+function loop(t){const dt=Math.min((t-last)/1000,.035);last=t;vy+=1250*dt;y+=vy*dt;if(y<0||y+26>game.clientHeight-12)return end();bird.style.top=y+'px';spawn-=dt;if(spawn<=0){addPipe();spawn=1.65}
+pipes.forEach(p=>{p.x-=190*dt;p.a.style.left=p.x+'px';p.b.style.left=p.x+'px';if(!p.scored&&p.x+64<70){p.scored=true;score++;hud.textContent=score}if(hit(p))end()});pipes=pipes.filter(p=>p.x>-70);if(running)raf=requestAnimationFrame(loop)}
+start.onclick=begin;game.addEventListener('pointerdown',e=>{if(e.target.tagName!=='BUTTON')flap()});document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();flap()}});reset();
+</script>
+</body>
+</html>
