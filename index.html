@@ -3,113 +3,63 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Flappy Bird — Ghar Tak Demo</title>
+<title>Malab Fly's</title>
 <style>
-:root{--sky:#72d1ff;--sky2:#d9f5ff;--ground:#d9bd62;--green:#59c43e;--green2:#2c8425;--yellow:#ffd83d;--ink:#172033}
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0b1020;color:#fff}
+:root{--sky:#72d1ff;--ground:#d9bd62;--green:#4aaa36;--green2:#286d22}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0b1020;color:#fff}
 body{display:grid;place-items:center;min-height:100svh;overflow:hidden}
-#game{position:relative;width:min(430px,100vw);height:min(760px,100svh);overflow:hidden;touch-action:none;background:linear-gradient(var(--sky) 0 78%,var(--ground) 78%);user-select:none}
-#sky{position:absolute;inset:0;background:
-radial-gradient(ellipse 85px 28px at 18% 22%,#ffffffb8 0 55%,transparent 56%),
-radial-gradient(ellipse 70px 24px at 78% 34%,#ffffff9c 0 55%,transparent 56%),
-linear-gradient(#72d1ff 0,#bcecff 70%,#e5ca6b 70%,#d9bd62 100%)}
+#game{position:relative;width:min(430px,100vw);height:min(760px,100svh);overflow:hidden;touch-action:none;background:#9be3ff;user-select:none}
+#sky{position:absolute;inset:0;background:radial-gradient(ellipse 85px 28px at 18% 22%,#ffffffb8 0 55%,transparent 56%),radial-gradient(ellipse 70px 24px at 78% 34%,#ffffff9c 0 55%,transparent 56%),linear-gradient(#72d1ff 0,#bcecff 70%,#e5ca6b 70%,#d9bd62 100%)}
 #hill1,#hill2{position:absolute;left:-10%;width:120%;border-radius:50% 50% 0 0/100% 100% 0 0;pointer-events:none}
-#hill1{bottom:21%;height:120px;background:#9bd67b}
-#hill2{bottom:19%;height:95px;background:#79bd65}
+#hill1{bottom:21%;height:120px;background:#9bd67b}#hill2{bottom:19%;height:95px;background:#79bd65}
 #ground{position:absolute;left:0;bottom:0;width:100%;height:21%;min-height:105px;background:repeating-linear-gradient(135deg,#d9bd62 0 18px,#caaa4f 18px 36px);border-top:7px solid #8b7131;z-index:4}
-#bird{position:absolute;left:72px;top:330px;width:38px;height:29px;border:3px solid #a36f00;border-radius:58% 52% 48% 45%;background:var(--yellow);z-index:5;box-shadow:0 3px 0 #d6a500}
-#bird:before{content:"";position:absolute;width:19px;height:10px;left:-5px;bottom:2px;border-radius:50%;background:#f0b800;transform:rotate(-8deg)}
-#bird:after{content:"";position:absolute;width:7px;height:7px;right:5px;top:4px;border-radius:50%;background:#111;box-shadow:1px 1px 0 #fff}
-#beak{position:absolute;z-index:6;left:104px;top:340px;width:14px;height:10px;background:#ff8b25;clip-path:polygon(0 0,100% 50%,0 100%)}
-.pipe{position:absolute;width:70px;background:linear-gradient(90deg,#3c9f2e,#69d84c 48%,#3c9f2e);border:4px solid var(--green2);z-index:3;box-shadow:inset 5px 0 0 #ffffff18}
+#bird{position:absolute;left:67px;top:330px;width:54px;height:54px;border:4px solid #18202c;border-radius:50%;background:#d99a72;z-index:5;box-shadow:0 4px 0 #0005,0 0 0 3px #ffffff88;overflow:hidden}
+#bird .hair{position:absolute;left:-3px;top:-8px;width:60px;height:28px;background:#17191d;border-radius:55% 55% 35% 35%;transform:rotate(-4deg)}
+#bird .face{position:absolute;left:8px;top:17px;width:38px;height:34px;background:#dca07a;border-radius:42% 42% 48% 48%}
+#bird .glasses{position:absolute;left:6px;top:22px;width:42px;height:15px;z-index:3}
+#bird .glasses:before,#bird .glasses:after{content:"";position:absolute;top:0;width:18px;height:12px;border:2px solid #343943;border-radius:5px;background:#dfe9f233}
+#bird .glasses:before{left:0}#bird .glasses:after{right:0}
+#bird .eyes{position:absolute;left:16px;top:25px;width:24px;height:8px;z-index:4}
+#bird .eyes:before,#bird .eyes:after{content:"";position:absolute;width:4px;height:6px;background:#151515;border-radius:50%}
+#bird .eyes:before{left:4px}#bird .eyes:after{right:4px}
+#bird .moustache{position:absolute;left:15px;top:39px;width:25px;height:7px;z-index:5}
+#bird .moustache:before,#bird .moustache:after{content:"";position:absolute;width:14px;height:6px;background:#3b2922;border-radius:80% 20%;transform:rotate(8deg)}
+#bird .moustache:before{left:0}#bird .moustache:after{right:0;transform:scaleX(-1) rotate(8deg)}
+#beak{position:absolute;z-index:6;left:112px;top:349px;width:13px;height:10px;background:#ff8b25;clip-path:polygon(0 0,100% 50%,0 100%);filter:drop-shadow(1px 1px 0 #8c4c16)}
+.pipe{position:absolute;width:70px;background:linear-gradient(90deg,#327f28,#67cc4e 48%,#327f28);border:4px solid var(--green2);z-index:3;box-shadow:inset 5px 0 0 #ffffff18}
 .pipe:after{content:"";position:absolute;left:-7px;width:76px;height:27px;background:#63cf49;border:4px solid var(--green2);border-radius:5px}
-.top{top:0;border-radius:0 0 7px 7px}.top:after{bottom:-4px}
-.bottom{bottom:0;border-radius:7px 7px 0 0}.bottom:after{top:-4px}
+.top{top:0;border-radius:0 0 7px 7px}.top:after{bottom:-4px}.bottom{bottom:0;border-radius:7px 7px 0 0}.bottom:after{top:-4px}
 #hud{position:absolute;top:17px;left:0;width:100%;z-index:8;text-align:center;font-size:46px;line-height:1;font-weight:950;color:#fff;text-shadow:0 4px 0 #53606b,2px 2px 0 #333;pointer-events:none}
 #best{position:absolute;right:12px;top:12px;z-index:8;padding:8px 11px;border-radius:12px;background:#0005;font-size:12px;font-weight:800}
 #pause{position:absolute;left:12px;top:12px;z-index:9;width:42px;height:42px;border:0;border-radius:12px;background:#0005;color:#fff;font-size:18px;font-weight:900;cursor:pointer}
 #overlay{position:absolute;inset:0;z-index:10;display:grid;place-items:center;background:#06102040}
-.card{width:min(330px,88%);padding:25px 22px;border-radius:22px;text-align:center;background:#101a2bf2;border:1px solid #ffffff22;box-shadow:0 18px 50px #0008}
-.card h1,.card h2{margin:0 0 8px}.card p{margin:7px 0;color:#cbd5e1}
-.btn{margin-top:13px;border:0;border-radius:13px;padding:13px 22px;background:var(--yellow);color:#332600;font-size:17px;font-weight:900;cursor:pointer;min-width:145px}
-.hint{font-size:12px!important;opacity:.72}
-.hidden{display:none!important}
-#flash{position:absolute;inset:0;z-index:7;background:#fff;opacity:0;pointer-events:none}
-@media(max-height:560px){#game{height:100svh}#ground{min-height:75px}#bird{top:45%}}
+.card{width:min(335px,88%);padding:27px 22px;border-radius:22px;text-align:center;background:#101a2bf2;border:1px solid #ffffff22;box-shadow:0 18px 50px #0008}
+.card h1{font-size:34px;letter-spacing:.5px;margin:0 0 9px}.card h2{margin:0 0 8px}.card p{margin:7px 0;color:#cbd5e1}
+.btn{margin-top:13px;border:0;border-radius:13px;padding:13px 22px;background:#ffd83d;color:#332600;font-size:17px;font-weight:900;cursor:pointer;min-width:145px}
+.hint{font-size:12px!important;opacity:.72}.hidden{display:none!important}#flash{position:absolute;inset:0;z-index:7;background:#fff;opacity:0;pointer-events:none}
+@media(max-height:560px){#game{height:100svh}#ground{min-height:75px}}
 </style>
 </head>
 <body>
-<div id="game" aria-label="Flappy Bird game">
-  <div id="sky"></div><div id="hill1"></div><div id="hill2"></div><div id="ground"></div>
-  <div id="hud">0</div><div id="best">BEST 0</div>
-  <button id="pause" type="button" aria-label="Pause game">Ⅱ</button>
-  <div id="bird"></div><div id="beak"></div><div id="flash"></div>
-  <div id="overlay">
-    <div class="card" id="card">
-      <h1>Flappy Bird</h1>
-      <p>Tap the screen or press <b>Space</b> to flap.</p>
-      <button class="btn" id="start" type="button">START GAME</button>
-      <p class="hint">Avoid the pipes • Build your high score</p>
-    </div>
-  </div>
+<div id="game" aria-label="Malab Fly's game">
+<div id="sky"></div><div id="hill1"></div><div id="hill2"></div><div id="ground"></div>
+<div id="hud">0</div><div id="best">BEST 0</div><button id="pause" type="button" aria-label="Pause game">Ⅱ</button>
+<div id="bird"><div class="hair"></div><div class="face"></div><div class="glasses"></div><div class="eyes"></div><div class="moustache"></div></div><div id="beak"></div><div id="flash"></div>
+<div id="overlay"><div class="card" id="card"><h1>Malab Fly's</h1><p>Help Malab fly through the towers.</p><p>Tap the screen or press <b>Space</b> to fly.</p><button class="btn" id="start" type="button">START FLYING</button><p class="hint">Starts slow • speed increases gradually • safe tower gaps</p></div></div>
 </div>
 <script>
-(() => {
-const game=document.getElementById('game'),bird=document.getElementById('bird'),beak=document.getElementById('beak'),hud=document.getElementById('hud'),bestEl=document.getElementById('best'),overlay=document.getElementById('overlay'),card=document.getElementById('card'),start=document.getElementById('start'),pauseBtn=document.getElementById('pause'),flash=document.getElementById('flash');
-let y=330,vy=0,score=0,best=0,running=false,paused=false,raf=0,last=0,spawn=0,pipes=[],audio=null;
-const W=()=>game.clientWidth,H=()=>game.clientHeight;
-function loadBest(){try{best=Number(localStorage.getItem('flappy_best')||0)||0}catch(e){best=0}bestEl.textContent='BEST '+best}
-function saveBest(){try{localStorage.setItem('flappy_best',String(best))}catch(e){}}
-function reset(){
-  pipes.forEach(p=>{p.a.remove();p.b.remove()});pipes=[];score=0;y=Math.max(120,H()*0.43);vy=0;spawn=.45;
-  hud.textContent='0';bird.style.left='72px';bird.style.top=y+'px';beak.style.left='104px';beak.style.top=(y+10)+'px';bird.style.transform='rotate(-4deg)';
-}
-function tone(freq,dur){
-  try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=freq;o.type='square';g.gain.setValueAtTime(.035,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+dur)}catch(e){}
-}
-function flap(){if(!running){begin();return}if(paused)return;vy=-455;tone(520,.055)}
+(()=>{const game=document.getElementById('game'),bird=document.getElementById('bird'),beak=document.getElementById('beak'),hud=document.getElementById('hud'),bestEl=document.getElementById('best'),overlay=document.getElementById('overlay'),card=document.getElementById('card'),start=document.getElementById('start'),pauseBtn=document.getElementById('pause'),flash=document.getElementById('flash');let y=330,vy=0,score=0,best=0,running=false,paused=false,raf=0,last=0,spawn=0,pipes=[],audio=null;const W=()=>game.clientWidth,H=()=>game.clientHeight;
+function loadBest(){try{best=Number(localStorage.getItem('malab_flys_best')||0)||0}catch(e){best=0}bestEl.textContent='BEST '+best}function saveBest(){try{localStorage.setItem('malab_flys_best',String(best))}catch(e){}}
+function reset(){pipes.forEach(p=>{p.a.remove();p.b.remove()});pipes=[];score=0;y=Math.max(120,H()*.43);vy=0;spawn=.7;hud.textContent='0';bird.style.left='67px';bird.style.top=y+'px';beak.style.left='112px';beak.style.top=(y+19)+'px';bird.style.transform='rotate(-4deg)'}
+function tone(freq,dur){try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=freq;o.type='square';g.gain.setValueAtTime(.035,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+dur)}catch(e){}}
+function flap(){if(!running){begin();return}if(paused)return;vy=-430;tone(520,.055)}
 function begin(){reset();running=true;paused=false;pauseBtn.textContent='Ⅱ';overlay.classList.add('hidden');last=performance.now();tone(660,.06);raf=requestAnimationFrame(loop)}
-function finish(){
-  running=false;paused=false;cancelAnimationFrame(raf);tone(120,.16);
-  if(score>best){best=score;saveBest();loadBest()}
-  flash.style.opacity='.65';setTimeout(()=>flash.style.opacity='0',90);
-  card.innerHTML='<h2>Game Over</h2><p>Score: <b>'+score+'</b></p><p>Best: <b>'+best+'</b></p><button class="btn" id="again" type="button">PLAY AGAIN</button><p class="hint">Tap anywhere to flap</p>';
-  overlay.classList.remove('hidden');document.getElementById('again').addEventListener('click',e=>{e.stopPropagation();begin()});
-}
-function addPipe(){
-  const gap=Math.max(145,Math.min(180,H()*0.24)),min=80,max=Math.max(110,H()-180),topH=Math.floor(min+Math.random()*Math.max(1,max-min));
-  const a=document.createElement('div'),b=document.createElement('div');a.className='pipe top';b.className='pipe bottom';
-  a.style.height=topH+'px';b.style.height=Math.max(70,H()-topH-gap)+'px';a.style.left=W()+'px';b.style.left=W()+'px';game.append(a,b);
-  pipes.push({x:W(),top:topH,gap,scored:false,a,b});
-}
-function collision(p){
-  const bx=72,by=y,bw=38,bh=29,px=p.x,pw=70;
-  return bx+bw>px&&bx<px+pw&&(by+bh>p.top+p.gap||by<p.top);
-}
-function togglePause(){
-  if(!running)return;paused=!paused;pauseBtn.textContent=paused?'▶':'Ⅱ';
-  if(!paused){last=performance.now();raf=requestAnimationFrame(loop)}
-}
-function loop(t){
-  if(!running||paused)return;
-  const dt=Math.min((t-last)/1000,.032);last=t;vy+=1350*dt;y+=vy*dt;
-  bird.style.top=y+'px';beak.style.top=(y+10)+'px';const angle=Math.max(-28,Math.min(85,vy*.055));bird.style.transform='rotate('+angle+'deg)';
-  if(y<0||y+29>H()*0.79)return finish();
-  spawn-=dt;if(spawn<=0){addPipe();spawn=1.62}
-  for(const p of pipes){p.x-=205*dt;p.a.style.left=p.x+'px';p.b.style.left=p.x+'px';
-    if(!p.scored&&p.x+70<72){p.scored=true;score++;hud.textContent=score;tone(760,.045)}
-    if(collision(p))return finish();
-  }
-  pipes=pipes.filter(p=>p.x>-85);
-  raf=requestAnimationFrame(loop);
-}
-start.addEventListener('click',e=>{e.stopPropagation();begin()});
-pauseBtn.addEventListener('click',e=>{e.stopPropagation();togglePause()});
-game.addEventListener('pointerdown',e=>{if(e.target.closest('button')||e.target.closest('.card'))return;flap()});
-document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();flap()}else if(e.code==='KeyP'||e.code==='Escape'){togglePause()}});
-loadBest();reset();
-})();
+function finish(){running=false;paused=false;cancelAnimationFrame(raf);tone(120,.16);if(score>best){best=score;saveBest();loadBest()}flash.style.opacity='.65';setTimeout(()=>flash.style.opacity='0',90);card.innerHTML='<h2>Game Over</h2><p>Score: <b>'+score+'</b></p><p>Best: <b>'+best+'</b></p><button class="btn" id="again" type="button">PLAY AGAIN</button><p class="hint">Tap anywhere to fly again</p>';overlay.classList.remove('hidden');document.getElementById('again').addEventListener('click',e=>{e.stopPropagation();begin()})}
+function addPipe(){const gap=Math.max(180,Math.min(210,H()*.27)),playTop=H()*.79,safeTop=72,safeBottom=playTop-gap-72;const topH=Math.floor(safeTop+Math.random()*Math.max(1,safeBottom-safeTop));const a=document.createElement('div'),b=document.createElement('div');a.className='pipe top';b.className='pipe bottom';a.style.height=topH+'px';b.style.height=Math.max(70,playTop-topH-gap)+'px';a.style.left=W()+'px';b.style.left=W()+'px';game.append(a,b);pipes.push({x:W(),top:topH,gap,scored:false,a,b,phase:Math.random()*Math.PI*2})}
+function collision(p){const bx=67,by=y,bw=54,bh=54,px=p.x,pw=70;return bx+bw>px&&bx<px+pw&&(by+bh>p.top+p.gap||by<p.top)}
+function togglePause(){if(!running)return;paused=!paused;pauseBtn.textContent=paused?'▶':'Ⅱ';if(!paused){last=performance.now();raf=requestAnimationFrame(loop)}}
+function loop(t){if(!running||paused)return;const dt=Math.min((t-last)/1000,.032);last=t;vy+=1320*dt;y+=vy*dt;bird.style.top=y+'px';beak.style.top=(y+19)+'px';bird.style.transform='rotate('+Math.max(-28,Math.min(80,vy*.055))+'deg)';if(y<0||y+54>H()*.79)return finish();spawn-=dt;if(spawn<=0){addPipe();spawn=Math.max(1.4,1.75-score*.018)}const speed=Math.min(365,145+score*9);for(const p of pipes){p.x-=speed*dt;const maxShift=Math.min(18,Math.max(8,(H()*.79-p.gap-144)/5));const shift=Math.sin(t*.00065+p.phase)*maxShift;const topNow=p.top+shift;p.a.style.left=p.x+'px';p.b.style.left=p.x+'px';p.a.style.height=topNow+'px';p.b.style.height=Math.max(70,H()*.79-topNow-p.gap)+'px';if(!p.scored&&p.x+70<67){p.scored=true;score++;hud.textContent=score;tone(760,.045)}if(collision({...p,top:topNow}))return finish()}pipes=pipes.filter(p=>p.x>-85);raf=requestAnimationFrame(loop)}
+start.addEventListener('click',e=>{e.stopPropagation();begin()});pauseBtn.addEventListener('click',e=>{e.stopPropagation();togglePause()});game.addEventListener('pointerdown',e=>{if(e.target.closest('button')||e.target.closest('.card'))return;flap()});document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();flap()}else if(e.code==='KeyP'||e.code==='Escape'){togglePause()}});loadBest();reset()})();
 </script>
 </body>
 </html>
