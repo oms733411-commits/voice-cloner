@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Malab Fly's</title>
 <style>
 :root{--sky:#72d1ff;--ground:#d9bd62;--green:#4aaa36;--green2:#286d22}
@@ -13,7 +13,7 @@ body{display:grid;place-items:center;min-height:100svh;overflow:hidden}
 #hill1,#hill2{position:absolute;left:-10%;width:120%;border-radius:50% 50% 0 0/100% 100% 0 0;pointer-events:none}
 #hill1{bottom:21%;height:120px;background:#9bd67b}#hill2{bottom:19%;height:95px;background:#79bd65}
 #ground{position:absolute;left:0;bottom:0;width:100%;height:21%;min-height:105px;background:repeating-linear-gradient(135deg,#d9bd62 0 18px,#caaa4f 18px 36px);border-top:7px solid #8b7131;z-index:4}
-#bird{position:absolute;left:67px;top:330px;width:54px;height:54px;border:4px solid #18202c;border-radius:50%;background:#d99a72;z-index:5;box-shadow:0 4px 0 #0005,0 0 0 3px #ffffff88;overflow:hidden}
+#bird{position:absolute;left:67px;top:330px;width:54px;height:54px;border:4px solid #18202c;border-radius:50%;background:#d99a72;z-index:5;box-shadow:0 4px 0 #0005,0 0 0 3px #ffffff88;overflow:hidden}.facePhoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;z-index:2;transform:scale(1.12)}
 #bird .hair{position:absolute;left:-3px;top:-8px;width:60px;height:28px;background:#17191d;border-radius:55% 55% 35% 35%;transform:rotate(-4deg)}
 #bird .face{position:absolute;left:8px;top:17px;width:38px;height:34px;background:#dca07a;border-radius:42% 42% 48% 48%}
 #bird .glasses{position:absolute;left:6px;top:22px;width:42px;height:15px;z-index:3}
@@ -47,7 +47,7 @@ body{display:grid;place-items:center;min-height:100svh;overflow:hidden}
 <div id="game" aria-label="Malab Fly's game">
 <div id="sky"></div><div id="hill1"></div><div id="hill2"></div><div id="ground"></div>
 <div id="hud">0</div><div id="best">BEST 0</div><button id="pause" type="button" aria-label="Pause game">Ⅱ</button>
-<div id="bird"><div class="hair"></div><div class="face"></div><div class="glasses"></div><div class="eyes"></div><div class="moustache"></div></div><div id="beak"></div><div id="flash"></div>
+<div id="bird"><img class="facePhoto" src="malab-face.jpg?v=2" alt="Malab"></div><div id="beak"></div><div id="flash"></div>
 <div id="overlay"><div class="card" id="card"><h1>Malab Fly's</h1><p>Help Malab fly through the towers.</p><p>Tap the screen or press <b>Space</b> to fly.</p><button class="btn" id="start" type="button">START FLYING</button><p class="hint">Starts slow • speed increases gradually • safe tower gaps</p></div></div>
 </div>
 <script>
@@ -67,7 +67,7 @@ function finish(){
 running=false;paused=false;cancelAnimationFrame(raf);tone(120,.16);
 if(score>best){best=score;saveBest();loadBest()}
 flash.style.opacity='.65';setTimeout(()=>flash.style.opacity='0',90);
-card.innerHTML='<div id="deathScreen"><video id="deathVideo" playsinline preload="auto" autoplay><source src="death-video.mp4" type="video/mp4"></video><div id="deathLabel">YOU CRASHED 💥</div></div>';
+card.innerHTML='<div id="deathScreen"><video id="deathVideo" playsinline preload="auto" autoplay><source src="death-video.mp4?v=2" type="video/mp4"></video><div id="deathLabel">YOU CRASHED 💥</div></div>';
 overlay.classList.remove('hidden');
 deathVideo=document.getElementById('deathVideo');
 const done=()=>{if(!deathVideo)return;deathVideo.removeEventListener('ended',done);showGameOver()};
