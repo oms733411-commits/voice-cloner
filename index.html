@@ -59,19 +59,19 @@ function finish(){
 running=false;paused=false;cancelAnimationFrame(raf);tone(120,.16);
 if(score>best){best=score;saveBest();loadBest()}
 flash.style.opacity='.65';setTimeout(()=>flash.style.opacity='0',90);
-card.innerHTML='<div id="deathScreen"><video id="deathVideo" playsinline muted autoplay preload="auto"><source src="death-video.mp4?v=4" type="video/mp4"></video><div id="deathLabel">YOU CRASHED 💥</div></div>';
+card.innerHTML='<div id="deathScreen"><video id="deathVideo" playsinline muted autoplay preload="auto"></video><div id="deathLabel">YOU CRASHED 💥</div></div>';
 overlay.classList.remove('hidden');
 deathVideo=document.getElementById('deathVideo');
-let crashFinished=false;
-const finishCrash=()=>{if(crashFinished)return;crashFinished=true;if(deathVideo){deathVideo.pause();deathVideo.remove()}showGameOver()};
+let crashFinished=false,crashTimer=0;
+const finishCrash=()=>{if(crashFinished)return;crashFinished=true;clearTimeout(crashTimer);if(deathVideo){deathVideo.pause();deathVideo.remove()}showGameOver()};
+const playCrash=()=>{if(crashFinished||!deathVideo)return;deathVideo.muted=true;deathVideo.defaultMuted=true;deathVideo.playsInline=true;const p=deathVideo.play();if(p&&p.catch)p.catch(()=>{})};
 deathVideo.addEventListener('ended',finishCrash,{once:true});
-deathVideo.addEventListener('error',()=>{setTimeout(finishCrash,900)});
-deathVideo.muted=true;
-deathVideo.defaultMuted=true;
-deathVideo.playsInline=true;
-const p=deathVideo.play();
-if(p&&p.catch)p.catch(()=>{});
-setTimeout(finishCrash,5200);
+deathVideo.addEventListener('error',()=>{crashTimer=setTimeout(finishCrash,1200)});
+deathVideo.addEventListener('canplay',playCrash,{once:true});
+deathVideo.src='death-video.mp4?v=5';
+deathVideo.load();
+crashTimer=setTimeout(finishCrash,6500);
+playCrash();
 }
 function addPipe(){const gap=Math.max(180,Math.min(210,H()*.27)),playTop=H()*.79,safeTop=72,safeBottom=playTop-gap-72;const topH=Math.floor(safeTop+Math.random()*Math.max(1,safeBottom-safeTop));const a=document.createElement('div'),b=document.createElement('div');a.className='pipe top';b.className='pipe bottom';a.style.height=topH+'px';b.style.height=Math.max(70,H()-(topH+gap))+'px';a.style.left=W()+'px';b.style.left=W()+'px';game.append(a,b);pipes.push({x:W(),top:topH,gap,scored:false,a,b,phase:Math.random()*Math.PI*2})}
 function collision(p){
