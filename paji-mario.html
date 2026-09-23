@@ -39,6 +39,8 @@ body {
 canvas {
   position: absolute;
   left: 0;
+  top: 0;
+  z-index: 1;
 }
 
 /*
@@ -388,6 +390,9 @@ canvas {
   #unlimited_life{top:6px;left:6px;font-size:7px;padding:6px 7px}
   body{touch-action:none}
 }
+
+#pajiBoot{position:fixed;left:50%;top:54%;transform:translate(-50%,-50%);z-index:2000;color:#fff;font:700 14px Arial;text-align:center;white-space:nowrap}
+#pajiBoot.error{color:#ff6666;white-space:normal;width:92%;line-height:1.5}
 </style><script>/* Data.js */
 // A few functions to store and display ~persistent data
 // "use strict";
@@ -12422,7 +12427,7 @@ function TimeHandlr(settings) {
   }
   
   reset(settings || {});
-}</script></head><body onload="FullScreenMario()"><div id="pajiTitle">PAJI MARIO</div><div id="pajiMenu"><button onclick="setMapRandom()">RANDOM WORLD</button><button onclick="loadEditor()">LEVEL EDITOR</button><button onclick="toggleAutoRespawn()">REVIVE</button></div><script>
+}</script></head><body><div id="pajiTitle">PAJI MARIO</div><div id="pajiBoot">LOADING PAJI MARIO...</div><div id="pajiMenu"><button onclick="setMapRandom()">RANDOM WORLD</button><button onclick="loadEditor()">LEVEL EDITOR</button><button onclick="toggleAutoRespawn()">REVIVE</button></div><script>
 /* Things.js */
 // Stores Thing creators, functions, and manipulators
 
@@ -17432,7 +17437,28 @@ window.addEventListener("DOMContentLoaded",function(){
   bindPajiTouch("pajiRun",16,16);
 });
 })();</script>
-<div id="pajiMobileControls" aria-label="Mobile controls">
+<script>
+(function(){
+  function bootPaji(){
+    if(window.__pajiBooted)return;
+    window.__pajiBooted=true;
+    var b=document.getElementById("pajiBoot");
+    try{
+      if(typeof FullScreenMario!=="function") throw new Error("FullScreenMario function missing");
+      FullScreenMario();
+      if(b)b.style.display="none";
+    }catch(e){
+      console.error("Paji Mario boot error:",e);
+      if(b){
+        b.className="error";
+        b.innerHTML="PAJI MARIO ERROR<br><small>"+String(e&&e.message||e).replace(/[<>&]/g,function(x){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[x]})+"</small>";
+      }
+    }
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",bootPaji);
+  else bootPaji();
+})();
+</script><div id="pajiMobileControls" aria-label="Mobile controls">
   <div class="pajiPad">
     <button id="pajiLeft" class="pajiBtn" aria-label="Move left">◀</button>
     <button id="pajiRight" class="pajiBtn" aria-label="Move right">▶</button>
