@@ -261,7 +261,7 @@ canvas {
   opacity: .21;
   z-index: 7;
   cursor: none;
-  background: url('Theme/Hand.gif') center center no-repeat;
+  background: url('https://raw.githubusercontent.com/karol-f/FullScreenMario/master/Theme/Hand.gif') center center no-repeat;
 }
 .scroller:hover { opacity: .84; }
 .scroller.off {
@@ -369,3 +369,5 @@ canvas {
 .pajiBtn{width:58px;height:58px;border-radius:16px;border:2px solid rgba(255,255,255,.75);background:rgba(15,15,20,.72);color:#fff;font:700 24px Arial;box-shadow:0 4px 14px #0008;-webkit-tap-highlight-color:transparent;touch-action:none}
 .pajiBtn:active{transform:scale(.94);background:rgba(255,204,51,.85);color:#111}
 @media (max-width:700px){#pajiMobileControls{display:flex}#pajiMenu{top:6px;right:6px;gap:3px}#pajiMenu button{font-size:7px;padding:6px 7px}#pajiTitle{top:7px;font-size:14px}#unlimited_life{top:6px;left:6px;font-size:7px;padding:6px 7px}body{touch-action:none}}
+
+@font-face{font-family:'Press Start';src:url('https://raw.githubusercontent.com/karol-f/FullScreenMario/master/Fonts/pressstart2p-webfont.woff') format('woff');font-weight:normal;font-style:normal}
