@@ -37,6 +37,9 @@ body{display:grid;place-items:center;min-height:100svh;overflow:hidden}
 .card h1{font-size:34px;letter-spacing:.5px;margin:0 0 9px}.card h2{margin:0 0 8px}.card p{margin:7px 0;color:#cbd5e1}
 .btn{margin-top:13px;border:0;border-radius:13px;padding:13px 22px;background:#ffd83d;color:#332600;font-size:17px;font-weight:900;cursor:pointer;min-width:145px}
 .hint{font-size:12px!important;opacity:.72}.hidden{display:none!important}#flash{position:absolute;inset:0;z-index:7;background:#fff;opacity:0;pointer-events:none}
+#deathScreen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050812f2;padding:18px}
+#deathVideo{display:block;width:min(390px,100%);max-height:72svh;object-fit:contain;border-radius:16px;background:#000;box-shadow:0 12px 40px #000a}
+#deathLabel{margin:12px 0 0;font-weight:900;letter-spacing:.5px}
 @media(max-height:560px){#game{height:100svh}#ground{min-height:75px}}
 </style>
 </head>
@@ -48,18 +51,36 @@ body{display:grid;place-items:center;min-height:100svh;overflow:hidden}
 <div id="overlay"><div class="card" id="card"><h1>Malab Fly's</h1><p>Help Malab fly through the towers.</p><p>Tap the screen or press <b>Space</b> to fly.</p><button class="btn" id="start" type="button">START FLYING</button><p class="hint">Starts slow • speed increases gradually • safe tower gaps</p></div></div>
 </div>
 <script>
-(()=>{const game=document.getElementById('game'),bird=document.getElementById('bird'),beak=document.getElementById('beak'),hud=document.getElementById('hud'),bestEl=document.getElementById('best'),overlay=document.getElementById('overlay'),card=document.getElementById('card'),start=document.getElementById('start'),pauseBtn=document.getElementById('pause'),flash=document.getElementById('flash');let y=330,vy=0,score=0,best=0,running=false,paused=false,raf=0,last=0,spawn=0,pipes=[],audio=null;const W=()=>game.clientWidth,H=()=>game.clientHeight;
-function loadBest(){try{best=Number(localStorage.getItem('malab_flys_best')||0)||0}catch(e){best=0}bestEl.textContent='BEST '+best}function saveBest(){try{localStorage.setItem('malab_flys_best',String(best))}catch(e){}}
+(()=>{
+const game=document.getElementById('game'),bird=document.getElementById('bird'),beak=document.getElementById('beak'),hud=document.getElementById('hud'),bestEl=document.getElementById('best'),overlay=document.getElementById('overlay'),card=document.getElementById('card'),start=document.getElementById('start'),pauseBtn=document.getElementById('pause'),flash=document.getElementById('flash');
+let y=330,vy=0,score=0,best=0,running=false,paused=false,raf=0,last=0,spawn=0,pipes=[],audio=null,deathVideo=null;
+const W=()=>game.clientWidth,H=()=>game.clientHeight;
+
+function loadBest(){try{best=Number(localStorage.getItem('malab_flys_best')||0)||0}catch(e){best=0}bestEl.textContent='BEST '+best}
+function saveBest(){try{localStorage.setItem('malab_flys_best',String(best))}catch(e){}}
 function reset(){pipes.forEach(p=>{p.a.remove();p.b.remove()});pipes=[];score=0;y=Math.max(120,H()*.43);vy=0;spawn=.7;hud.textContent='0';bird.style.left='67px';bird.style.top=y+'px';beak.style.left='112px';beak.style.top=(y+19)+'px';bird.style.transform='rotate(-4deg)'}
 function tone(freq,dur){try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=freq;o.type='square';g.gain.setValueAtTime(.035,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+dur)}catch(e){}}
 function flap(){if(!running){begin();return}if(paused)return;vy=-430;tone(520,.055)}
-function begin(){reset();running=true;paused=false;pauseBtn.textContent='Ⅱ';overlay.classList.add('hidden');last=performance.now();tone(660,.06);raf=requestAnimationFrame(loop)}
-function finish(){running=false;paused=false;cancelAnimationFrame(raf);tone(120,.16);if(score>best){best=score;saveBest();loadBest()}flash.style.opacity='.65';setTimeout(()=>flash.style.opacity='0',90);card.innerHTML='<h2>Game Over</h2><p>Score: <b>'+score+'</b></p><p>Best: <b>'+best+'</b></p><button class="btn" id="again" type="button">PLAY AGAIN</button><p class="hint">Tap anywhere to fly again</p>';overlay.classList.remove('hidden');document.getElementById('again').addEventListener('click',e=>{e.stopPropagation();begin()})}
+function begin(){if(deathVideo){deathVideo.pause();deathVideo.remove();deathVideo=null}reset();running=true;paused=false;pauseBtn.textContent='Ⅱ';overlay.classList.add('hidden');last=performance.now();tone(660,.06);raf=requestAnimationFrame(loop)}
+function showGameOver(){card.innerHTML='<h2>Game Over</h2><p>Score: <b>'+score+'</b></p><p>Best: <b>'+best+'</b></p><button class="btn" id="again" type="button">PLAY AGAIN</button><p class="hint">Tap anywhere to fly again</p>';overlay.classList.remove('hidden');document.getElementById('again').addEventListener('click',e=>{e.stopPropagation();begin()})}
+function finish(){
+running=false;paused=false;cancelAnimationFrame(raf);tone(120,.16);
+if(score>best){best=score;saveBest();loadBest()}
+flash.style.opacity='.65';setTimeout(()=>flash.style.opacity='0',90);
+card.innerHTML='<div id="deathScreen"><video id="deathVideo" playsinline preload="auto" autoplay><source src="death-video.mp4" type="video/mp4"></video><div id="deathLabel">YOU CRASHED 💥</div></div>';
+overlay.classList.remove('hidden');
+deathVideo=document.getElementById('deathVideo');
+const done=()=>{if(!deathVideo)return;deathVideo.removeEventListener('ended',done);showGameOver()};
+deathVideo.addEventListener('ended',done);
+deathVideo.addEventListener('error',done,{once:true});
+const p=deathVideo.play();if(p&&p.catch)p.catch(done);
+}
 function addPipe(){const gap=Math.max(180,Math.min(210,H()*.27)),playTop=H()*.79,safeTop=72,safeBottom=playTop-gap-72;const topH=Math.floor(safeTop+Math.random()*Math.max(1,safeBottom-safeTop));const a=document.createElement('div'),b=document.createElement('div');a.className='pipe top';b.className='pipe bottom';a.style.height=topH+'px';b.style.height=Math.max(70,playTop-topH-gap)+'px';a.style.left=W()+'px';b.style.left=W()+'px';game.append(a,b);pipes.push({x:W(),top:topH,gap,scored:false,a,b,phase:Math.random()*Math.PI*2})}
 function collision(p){const bx=67,by=y,bw=54,bh=54,px=p.x,pw=70;return bx+bw>px&&bx<px+pw&&(by+bh>p.top+p.gap||by<p.top)}
 function togglePause(){if(!running)return;paused=!paused;pauseBtn.textContent=paused?'▶':'Ⅱ';if(!paused){last=performance.now();raf=requestAnimationFrame(loop)}}
 function loop(t){if(!running||paused)return;const dt=Math.min((t-last)/1000,.032);last=t;vy+=1320*dt;y+=vy*dt;bird.style.top=y+'px';beak.style.top=(y+19)+'px';bird.style.transform='rotate('+Math.max(-28,Math.min(80,vy*.055))+'deg)';if(y<0||y+54>H()*.79)return finish();spawn-=dt;if(spawn<=0){addPipe();spawn=Math.max(1.4,1.75-score*.018)}const speed=Math.min(365,145+score*9);for(const p of pipes){p.x-=speed*dt;const maxShift=Math.min(18,Math.max(8,(H()*.79-p.gap-144)/5));const shift=Math.sin(t*.00065+p.phase)*maxShift;const topNow=p.top+shift;p.a.style.left=p.x+'px';p.b.style.left=p.x+'px';p.a.style.height=topNow+'px';p.b.style.height=Math.max(70,H()*.79-topNow-p.gap)+'px';if(!p.scored&&p.x+70<67){p.scored=true;score++;hud.textContent=score;tone(760,.045)}if(collision({...p,top:topNow}))return finish()}pipes=pipes.filter(p=>p.x>-85);raf=requestAnimationFrame(loop)}
-start.addEventListener('click',e=>{e.stopPropagation();begin()});pauseBtn.addEventListener('click',e=>{e.stopPropagation();togglePause()});game.addEventListener('pointerdown',e=>{if(e.target.closest('button')||e.target.closest('.card'))return;flap()});document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();flap()}else if(e.code==='KeyP'||e.code==='Escape'){togglePause()}});loadBest();reset()})();
+start.addEventListener('click',e=>{e.stopPropagation();begin()});pauseBtn.addEventListener('click',e=>{e.stopPropagation();togglePause()});game.addEventListener('pointerdown',e=>{if(e.target.closest('button')||e.target.closest('.card'))return;flap()});document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();flap()}else if(e.code==='KeyP'||e.code==='Escape'){togglePause()}});loadBest();reset()
+})();
 </script>
 </body>
 </html>
