@@ -28,7 +28,10 @@ body{display:grid;place-items:center;min-height:100svh;overflow:hidden}
 .btn{margin-top:13px;border:0;border-radius:13px;padding:13px 22px;background:#ffd83d;color:#332600;font-size:17px;font-weight:900;cursor:pointer;min-width:145px}
 .hint{font-size:12px!important;opacity:.72}.hidden{display:none!important}#flash{position:absolute;inset:0;z-index:7;background:#fff;opacity:0;pointer-events:none}
 #deathScreen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050812f2;padding:18px}
-#deathVideo{display:block;width:min(390px,100%);max-height:72svh;object-fit:contain;border-radius:16px;background:#000;box-shadow:0 12px 40px #000a}
+#deathVideo{display:block;width:min(390px,100%);height:min(72svh,520px);object-fit:contain;border-radius:16px;background:#111;box-shadow:0 12px 40px #000a;outline:2px solid #ffffff18}
+#deathScreen{position:relative}
+#deathScreen .crashHint{margin-top:10px;font-size:12px;opacity:.72}
+#deathScreen .videoRetry{margin-top:12px}
 #deathLabel{margin:12px 0 0;font-weight:900;letter-spacing:.5px}
 @media(max-height:560px){#game{height:100svh}#ground{min-height:75px}}
 </style>
@@ -57,13 +60,13 @@ function finish(){
 running=false;paused=false;cancelAnimationFrame(raf);tone(120,.16);
 if(score>best){best=score;saveBest();loadBest()}
 flash.style.opacity='.65';setTimeout(()=>flash.style.opacity='0',90);
-card.innerHTML='<div id="deathScreen"><video id="deathVideo" playsinline preload="auto" autoplay><source src="death-video.mp4?v=2" type="video/mp4"></video><div id="deathLabel">YOU CRASHED 💥</div></div>';
+card.innerHTML='<div id="deathScreen"><video id="deathVideo" playsinline muted autoplay preload="auto" controls><source src="death-video.mp4?v=3" type="video/mp4"></video><div id="deathLabel">YOU CRASHED 💥</div><div class="crashHint">Crash video • tap ▶ if your browser blocks autoplay</div></div>';
 overlay.classList.remove('hidden');
 deathVideo=document.getElementById('deathVideo');
 const done=()=>{if(!deathVideo)return;deathVideo.removeEventListener('ended',done);showGameOver()};
 deathVideo.addEventListener('ended',done);
-deathVideo.addEventListener('error',done,{once:true});
-const p=deathVideo.play();if(p&&p.catch)p.catch(done);
+deathVideo.addEventListener('error',()=>{const h=document.createElement('button');h.className='btn videoRetry';h.textContent='▶ PLAY CRASH VIDEO';h.onclick=()=>{deathVideo.muted=true;deathVideo.play().catch(()=>{});h.remove()};document.getElementById('deathScreen').appendChild(h)});
+deathVideo.muted=true;const p=deathVideo.play();if(p&&p.catch)p.catch(()=>{});
 }
 function addPipe(){const gap=Math.max(180,Math.min(210,H()*.27)),playTop=H()*.79,safeTop=72,safeBottom=playTop-gap-72;const topH=Math.floor(safeTop+Math.random()*Math.max(1,safeBottom-safeTop));const a=document.createElement('div'),b=document.createElement('div');a.className='pipe top';b.className='pipe bottom';a.style.height=topH+'px';b.style.height=Math.max(70,H()-(topH+gap))+'px';a.style.left=W()+'px';b.style.left=W()+'px';game.append(a,b);pipes.push({x:W(),top:topH,gap,scored:false,a,b,phase:Math.random()*Math.PI*2})}
 function collision(p){
