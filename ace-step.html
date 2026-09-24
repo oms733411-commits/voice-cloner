@@ -3,65 +3,100 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Music Studio — ACE-Step 1.5</title>
+<title>Rehne De Bhai — AI Music Studio</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#070910;color:#f8fafc;font-family:Inter,system-ui,Arial,sans-serif}
-.wrap{max-width:1280px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
-h1{margin:0;font-size:25px}.sub{color:#9aa4b2;margin-top:4px;font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap}
-.btn{display:inline-block;text-decoration:none;color:#fff;background:#6d5dfc;border:0;border-radius:11px;padding:10px 14px;font-weight:800;cursor:pointer}.btn.secondary{background:#182033;border:1px solid #2a3448}
-.layout{display:grid;grid-template-columns:320px 1fr;gap:14px}.card{background:#101522;border:1px solid #252d3d;border-radius:17px;padding:15px;box-shadow:0 14px 40px #0006}
-label{display:block;color:#cbd5e1;font-size:12px;font-weight:700;margin:0 0 7px}input,textarea{width:100%;background:#080d17;color:#fff;border:1px solid #2a3446;border-radius:10px;padding:10px;font:inherit;outline:none}textarea{min-height:180px;resize:vertical}.field{margin-bottom:13px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.hint{font-size:11px;color:#7f8a9c;line-height:1.45;margin-top:5px}.pill{display:inline-block;background:#1a2232;color:#b9c5d6;border:1px solid #2a3448;border-radius:999px;padding:5px 8px;font-size:11px;margin:2px}
-.studio iframe{width:100%;height:72vh;min-height:680px;border:0;border-radius:12px;background:#0b0f18}
-h2{font-size:14px;margin:0 0 12px}.foot{margin-top:12px;color:#788397;font-size:11px;text-align:center}
-#downloadArea{display:none;margin-top:10px}.download{width:100%;text-align:center;background:#19a974}
-@media(max-width:850px){.layout{grid-template-columns:1fr}.studio iframe{height:70vh;min-height:620px}.wrap{padding:10px}h1{font-size:21px}}
+*{box-sizing:border-box}body{margin:0;background:#070910;color:#f8fafc;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+.wrap{max-width:1320px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+h1{margin:0;font-size:26px}.sub{color:#98a2b3;margin-top:4px;font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;color:#fff;background:#6254f5;border:0;border-radius:11px;padding:10px 14px;font-weight:800;cursor:pointer}.btn.secondary{background:#182033;border:1px solid #2b3549}.btn.green{background:#149b68}
+.layout{display:grid;grid-template-columns:350px 1fr;gap:14px}.card{background:#101522;border:1px solid #252d3d;border-radius:17px;padding:15px;box-shadow:0 14px 40px #0006}
+label{display:block;color:#d4dbe6;font-size:12px;font-weight:800;margin:0 0 7px}input,textarea,select{width:100%;background:#080d17;color:#fff;border:1px solid #2a3446;border-radius:10px;padding:10px;font:inherit;outline:none}textarea{min-height:150px;resize:vertical}.field{margin-bottom:13px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.hint{font-size:11px;color:#7f8a9c;line-height:1.5;margin-top:5px}.pill{display:inline-block;background:#1a2232;color:#c4cede;border:1px solid #2a3448;border-radius:999px;padding:5px 8px;font-size:11px;margin:2px}
+.studio iframe{width:100%;height:75vh;min-height:690px;border:0;border-radius:12px;background:#0b0f18}
+h2{font-size:14px;margin:0 0 12px}.steps{background:#0b101b;border:1px solid #222c3e;border-radius:12px;padding:11px;margin-bottom:13px;font-size:12px;line-height:1.7}.steps b{color:#b9adff}
+#downloadArea{display:none;margin-top:9px}.download{width:100%;text-align:center}
+.status{margin-top:10px;padding:9px;border-radius:9px;background:#101c2a;color:#9ed7ff;font-size:11px;display:none}
+.foot{margin-top:12px;color:#788397;font-size:11px;text-align:center}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.studio iframe{height:72vh;min-height:620px}.wrap{padding:10px}h1{font-size:21px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="top">
-<div><h1>🎵 AI Music Studio</h1><div class="sub">ACE-Step 1.5 • Lyrics → vocals + music</div></div>
+<div><h1>🎵 AI Music Studio</h1><div class="sub">ACE-Step 1.5 • complete song workflow</div></div>
 <div class="actions">
 <a class="btn secondary" href="https://huggingface.co/spaces/ACE-Step/Ace-Step-v1.5" target="_blank" rel="noopener">Open Full Studio ↗</a>
-<button class="btn" onclick="scrollToStudio()">Generate / Studio ↓</button>
+<button class="btn" onclick="prepare()">Prepare Song</button>
 </div>
 </header>
+
 <div class="layout">
 <aside class="card">
-<h2>Song Setup</h2>
-<div class="field"><label>SONG TITLE</label><input id="title" placeholder="e.g. Rehne De Bhai"></div>
-<div class="field"><label>STYLE / MUSIC PROMPT</label><textarea id="style" placeholder="Describe genre, BPM, instruments, vocals, mood, language..."></textarea></div>
-<div class="field"><label>LYRICS</label><textarea id="lyrics" placeholder="Paste your lyrics here..."></textarea></div>
+<h2>🎼 Song Project</h2>
+<div class="field"><label>SONG TITLE</label><input id="title" value="Rehne De Bhai" placeholder="Song title"></div>
+
+<div class="field"><label>STYLE / MUSIC PROMPT</label>
+<textarea id="style" placeholder="Genre, BPM, instruments, vocal character, mood, language, mix..."></textarea>
+<div class="hint">Tip: mention Hindi/DHH, male vocal, groove, instruments, BPM and what to avoid.</div></div>
+
+<div class="field"><label>LYRICS</label>
+<textarea id="lyrics" placeholder="Paste complete lyrics here..."></textarea></div>
+
 <div class="grid2">
 <div class="field"><label>BPM</label><input id="bpm" type="number" placeholder="140"></div>
-<div class="field"><label>DURATION</label><input id="duration" placeholder="3:00"></div>
+<div class="field"><label>DURATION (SEC)</label><input id="duration" type="number" placeholder="180"></div>
 </div>
+
+<div class="grid2">
+<div class="field"><label>VOCAL</label><select id="vocal"><option>Male</option><option>Female</option><option>Duet</option><option>Instrumental</option></select></div>
+<div class="field"><label>FORMAT</label><select id="format"><option>MP3</option><option>WAV</option></select></div>
+</div>
+
 <div class="field"><label>QUICK TAGS</label>
-<span class="pill">Hindi</span><span class="pill">Male Vocal</span><span class="pill">DHH</span><span class="pill">Car Bass</span>
+<span class="pill">Hindi</span><span class="pill">Male Vocal</span><span class="pill">DHH</span><span class="pill">Car Bass</span><span class="pill">Catchy Hook</span>
 </div>
-<button class="btn" style="width:100%" onclick="copyPrompt()">Copy Style + Lyrics</button>
-<div id="downloadArea">
-<a id="downloadBtn" class="btn download" download="song-project.txt">⬇ Download Song Setup (.txt)</a>
+
+<div class="steps">
+<b>How to use</b><br>
+1. Fill title, style and lyrics.<br>
+2. Press <b>Prepare Song</b> — your setup is copied.<br>
+3. In ACE-Step, paste lyrics/style and set BPM, duration, vocal language and MP3.<br>
+4. Generate → listen → use ACE-Step's audio download control.
 </div>
-<div class="hint">Title, style and lyrics are saved locally in this page only. The actual audio generation is handled by ACE-Step.</div>
+
+<button class="btn green" style="width:100%" onclick="prepare()">⚡ Prepare + Copy Song Setup</button>
+<div id="downloadArea"><a id="downloadBtn" class="btn secondary download" download="rehne-de-bhai-song-setup.txt">⬇ Download Song Setup (.txt)</a></div>
+<div id="status" class="status"></div>
+<div class="hint">The page does not fake or intercept the generator. ACE-Step's own studio performs generation and provides the resulting audio controls.</div>
 </aside>
+
 <main class="card studio" id="studio">
-<h2>ACE-Step 1.5 Studio</h2>
-<div class="hint" style="margin-bottom:10px">Use the official studio below. Generate your track there, then use its audio controls/download option when available.</div>
+<h2>🎤 ACE-Step 1.5 Generator</h2>
+<div class="hint" style="margin-bottom:10px">All advanced controls — BPM, key, time signature, duration, vocal language, batch size, seed, inference steps, audio format and inference method — are inside the official studio.</div>
 <iframe src="https://ace-step-ace-step-v1-5.hf.space" title="ACE-Step 1.5 Music Studio" allow="microphone;clipboard-read;clipboard-write"></iframe>
 </main>
 </div>
-<div class="foot">GitHub Pages provides the launcher and project setup. ACE-Step generation runs in the hosted official Space. Use generated audio according to the model/Space terms and applicable rights.</div>
+
+<div class="foot">GitHub Pages hosts this interface. ACE-Step generation runs in the hosted official Space. Use generated audio according to the model/Space terms and applicable rights.</div>
 </div>
+
 <script>
-function scrollToStudio(){document.getElementById('studio').scrollIntoView({behavior:'smooth'})}
-function copyPrompt(){
- const t=document.getElementById('title').value, s=document.getElementById('style').value, l=document.getElementById('lyrics').value;
- const b=document.getElementById('bpm').value, d=document.getElementById('duration').value;
- const out='TITLE: '+t+'\nBPM: '+b+'\nDURATION: '+d+'\n\nSTYLE:\n'+s+'\n\nLYRICS:\n'+l;
- navigator.clipboard?.writeText(out).then(()=>alert('Style + lyrics copied!')).catch(()=>alert(out));
- const blob=new Blob([out],{type:'text/plain'}), url=URL.createObjectURL(blob), a=document.getElementById('downloadBtn'); a.href=url; document.getElementById('downloadArea').style.display='block';
+function prepare(){
+ const t=document.getElementById('title').value.trim();
+ const s=document.getElementById('style').value.trim();
+ const l=document.getElementById('lyrics').value.trim();
+ const b=document.getElementById('bpm').value;
+ const d=document.getElementById('duration').value;
+ const v=document.getElementById('vocal').value;
+ const f=document.getElementById('format').value;
+ const out='TITLE: '+t+'\nVOCAL: '+v+'\nBPM: '+b+'\nDURATION: '+d+' seconds\nAUDIO FORMAT: '+f+'\n\nSTYLE / PROMPT:\n'+s+'\n\nLYRICS:\n'+l;
+ const blob=new Blob([out],{type:'text/plain'});
+ const url=URL.createObjectURL(blob);
+ const a=document.getElementById('downloadBtn');a.href=url;a.download=(t||'song').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-setup.txt';
+ document.getElementById('downloadArea').style.display='block';
+ const st=document.getElementById('status');st.style.display='block';st.textContent='✓ Song setup prepared. Style + lyrics copied — now paste them into ACE-Step and generate.';
+ navigator.clipboard?.writeText(out).catch(()=>{});
+ document.getElementById('studio').scrollIntoView({behavior:'smooth'});
 }
 </script>
 </body>
