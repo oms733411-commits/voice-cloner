@@ -1,0 +1,1 @@
+export class UI{constructor(root){this.root=root}clear(){this.root.innerHTML=""}screen(html){this.clear();const d=document.createElement("div");d.className="screen";d.innerHTML=html;this.root.append(d);return d}toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;this.root.append(d);setTimeout(()=>d.remove(),800)}}
