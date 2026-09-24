@@ -1,0 +1,1 @@
+Vehicle art goes in one folder per id. See ART_PROMPTS.md.
