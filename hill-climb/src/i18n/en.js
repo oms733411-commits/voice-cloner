@@ -1,0 +1,1 @@
+export const EN={play:"PLAY",garage:"GARAGE",maps:"MAPS",settings:"SETTINGS"};
