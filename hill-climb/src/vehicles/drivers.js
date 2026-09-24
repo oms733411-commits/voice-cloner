@@ -1,0 +1,1 @@
+export const DRIVERS=[{id:"kisan-kaka",name:"Kisan Kaka",look:"pagdi + mustache"},{id:"rani",name:"Rani",look:"helmet + dupatta"},{id:"jawan",name:"Jawan",look:"olive cap"},{id:"chotu",name:"Chotu",look:"school bag + helmet"}];
