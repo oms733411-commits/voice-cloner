@@ -1,0 +1,1 @@
+export const CONFIG={physics:{gravity:10,fixedDt:1/60,maxFrameDt:.1,substeps:2,velocityIterations:8,positionIterations:3},terrain:{sampleStep:.35,friction:1},quality:{targetFps:45,particleCap:260},controls:{layout:"classic",size:1,opacity:.92},saveVersion:3};export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
