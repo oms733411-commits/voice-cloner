@@ -1,0 +1,1 @@
+export const HI={play:"खेलें",garage:"गैरेज",maps:"मैप",settings:"सेटिंग्स"};
