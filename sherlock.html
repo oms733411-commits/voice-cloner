@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sherlock OSINT — Voice Cloner</title>
+<style>
+:root{--bg:#070b14;--card:#101827;--line:#243047;--text:#f7f9fc;--muted:#8e9ab0;--accent:#7c5cff;--good:#35d07f;--bad:#ff647c}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#171c38 0,#070b14 45%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{width:min(980px,92%);margin:0 auto;padding:55px 0}.brand{font-weight:900;letter-spacing:.3px}.brand span{color:#9b8cff}.hero{text-align:center;margin:65px auto 32px;max-width:700px}.hero h1{font-size:clamp(38px,7vw,68px);margin:0 0 12px}.hero p{color:var(--muted);font-size:17px;margin:0}
+.search{display:flex;gap:10px;background:#0d1422;border:1px solid var(--line);padding:9px;border-radius:18px;margin:28px auto 16px;max-width:720px;box-shadow:0 20px 60px #0007}.search input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;font-size:17px;padding:12px}.search button{border:0;border-radius:12px;padding:0 23px;background:var(--accent);color:white;font-weight:800;cursor:pointer}.search button:disabled{opacity:.55;cursor:wait}.hint{text-align:center;color:var(--muted);font-size:12px}
+.panel{background:#0d1422;border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:24px}.status{display:flex;justify-content:space-between;gap:12px;align-items:center}.count{font-weight:900}.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}.result{border:1px solid var(--line);background:#111a2a;border-radius:14px;padding:15px}.result a{color:#a99cff;text-decoration:none;word-break:break-all}.site{font-weight:800;margin-bottom:7px}.empty{color:var(--muted);padding:20px;text-align:center}.error{color:#ff9aaa}.spinner{display:inline-block;width:15px;height:15px;border:2px solid #ffffff44;border-top-color:#fff;border-radius:50%;animation:r .7s linear infinite;vertical-align:-2px}@keyframes r{to{transform:rotate(360deg)}}footer{text-align:center;color:#647087;font-size:12px;margin-top:35px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">VOICE <span>CLONER</span> / SHERLOCK</div>
+  <main class="hero">
+    <h1>Find a username.</h1>
+    <p>Search public username presence across Sherlock's supported social networks.</p>
+    <form class="search" id="form">
+      <input id="username" autocomplete="off" placeholder="Enter username, e.g. sanskar123" maxlength="80" required>
+      <button id="btn">Search</button>
+    </form>
+    <div class="hint">Public username checks only • Results can contain false positives • Respect site terms and privacy.</div>
+  </main>
+  <section class="panel" id="panel" hidden>
+    <div class="status"><strong id="title">Results</strong><span class="count" id="count"></span></div>
+    <div class="results" id="results"></div>
+  </section>
+  <footer>Powered by the open-source Sherlock Project. This interface does not collect passwords or private account data.</footer>
+</div>
+<script>
+const form=document.getElementById('form'),input=document.getElementById('username'),btn=document.getElementById('btn'),panel=document.getElementById('panel'),results=document.getElementById('results'),title=document.getElementById('title'),count=document.getElementById('count');
+form.addEventListener('submit',async e=>{
+ e.preventDefault(); const username=input.value.trim();
+ if(!/^[A-Za-z0-9._-]{1,80}$/.test(username)){alert('Enter a valid username (letters, numbers, ., _ or -).');return}
+ btn.disabled=true;btn.innerHTML='<span class="spinner"></span>';panel.hidden=false;title.textContent='Searching '+username;count.textContent='';results.innerHTML='<div class="empty">Checking supported sites…</div>';
+ try{
+   const r=await fetch('/api/sherlock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username})});
+   const data=await r.json(); if(!r.ok) throw new Error(data.error||'Search failed');
+   const found=data.results||[]; title.textContent='Results for '+username; count.textContent=found.length+' found';
+   results.innerHTML=found.length?found.map(x=>'<article class="result"><div class="site">'+escapeHtml(x.site)+'</div><a target="_blank" rel="noopener noreferrer" href="'+escapeAttr(x.url)+'">'+escapeHtml(x.url)+'</a></article>').join(''):'<div class="empty">No confirmed public matches were returned.</div>';
+ }catch(err){title.textContent='Search error';count.textContent='';results.innerHTML='<div class="empty error">'+escapeHtml(err.message)+'</div>'}
+ finally{btn.disabled=false;btn.textContent='Search'}
+});
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function escapeAttr(s){return escapeHtml(s)}
+</script>
+</body>
+</html>
