@@ -2,63 +2,62 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>Malab Fly's</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Username Finder</title>
 <style>
-:root{--sky:#72d1ff;--ground:#d9bd62;--green:#4aaa36;--green2:#286d22}
-*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0b1020;color:#fff}
-body{display:grid;place-items:center;min-height:100svh;overflow:hidden}
-#game{position:relative;width:min(430px,100vw);height:min(760px,100svh);overflow:hidden;touch-action:none;background:#9be3ff;user-select:none}
-#sky{position:absolute;inset:0;background:radial-gradient(ellipse 85px 28px at 18% 22%,#ffffffb8 0 55%,transparent 56%),radial-gradient(ellipse 70px 24px at 78% 34%,#ffffff9c 0 55%,transparent 56%),linear-gradient(#72d1ff 0,#bcecff 70%,#e5ca6b 70%,#d9bd62 100%)}
-#hill1,#hill2{position:absolute;left:-10%;width:120%;border-radius:50% 50% 0 0/100% 100% 0 0;pointer-events:none}
-#hill1{bottom:21%;height:120px;background:#9bd67b}#hill2{bottom:19%;height:95px;background:#79bd65}
-#ground{position:absolute;left:0;bottom:0;width:100%;height:21%;min-height:105px;background:repeating-linear-gradient(135deg,#d9bd62 0 18px,#caaa4f 18px 36px);border-top:7px solid #8b7131;z-index:4}
-#bird{position:absolute;left:67px;top:330px;width:58px;height:62px;z-index:5;overflow:visible;filter:drop-shadow(0 4px 2px #0006);transform-origin:50% 50%}
-.facePhoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;z-index:2;transform:scale(1.08);border-radius:46% 54% 48% 52% / 42% 45% 55% 58%;clip-path:polygon(20% 3%,50% 0,79% 5%,94% 24%,98% 48%,92% 72%,78% 91%,56% 99%,34% 95%,16% 82%,5% 58%,7% 32%);box-shadow:inset 0 0 0 3px #18202c}
-#beak{position:absolute;z-index:6;left:118px;top:349px;width:15px;height:12px;background:#ff8b25;clip-path:polygon(0 0,100% 50%,0 100%);filter:drop-shadow(1px 1px 0 #8c4c16)}
-.pipe{position:absolute;width:70px;background:linear-gradient(90deg,#327f28,#67cc4e 48%,#327f28);border:4px solid var(--green2);z-index:3;box-shadow:inset 5px 0 0 #ffffff18}
-.pipe:after{content:"";position:absolute;left:-7px;width:76px;height:27px;background:#63cf49;border:4px solid var(--green2);border-radius:5px}
-.top{top:0;border-radius:0 0 7px 7px}.top:after{bottom:-4px}.bottom{bottom:0;border-radius:7px 7px 0 0}.bottom:after{top:-4px}
-#hud{position:absolute;top:17px;left:0;width:100%;z-index:8;text-align:center;font-size:46px;line-height:1;font-weight:950;color:#fff;text-shadow:0 4px 0 #53606b,2px 2px 0 #333;pointer-events:none}
-#best{position:absolute;right:12px;top:12px;z-index:8;padding:8px 11px;border-radius:12px;background:#0005;font-size:12px;font-weight:800}
-#pause{position:absolute;left:12px;top:12px;z-index:9;width:42px;height:42px;border:0;border-radius:12px;background:#0005;color:#fff;font-size:18px;font-weight:900;cursor:pointer}
-#overlay{position:absolute;inset:0;z-index:10;display:grid;place-items:center;background:#06102040}
-.card{width:min(335px,88%);padding:27px 22px;border-radius:22px;text-align:center;background:#101a2bf2;border:1px solid #ffffff22;box-shadow:0 18px 50px #0008}
-.card h1{font-size:34px;letter-spacing:.5px;margin:0 0 9px}.card h2{margin:0 0 8px}.card p{margin:7px 0;color:#cbd5e1}
-.btn{margin-top:13px;border:0;border-radius:13px;padding:13px 22px;background:#ffd83d;color:#332600;font-size:17px;font-weight:900;cursor:pointer;min-width:145px}
-.hint{font-size:12px!important;opacity:.72}.hidden{display:none!important}#flash{position:absolute;inset:0;z-index:7;background:#fff;opacity:0;pointer-events:none}
-#deathScreen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050812f2;padding:18px}
-#deathVideo{display:block;width:min(390px,100%);max-height:72svh;object-fit:contain;border-radius:16px;background:#000;box-shadow:0 12px 40px #000a}
-#deathLabel{margin:12px 0 0;font-weight:900;letter-spacing:.5px}
-@media(max-height:560px){#game{height:100svh}#ground{min-height:75px}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#070b14;color:#eef2ff}
+body{min-height:100vh;display:grid;place-items:center;padding:22px}
+.app{width:min(720px,100%);background:linear-gradient(180deg,#101827,#0b101c);border:1px solid #202b3f;border-radius:28px;padding:28px;box-shadow:0 24px 80px #0008}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;background:#172238;color:#8fb8ff;font-size:12px;font-weight:700;letter-spacing:.4px}
+h1{font-size:clamp(32px,8vw,54px);line-height:1;margin:18px 0 10px;letter-spacing:-2px}
+.sub{color:#94a3b8;margin:0 0 24px;line-height:1.5}
+.search{display:flex;gap:10px}
+input{flex:1;min-width:0;border:1px solid #2b3850;background:#070d18;color:#fff;border-radius:15px;padding:16px;font-size:16px;outline:none}
+input:focus{border-color:#6d9cff;box-shadow:0 0 0 3px #6d9cff22}
+button{border:0;border-radius:15px;padding:0 22px;background:#fff;color:#07101d;font-weight:800;font-size:15px;cursor:pointer;min-width:112px}
+button:disabled{opacity:.55;cursor:wait}
+.note{font-size:12px;color:#64748b;margin:12px 2px 0}
+.status{margin-top:22px;padding:15px;border-radius:15px;background:#0b1422;color:#9fb0c9;display:none}
+.results{margin-top:18px;display:grid;gap:10px}
+.card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 16px;border:1px solid #202d42;background:#0d1523;border-radius:16px}
+.site{font-weight:750}.url{font-size:12px;color:#71839e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:430px;margin-top:4px}
+.open{flex:none;color:#9fc0ff;text-decoration:none;font-size:13px;font-weight:700}
+.empty{padding:25px;text-align:center;color:#8190a8;border:1px dashed #26344a;border-radius:16px}
+@media(max-width:560px){body{padding:12px}.app{padding:20px;border-radius:22px}.search{flex-direction:column}button{height:52px}.card{align-items:flex-start}.url{max-width:210px}}
 </style>
 </head>
 <body>
-<div id="game" aria-label="Malab Fly's game">
-<div id="sky"></div><div id="hill1"></div><div id="hill2"></div><div id="ground"></div>
-<div id="hud">0</div><div id="best">BEST 0</div><button id="pause" type="button" aria-label="Pause game">Ⅱ</button>
-<div id="bird"><img class="facePhoto" src="malab-face.jpg?v=2" alt="Malab"></div><div id="beak"></div><div id="flash"></div>
-<div id="overlay"><div class="card" id="card"><h1>Malab Fly's</h1><p>Help Malab fly through the towers.</p><p>Tap the screen or press <b>Space</b> to fly.</p><button class="btn" id="start" type="button">START FLYING</button><p class="hint">Starts slow • speed increases gradually • safe tower gaps</p></div></div>
-</div>
+<main class="app">
+  <span class="badge">SHERLOCK • USERNAME SEARCH</span>
+  <h1>Find a username.</h1>
+  <p class="sub">Check public username presence across Sherlock's supported sites. No passwords or private account data.</p>
+  <form class="search" id="form">
+    <input id="username" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Enter username, e.g. sanskar123" maxlength="80" required>
+    <button id="btn" type="submit">Search</button>
+  </form>
+  <div class="note">Public checks only • Results may contain false positives.</div>
+  <div class="status" id="status"></div>
+  <section class="results" id="results"></section>
+</main>
 <script>
-(()=>{
-const game=document.getElementById('game'),bird=document.getElementById('bird'),beak=document.getElementById('beak'),hud=document.getElementById('hud'),bestEl=document.getElementById('best'),overlay=document.getElementById('overlay'),card=document.getElementById('card'),start=document.getElementById('start'),pauseBtn=document.getElementById('pause'),flash=document.getElementById('flash');
-let y=330,vy=0,score=0,best=0,running=false,paused=false,raf=0,last=0,spawn=0,pipes=[],audio=null,deathVideo=null;
-const W=()=>game.clientWidth,H=()=>game.clientHeight;
-function loadBest(){try{best=Number(localStorage.getItem('malab_flys_best')||0)||0}catch(e){best=0}bestEl.textContent='BEST '+best}
-function saveBest(){try{localStorage.setItem('malab_flys_best',String(best))}catch(e){}}
-function reset(){pipes.forEach(p=>{p.a.remove();p.b.remove()});pipes=[];score=0;y=Math.max(120,H()*.43);vy=0;spawn=.7;hud.textContent='0';bird.style.left='67px';bird.style.top=y+'px';beak.style.left='118px';beak.style.top=(y+25)+'px';bird.style.transform='rotate(-4deg)'}
-function tone(freq,dur){try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=freq;o.type='square';g.gain.setValueAtTime(.035,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+dur)}catch(e){}}
-function flap(){if(!running){begin();return}if(paused)return;vy=-430;tone(520,.055)}
-function begin(){if(deathVideo){deathVideo.pause();deathVideo.remove();deathVideo=null}reset();running=true;paused=false;pauseBtn.textContent='Ⅱ';overlay.classList.add('hidden');last=performance.now();tone(660,.06);raf=requestAnimationFrame(loop)}
-function showGameOver(){card.innerHTML='<h2>Game Over</h2><p>Score: <b>'+score+'</b></p><p>Best: <b>'+best+'</b></p><button class="btn" id="again" type="button">PLAY AGAIN</button><p class="hint">Tap anywhere to fly again</p>';overlay.classList.remove('hidden');document.getElementById('again').addEventListener('click',e=>{e.stopPropagation();begin()})}
-function finish(){running=false;paused=false;cancelAnimationFrame(raf);tone(120,.16);if(score>best){best=score;saveBest();loadBest()}flash.style.opacity='.65';setTimeout(()=>flash.style.opacity='0',90);card.innerHTML='<div id="deathScreen"><video id="deathVideo" playsinline preload="auto" autoplay><source src="death-video.mp4?v=2" type="video/mp4"></video><div id="deathLabel">YOU CRASHED 💥</div></div>';overlay.classList.remove('hidden');deathVideo=document.getElementById('deathVideo');const done=()=>{if(!deathVideo)return;deathVideo.removeEventListener('ended',done);showGameOver()};deathVideo.addEventListener('ended',done);deathVideo.addEventListener('error',done,{once:true});const p=deathVideo.play();if(p&&p.catch)p.catch(done)}
-function addPipe(){const gap=Math.max(180,Math.min(210,H()*.27)),playTop=H()*.79,safeTop=72,safeBottom=playTop-gap-72;const topH=Math.floor(safeTop+Math.random()*Math.max(1,safeBottom-safeTop));const a=document.createElement('div'),b=document.createElement('div');a.className='pipe top';b.className='pipe bottom';a.style.height=topH+'px';b.style.height=Math.max(70,H()-(topH+gap))+'px';a.style.left=W()+'px';b.style.left=W()+'px';game.append(a,b);pipes.push({x:W(),top:topH,gap,scored:false,a,b,phase:Math.random()*Math.PI*2})}
-function collision(p){const cx=96,cy=y+31,rx=17,ry=20,px=p.x,pw=70;if(cx+rx<=px||cx-rx>=px+pw)return false;return cy-ry<p.top||cy+ry>p.top+p.gap}
-function togglePause(){if(!running)return;paused=!paused;pauseBtn.textContent=paused?'▶':'Ⅱ';if(!paused){last=performance.now();raf=requestAnimationFrame(loop)}}
-function loop(t){if(!running||paused)return;const dt=Math.min((t-last)/1000,.032);last=t;vy+=1320*dt;y+=vy*dt;bird.style.top=y+'px';beak.style.top=(y+25)+'px';bird.style.transform='rotate('+Math.max(-28,Math.min(80,vy*.055))+'deg)';if(y<0||y+54>H()*.79)return finish();spawn-=dt;if(spawn<=0){addPipe();spawn=Math.max(1.4,1.75-score*.018)}const speed=Math.min(365,145+score*9);for(const p of pipes){p.x-=speed*dt;const maxShift=Math.min(18,Math.max(8,(H()*.79-p.gap-144)/5));const shift=Math.sin(t*.00065+p.phase)*maxShift;const topNow=p.top+shift;p.a.style.left=p.x+'px';p.b.style.left=p.x+'px';p.a.style.height=topNow+'px';p.b.style.height=Math.max(70,H()-(topNow+p.gap))+'px';if(!p.scored&&p.x+70<67){p.scored=true;score++;hud.textContent=score;tone(760,.045)}if(collision({...p,top:topNow}))return finish()}pipes=pipes.filter(p=>p.x>-85);raf=requestAnimationFrame(loop)}
-start.addEventListener('click',e=>{e.stopPropagation();begin()});pauseBtn.addEventListener('click',e=>{e.stopPropagation();togglePause()});game.addEventListener('pointerdown',e=>{if(e.target.closest('button')||e.target.closest('.card'))return;flap()});document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();flap()}else if(e.code==='KeyP'||e.code==='Escape'){togglePause()}});loadBest();reset()
-})();
+const form=document.getElementById('form'),input=document.getElementById('username'),btn=document.getElementById('btn'),status=document.getElementById('status'),results=document.getElementById('results');
+function showStatus(t){status.textContent=t;status.style.display='block'}
+function hideStatus(){status.style.display='none'}
+form.addEventListener('submit',async e=>{
+ e.preventDefault(); const username=input.value.trim();
+ if(!/^[A-Za-z0-9._-]{1,80}$/.test(username)){showStatus('Use only letters, numbers, dots, underscores or hyphens.');return}
+ btn.disabled=true;btn.textContent='Searching…';results.innerHTML='';showStatus('Sherlock is checking public sites. This can take a little while…');
+ try{
+  const r=await fetch('/api/sherlock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username})});
+  const data=await r.json();
+  if(!r.ok) throw new Error(data.error||'Search failed.');
+  hideStatus();
+  if(!data.results?.length){results.innerHTML='<div class="empty">No public matches found.</div>';return}
+  results.innerHTML=data.results.map(x=>'<article class="card"><div><div class="site">'+escapeHtml(x.site)+'</div><div class="url">'+escapeHtml(x.url)+'</div></div><a class="open" href="'+encodeURI(x.url)+'" target="_blank" rel="noopener noreferrer">Open ↗</a></article>').join('');
+ }catch(err){showStatus(err.message||'Something went wrong.')}
+ finally{btn.disabled=false;btn.textContent='Search'}
+});
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 </script>
 </body>
 </html>
