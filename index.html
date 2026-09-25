@@ -18,7 +18,7 @@ button{border:0;border-radius:15px;padding:0 22px;background:#fff;color:#07101d;
 button:disabled{opacity:.55;cursor:wait}
 .note{font-size:12px;color:#64748b;margin:12px 2px 0}
 .status{margin-top:22px;padding:15px;border-radius:15px;background:#0b1422;color:#9fb0c9;display:none}
-.results{margin-top:18px;display:grid;gap:10px}
+.summary{display:none;margin-top:18px;padding:16px;border:1px solid #202d42;background:#0d1523;border-radius:16px}.summary strong{font-size:22px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{padding:7px 10px;border-radius:999px;background:#172238;color:#a9c5ff;font-size:12px;font-weight:700}.chip.miss{color:#71839e;background:#111927}.results{margin-top:12px;display:grid;gap:10px}
 .card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 16px;border:1px solid #202d42;background:#0d1523;border-radius:16px}
 .site{font-weight:750}.url{font-size:12px;color:#71839e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:430px;margin-top:4px}
 .open{flex:none;color:#9fc0ff;text-decoration:none;font-size:13px;font-weight:700}
@@ -30,30 +30,35 @@ button:disabled{opacity:.55;cursor:wait}
 <main class="app">
   <span class="badge">SHERLOCK • USERNAME SEARCH</span>
   <h1>Find a username.</h1>
-  <p class="sub">Check public username presence across Sherlock's supported sites. No passwords or private account data.</p>
+  <p class="sub">Search the same username across Instagram, Facebook, TikTok, GitHub, Reddit, YouTube and Sherlock's wider supported network list.</p>
   <form class="search" id="form">
     <input id="username" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Enter username, e.g. sanskar123" maxlength="80" required>
     <button id="btn" type="submit">Search</button>
   </form>
-  <div class="note">Public checks only • Results may contain false positives.</div>
+  <div class="note">Public username checks only • No passwords, login attempts or private account data.</div>
   <div class="status" id="status"></div>
-  <section class="results" id="results"></section>
+  <div class="summary" id="summary"></div><section class="results" id="results"></section>
 </main>
 <script>
-const form=document.getElementById('form'),input=document.getElementById('username'),btn=document.getElementById('btn'),status=document.getElementById('status'),results=document.getElementById('results');
+const form=document.getElementById('form'),input=document.getElementById('username'),btn=document.getElementById('btn'),status=document.getElementById('status'),results=document.getElementById('results'),summary=document.getElementById('summary');
 function showStatus(t){status.textContent=t;status.style.display='block'}
 function hideStatus(){status.style.display='none'}
 form.addEventListener('submit',async e=>{
  e.preventDefault(); const username=input.value.trim();
  if(!/^[A-Za-z0-9._-]{1,80}$/.test(username)){showStatus('Use only letters, numbers, dots, underscores or hyphens.');return}
- btn.disabled=true;btn.textContent='Searching…';results.innerHTML='';showStatus('Sherlock is checking public sites. This can take a little while…');
+ btn.disabled=true;btn.textContent='Searching…';results.innerHTML='';summary.style.display='none';showStatus('Checking Instagram, Facebook and the full Sherlock site list…');
  try{
   const r=await fetch('/api/sherlock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username})});
   const data=await r.json();
   if(!r.ok) throw new Error(data.error||'Search failed.');
   hideStatus();
-  if(!data.results?.length){results.innerHTML='<div class="empty">No public matches found.</div>';return}
-  results.innerHTML=data.results.map(x=>'<article class="card"><div><div class="site">'+escapeHtml(x.site)+'</div><div class="url">'+escapeHtml(x.url)+'</div></div><a class="open" href="'+encodeURI(x.url)+'" target="_blank" rel="noopener noreferrer">Open ↗</a></article>').join('');
+  const found=data.results||[];
+  const important=['Instagram','Facebook','TikTok','Twitter','GitHub','GitLab','Reddit','YouTube','Telegram','Twitch','Discord'];
+  const names=new Set(found.map(x=>x.site.toLowerCase()));
+  summary.innerHTML='<strong>'+found.length+'</strong> public matches found<div class="chips">'+important.map(n=>'<span class="chip '+(names.has(n.toLowerCase())?'':'miss')+'">'+(names.has(n.toLowerCase())?'✓ ':'')+escapeHtml(n)+'</span>').join('')+'</div>';
+  summary.style.display='block';
+  if(!found.length){results.innerHTML='<div class="empty">No public matches found in the supported checks.</div>';return}
+  results.innerHTML=found.map(x=>'<article class="card"><div><div class="site">'+escapeHtml(x.site)+'</div><div class="url">'+escapeHtml(x.url)+'</div></div><a class="open" href="'+encodeURI(x.url)+'" target="_blank" rel="noopener noreferrer">Open ↗</a></article>').join('');
  }catch(err){showStatus(err.message||'Something went wrong.')}
  finally{btn.disabled=false;btn.textContent='Search'}
 });
