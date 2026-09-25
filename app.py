@@ -7,7 +7,7 @@ FOUND_RE = re.compile(r"^\[\+\]\s*(.*?):\s*(https?://\S+)\s*$")
 
 @app.get("/")
 def home():
-    return send_from_directory(".", "sherlock.html")
+    return send_from_directory(".", "index.html")
 
 @app.post("/api/sherlock")
 def search():
@@ -22,18 +22,20 @@ def search():
         return jsonify(error="Search timed out. Try again later."), 504
     except Exception as exc:
         return jsonify(error=f"Could not start Sherlock: {exc}"), 500
-    results=[]
+    results = []
     for line in p.stdout.splitlines():
-        m=FOUND_RE.match(line.strip())
-        if m: results.append({"site":m.group(1).strip(),"url":m.group(2).strip()})
-    unique=[]; seen=set()
+        m = FOUND_RE.match(line.strip())
+        if m:
+            results.append({"site": m.group(1).strip(), "url": m.group(2).strip()})
+    unique, seen = [], set()
     for item in results:
         if item["url"] not in seen:
-            seen.add(item["url"]); unique.append(item)
+            seen.add(item["url"])
+            unique.append(item)
     if p.returncode != 0 and not unique:
-        detail=(p.stderr or p.stdout).strip().splitlines()
-        return jsonify(error=detail[-1] if detail else "Sherlock returned no results."),502
-    return jsonify(username=username,results=unique)
+        detail = (p.stderr or p.stdout).strip().splitlines()
+        return jsonify(error=detail[-1] if detail else "Sherlock returned no results."), 502
+    return jsonify(username=username, results=unique)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="127.0.0.1", port=5000, debug=False)
