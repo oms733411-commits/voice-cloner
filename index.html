@@ -3,66 +3,89 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Username Finder</title>
+<meta name="theme-color" content="#070b14">
+<title>Sherlock • Username Intelligence</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#070b14;color:#eef2ff}
-body{min-height:100vh;display:grid;place-items:center;padding:22px}
-.app{width:min(720px,100%);background:linear-gradient(180deg,#101827,#0b101c);border:1px solid #202b3f;border-radius:28px;padding:28px;box-shadow:0 24px 80px #0008}
-.badge{display:inline-flex;padding:7px 11px;border-radius:999px;background:#172238;color:#8fb8ff;font-size:12px;font-weight:700;letter-spacing:.4px}
-h1{font-size:clamp(32px,8vw,54px);line-height:1;margin:18px 0 10px;letter-spacing:-2px}
-.sub{color:#94a3b8;margin:0 0 24px;line-height:1.5}
-.search{display:flex;gap:10px}
-input{flex:1;min-width:0;border:1px solid #2b3850;background:#070d18;color:#fff;border-radius:15px;padding:16px;font-size:16px;outline:none}
-input:focus{border-color:#6d9cff;box-shadow:0 0 0 3px #6d9cff22}
-button{border:0;border-radius:15px;padding:0 22px;background:#fff;color:#07101d;font-weight:800;font-size:15px;cursor:pointer;min-width:112px}
-button:disabled{opacity:.55;cursor:wait}
-.note{font-size:12px;color:#64748b;margin:12px 2px 0}
-.status{margin-top:22px;padding:15px;border-radius:15px;background:#0b1422;color:#9fb0c9;display:none}
-.summary{display:none;margin-top:18px;padding:16px;border:1px solid #202d42;background:#0d1523;border-radius:16px}.summary strong{font-size:22px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{padding:7px 10px;border-radius:999px;background:#172238;color:#a9c5ff;font-size:12px;font-weight:700}.chip.miss{color:#71839e;background:#111927}.results{margin-top:12px;display:grid;gap:10px}
-.card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 16px;border:1px solid #202d42;background:#0d1523;border-radius:16px}
-.site{font-weight:750}.url{font-size:12px;color:#71839e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:430px;margin-top:4px}
-.open{flex:none;color:#9fc0ff;text-decoration:none;font-size:13px;font-weight:700}
-.empty{padding:25px;text-align:center;color:#8190a8;border:1px dashed #26344a;border-radius:16px}
-@media(max-width:560px){body{padding:12px}.app{padding:20px;border-radius:22px}.search{flex-direction:column}button{height:52px}.card{align-items:flex-start}.url{max-width:210px}}
+*{box-sizing:border-box}html{background:#070b14}body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at 50% -10%,#17284a 0,#070b14 42%);color:#eef2ff;padding:18px}
+.app{width:min(920px,100%);margin:auto;background:linear-gradient(180deg,#101827ee,#0a101bee);border:1px solid #26334a;border-radius:30px;padding:28px;box-shadow:0 28px 100px #0009}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center}.badge{display:inline-flex;padding:8px 12px;border-radius:999px;background:#172238;color:#9fc0ff;font-size:12px;font-weight:800;letter-spacing:.6px}.mini{font-size:11px;color:#61708a}
+h1{font-size:clamp(38px,8vw,64px);line-height:.95;margin:20px 0 12px;letter-spacing:-3px}.sub{color:#9aa9bf;line-height:1.6;max-width:720px;margin:0 0 24px}
+.search{display:flex;gap:10px}input{flex:1;min-width:0;border:1px solid #2c3a54;background:#070d18;color:#fff;border-radius:16px;padding:17px;font-size:17px;outline:none}input:focus{border-color:#79a4ff;box-shadow:0 0 0 4px #79a4ff1c}button{border:0;border-radius:16px;padding:0 24px;background:#fff;color:#07101d;font-weight:850;font-size:15px;cursor:pointer;min-width:118px}button:disabled{opacity:.55;cursor:wait}
+.options{display:flex;flex-wrap:wrap;gap:12px;margin:13px 2px 0}.check{display:flex;align-items:center;gap:8px;color:#8292aa;font-size:12px}.check input{width:15px;height:15px;accent-color:#8fb3ff;padding:0}.note{font-size:12px;color:#5f6e85;margin:12px 2px 0}
+.status{margin-top:20px;padding:15px;border-radius:15px;background:#0b1422;color:#9fb0c9;display:none}.summary{display:none;margin-top:18px;padding:18px;border:1px solid #202d42;background:#0d1523;border-radius:18px}.summary strong{font-size:26px}.summaryline{color:#7f8fa7;font-size:12px;margin-top:3px}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.chip{padding:7px 10px;border-radius:999px;background:#172238;color:#a9c5ff;font-size:11px;font-weight:800}.chip.miss{color:#66758d;background:#111927}
+.toolbar{display:none;gap:8px;flex-wrap:wrap;margin:14px 0 0}.filter{border:1px solid #26344a;background:#101a2a;color:#9db0ce;padding:8px 11px;border-radius:10px;font-size:12px}.filter.active{background:#1a2b49;color:#cfe0ff}
+.results{margin-top:12px;display:grid;gap:9px}.card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 16px;border:1px solid #202d42;background:#0d1523;border-radius:16px}.site{font-weight:800}.url{font-size:12px;color:#71839e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:650px;margin-top:4px}.open{flex:none;color:#9fc0ff;text-decoration:none;font-size:13px;font-weight:800}.empty{padding:25px;text-align:center;color:#8190a8;border:1px dashed #26344a;border-radius:16px}
+.quick{margin-top:22px}.quick h3{font-size:13px;margin:0 0 10px;color:#8999b2}.quickgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.q{display:block;padding:11px;border:1px solid #202d42;background:#0d1523;border-radius:12px;color:#a9b9d0;text-decoration:none;font-size:12px;font-weight:750}.q:hover{border-color:#5573a8;color:#d7e4ff}
+.actions{display:none;gap:8px;margin-top:12px}.secondary{min-width:auto;padding:10px 13px;background:#121d2d;color:#a9bad4;border:1px solid #26344a;font-size:12px}
+@media(max-width:650px){body{padding:10px}.app{padding:19px;border-radius:23px}.top .mini{display:none}.search{flex-direction:column}button{height:52px}.card{align-items:flex-start}.url{max-width:230px}.quickgrid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 <main class="app">
-  <span class="badge">SHERLOCK • USERNAME SEARCH</span>
+  <div class="top"><span class="badge">SHERLOCK • USERNAME INTELLIGENCE</span><span class="mini">PUBLIC WEB ONLY</span></div>
   <h1>Find a username.</h1>
-  <p class="sub">Search the same username across Instagram, Facebook, TikTok, GitHub, Reddit, YouTube and Sherlock's wider supported network list.</p>
+  <p class="sub">Search one username across Sherlock's supported network list, then inspect the public profile links that were found.</p>
   <form class="search" id="form">
     <input id="username" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Enter username, e.g. sanskar123" maxlength="80" required>
     <button id="btn" type="submit">Search</button>
   </form>
-  <div class="note">Public username checks only • No passwords, login attempts or private account data.</div>
+  <div class="options">
+    <label class="check"><input id="variants" type="checkbox"> Check common username variants</label>
+  </div>
+  <div class="note">No passwords, login attempts or private account data. Results can contain false positives.</div>
   <div class="status" id="status"></div>
-  <div class="summary" id="summary"></div><section class="results" id="results"></section>
+  <div class="summary" id="summary"></div>
+  <div class="toolbar" id="toolbar">
+    <button class="filter active" data-filter="all">All</button><button class="filter" data-filter="social">Social</button><button class="filter" data-filter="dev">Developer</button><button class="filter" data-filter="community">Community</button>
+  </div>
+  <div class="actions" id="actions"><button class="secondary" id="copyBtn">Copy results</button><button class="secondary" id="jsonBtn">Export JSON</button></div>
+  <section class="results" id="results"></section>
+  <section class="quick">
+    <h3>Quick public profile checks</h3>
+    <div class="quickgrid" id="quick"></div>
+  </section>
 </main>
 <script>
-const form=document.getElementById('form'),input=document.getElementById('username'),btn=document.getElementById('btn'),status=document.getElementById('status'),results=document.getElementById('results'),summary=document.getElementById('summary');
+const form=document.getElementById('form'),input=document.getElementById('username'),btn=document.getElementById('btn'),status=document.getElementById('status'),summary=document.getElementById('summary'),results=document.getElementById('results'),toolbar=document.getElementById('toolbar'),actions=document.getElementById('actions'),variants=document.getElementById('variants');
+const quickSites=[
+ ['Instagram','https://www.instagram.com/{}'],['Facebook','https://www.facebook.com/{}'],['TikTok','https://www.tiktok.com/@{}'],['X / Twitter','https://x.com/{}'],
+ ['GitHub','https://github.com/{}'],['Reddit','https://www.reddit.com/user/{}'],['YouTube','https://www.youtube.com/@{}'],['Telegram','https://t.me/{}'],
+ ['Twitch','https://www.twitch.tv/{}'],['Discord','https://discord.com/users/{}'],['GitLab','https://gitlab.com/{}'],['LinkedIn','https://www.linkedin.com/in/{}']
+];
+let current=[];
+let filter='all';
+const cats={social:['instagram','facebook','tiktok','twitter','x / twitter','reddit','youtube','telegram','twitch','discord','linkedin'],dev:['github','gitlab','bitbucket','codeberg','stackoverflow','npm','pypi'],community:['forum','community','medium','dev.to','hacker news','product hunt']};
 function showStatus(t){status.textContent=t;status.style.display='block'}
 function hideStatus(){status.style.display='none'}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function category(site){const s=site.toLowerCase();for(const [k,list] of Object.entries(cats))if(list.some(x=>s.includes(x)))return k;return 'other'}
+function render(){
+ const arr=filter==='all'?current:current.filter(x=>category(x.site)===filter);
+ results.innerHTML=arr.length?arr.map(x=>'<article class="card"><div><div class="site">'+esc(x.site)+'</div><div class="url">'+esc(x.url)+'</div></div><a class="open" href="'+encodeURI(x.url)+'" target="_blank" rel="noopener noreferrer">Open ↗</a></article>').join(''):'<div class="empty">No matches in this filter.</div>';
+}
+quickSites.forEach(([name,url])=>{const a=document.createElement('a');a.className='q';a.target='_blank';a.rel='noopener noreferrer';a.textContent=name;a.href=url.replace('{}',encodeURIComponent(input.value.trim()||'username'));document.getElementById('quick').appendChild(a)});
+function refreshQuick(){document.querySelectorAll('.q').forEach((a,i)=>a.href=quickSites[i][1].replace('{}',encodeURIComponent(input.value.trim()||'username')))}
+input.addEventListener('input',refreshQuick);
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;render()}));
 form.addEventListener('submit',async e=>{
- e.preventDefault(); const username=input.value.trim();
+ e.preventDefault();const username=input.value.trim();
  if(!/^[A-Za-z0-9._-]{1,80}$/.test(username)){showStatus('Use only letters, numbers, dots, underscores or hyphens.');return}
- btn.disabled=true;btn.textContent='Searching…';results.innerHTML='';summary.style.display='none';showStatus('Checking Instagram, Facebook and the full Sherlock site list…');
+ btn.disabled=true;btn.textContent='Searching…';results.innerHTML='';summary.style.display='none';toolbar.style.display='none';actions.style.display='none';
+ showStatus('Checking the Sherlock network list'+(variants.checked?' + username variants':'')+'…');
  try{
-  const r=await fetch('/api/sherlock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username})});
-  const data=await r.json();
-  if(!r.ok) throw new Error(data.error||'Search failed.');
+  const r=await fetch('/api/sherlock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,variants:variants.checked})});
+  const data=await r.json();if(!r.ok)throw new Error(data.error||'Search failed.');
+  current=data.results||[];
   hideStatus();
-  const found=data.results||[];
-  const important=['Instagram','Facebook','TikTok','Twitter','GitHub','GitLab','Reddit','YouTube','Telegram','Twitch','Discord'];
-  const names=new Set(found.map(x=>x.site.toLowerCase()));
-  summary.innerHTML='<strong>'+found.length+'</strong> public matches found<div class="chips">'+important.map(n=>'<span class="chip '+(names.has(n.toLowerCase())?'':'miss')+'">'+(names.has(n.toLowerCase())?'✓ ':'')+escapeHtml(n)+'</span>').join('')+'</div>';
-  summary.style.display='block';
-  if(!found.length){results.innerHTML='<div class="empty">No public matches found in the supported checks.</div>';return}
-  results.innerHTML=found.map(x=>'<article class="card"><div><div class="site">'+escapeHtml(x.site)+'</div><div class="url">'+escapeHtml(x.url)+'</div></div><a class="open" href="'+encodeURI(x.url)+'" target="_blank" rel="noopener noreferrer">Open ↗</a></article>').join('');
+  const found=current.length, names=new Set(current.map(x=>x.site.toLowerCase()));
+  const important=['Instagram','Facebook','TikTok','X / Twitter','GitHub','Reddit','YouTube','Telegram','Twitch','Discord'];
+  summary.innerHTML='<strong>'+found+'</strong> public matches found<div class="summaryline">Exact username'+(data.variants_checked?' + variants checked':' checked')+'</div><div class="chips">'+important.map(n=>'<span class="chip '+(names.has(n.toLowerCase())?'':'miss')+'">'+(names.has(n.toLowerCase())?'✓ ':'')+esc(n)+'</span>').join('')+'</div>';
+  summary.style.display='block';toolbar.style.display='flex';actions.style.display='flex';render();refreshQuick();
  }catch(err){showStatus(err.message||'Something went wrong.')}
  finally{btn.disabled=false;btn.textContent='Search'}
 });
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+document.getElementById('copyBtn').addEventListener('click',async()=>{await navigator.clipboard.writeText(current.map(x=>x.site+' — '+x.url).join('\n'));showStatus('Results copied.');setTimeout(hideStatus,1800)});
+document.getElementById('jsonBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({username:input.value.trim(),results:current},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='sherlock-'+input.value.trim()+'.json';a.click();URL.revokeObjectURL(a.href)});
 </script>
 </body>
 </html>
