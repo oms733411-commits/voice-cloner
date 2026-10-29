@@ -58,7 +58,7 @@
 <p class="kicker">tap a star, baby jaan</p><h2>Our little universe ✨</h2>
 <p class="copy">Every star has a tiny message. Tap one and see what it says.</p>
 <div class="universe" role="group" aria-label="Interactive stars with little messages">
-<button class="star" style="left:12%;top:18%" aria-label="Reveal star message 1" data-message="You deserve a love that feels honest, gentle, and real.">✦</button>
+<button type="button" class="star" aria-pressed="false" style="left:12%;top:18%" aria-label="Reveal star message 1" data-message="You deserve a love that feels honest, gentle, and real.">✦</button>
 <button class="star" style="left:38%;top:40%;animation-delay:.5s" aria-label="Reveal star message 2" data-message="My favourite future scenes have you in them, baby jaan.">✧</button>
 <button class="star" style="left:72%;top:16%;animation-delay:1s" aria-label="Reveal star message 3" data-message="I hope we always make room for laughter—even on ordinary days.">✦</button>
 <button class="star" style="left:83%;top:63%;animation-delay:.8s" aria-label="Reveal star message 4" data-message="Our Sikkim cottage dream: mountains, one cat, one dog, and us. 🏡">✧</button>
@@ -118,7 +118,17 @@ I love you, baby jaan. Let's keep choosing kindness, truth, and each other—one
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('begin').addEventListener('click',()=>document.getElementById('story').scrollIntoView({behavior:reduced?'auto':'smooth'}));
 document.querySelectorAll('.letter-btn').forEach(btn=>btn.addEventListener('click',()=>{const panel=document.getElementById(btn.getAttribute('aria-controls'));const opening=!panel.classList.contains('open');panel.classList.toggle('open',opening);btn.setAttribute('aria-expanded',String(opening));}));
-document.querySelectorAll('.star').forEach(star=>star.addEventListener('click',()=>{document.getElementById('starMessage').textContent=star.dataset.message;}));
+const universe=document.querySelector('.universe');
+const starMessage=document.getElementById('starMessage');
+if(universe&&starMessage){
+  universe.addEventListener('click',event=>{
+    const star=event.target.closest('button.star');
+    if(!star)return;
+    event.preventDefault();
+    starMessage.textContent=star.getAttribute('data-message')||'I love you, baby jaan. ♡';
+    universe.querySelectorAll('.star').forEach(item=>item.setAttribute('aria-pressed',String(item===star)));
+  });
+}
 const answers={mountains:'A quiet Sikkim morning, you beside me, and nowhere else we need to be. 🏔️',laugh:'Honestly, those laughing video calls already sound like a perfect little date. 😂',pets:'The cat acts like it owns the cottage, the dog is everyone's best friend, and we are just happy. 🐈🐕',all:'All of it, slowly, together—with honesty, laughter, and room for real life. 💗'};
 document.querySelectorAll('[data-answer]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-answer]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));document.getElementById('quizFeedback').textContent=answers[btn.dataset.answer];}));
 function countdownText(target, label){const ms=target.getTime()-Date.now();if(!Number.isFinite(ms))return 'Please choose a valid date.';if(ms<=0)return label+' is here—or this date has passed. ♡';const days=Math.floor(ms/86400000),hours=Math.floor(ms%86400000/3600000),mins=Math.floor(ms%3600000/60000);return days+' days, '+hours+' hours and '+mins+' minutes until '+label+'. ♡';}
