@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff3f5">
+<meta name="description" content="A little corner of the internet, made with love for Debjani.">
+<title>For Debjani, with love ♡</title>
+<style>
+:root{--rose:#d85f7c;--deep:#7d2849;--ink:#503443;--paper:#fffaf8;--pink:#ffe8ed;--gold:#d6a75d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:ui-rounded,"SF Pro Rounded",system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 10% 0%,#ffe1e9 0,transparent 38%),radial-gradient(ellipse at 100% 20%,#fce8d9 0,transparent 35%),var(--paper);overflow-x:hidden}
+button{font:inherit;cursor:pointer}.grain{position:fixed;inset:0;pointer-events:none;opacity:.15;background-image:radial-gradient(#9e6173 0.5px,transparent .5px);background-size:7px 7px;z-index:0}
+main{position:relative;z-index:1;width:min(760px,100%);margin:auto;padding:22px 18px 52px}.topline{text-align:center;color:#b36b81;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin:10px 0 26px}
+.hero{text-align:center;min-height:78svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 0 42px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid #f2c9d3;background:#fff8f9c9;border-radius:999px;font-size:11px;letter-spacing:1.4px;color:#a14c68;text-transform:uppercase}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(43px,12vw,78px);font-weight:500;line-height:.98;letter-spacing:-2.6px;margin:25px 0 17px;color:var(--deep)}
+h1 em{font-weight:400;color:var(--rose)}.intro{font-family:Georgia,serif;font-size:clamp(17px,4.5vw,21px);line-height:1.7;max-width:450px;color:#8a6573;margin:0 auto 26px}
+.heart-orbit{height:84px;width:84px;border:1px solid #efc2ce;border-radius:50%;display:grid;place-items:center;margin:5px auto 25px;position:relative;animation:float 4s ease-in-out infinite}.heart-orbit:before,.heart-orbit:after{content:"";position:absolute;border:1px solid #f3d4dc;border-radius:50%;inset:-9px}.heart-orbit:after{inset:-18px;border-style:dashed;opacity:.7}.heart{font-size:35px;color:var(--rose);filter:drop-shadow(0 5px 10px #eaa1b4aa);animation:pulse 1.8s infinite}
+.primary{border:0;background:var(--deep);color:white;padding:15px 23px;border-radius:999px;box-shadow:0 9px 24px #8a31512b;font-size:14px;transition:transform .2s,box-shadow .2s}.primary:active{transform:scale(.97)}.tiny{font-size:11px;color:#bd8c9b;margin-top:13px}
+.scrollhint{position:absolute;bottom:8px;color:#bd8798;font-size:11px;letter-spacing:1px}.scrollhint span{display:block;font-size:20px;margin-top:5px;animation:bob 1.6s infinite}
+.section{margin:22px 0 26px;padding:28px 23px;border:1px solid #f2d8de;border-radius:26px;background:#fffdfbc9;box-shadow:0 12px 40px #b55c7610}
+.kicker{text-align:center;color:#c07a8f;font-size:10px;letter-spacing:2.4px;text-transform:uppercase;margin:0 0 12px}
+h2{font-family:Georgia,serif;font-weight:500;font-size:clamp(28px,7vw,39px);line-height:1.15;text-align:center;color:var(--deep);margin:0 0 17px;letter-spacing:-.8px}
+.bodycopy{font-family:Georgia,serif;font-size:17px;line-height:1.85;color:#775968;text-align:center;margin:0 auto;max-width:540px}
+.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:21px}
+.note-card{padding:17px 13px;border-radius:18px;background:linear-gradient(145deg,#fff0f3,#fff9f4);border:1px solid #f5dce2;text-align:center;min-height:112px;display:flex;flex-direction:column;justify-content:center;gap:8px}.note-card .emoji{font-size:23px}.note-card p{margin:0;font-family:Georgia,serif;font-size:14px;line-height:1.5;color:#8a596c}
+.promise{display:flex;gap:12px;align-items:flex-start;text-align:left;padding:12px 0;border-bottom:1px solid #f5e5e8;font-family:Georgia,serif;font-size:16px;line-height:1.65;color:#795d69}.promise:last-child{border-bottom:0}.promise b{color:var(--rose);font-family:system-ui,sans-serif;font-size:12px;margin-top:4px}
+.letter{background:linear-gradient(145deg,#fff8f4,#fff0f4);position:relative;overflow:hidden}.letter:after{content:"♡";position:absolute;right:12px;top:-35px;font-size:140px;color:#f8dce3;opacity:.45;pointer-events:none}
+.letter-text{position:relative;z-index:1;font-family:Georgia,serif;font-size:17px;line-height:1.9;color:#775566;white-space:pre-line}
+.signature{font-family:"Brush Script MT","Segoe Script",cursive;font-size:30px;color:var(--rose);text-align:right;margin-top:17px}
+.envelope-wrap{text-align:center;padding:12px 0 4px}.envelope{border:1px solid #f0c5d0;background:linear-gradient(145deg,#ffe9ef,#fff7f2);width:100%;max-width:330px;min-height:150px;border-radius:18px;margin:15px auto 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#a04b67;box-shadow:0 12px 30px #ad4c6915;transition:transform .25s}.envelope:active{transform:scale(.98)}.envelope .big{font-size:35px}.envelope span:last-child{font-size:12px;letter-spacing:.5px}
+.hidden-letter{display:none;text-align:left;background:#fffaf7;border:1px dashed #e9bdc9;border-radius:18px;padding:21px;margin-top:15px;font-family:Georgia,serif;font-size:16px;line-height:1.85;animation:rise .5s ease;color:#775566}
+.footer{text-align:center;padding:30px 0 0;color:#b17b8d;font-family:Georgia,serif;font-size:14px;line-height:1.8}.footer .lastheart{font-size:24px;display:block;margin:8px}
+.floating{position:fixed;bottom:-30px;pointer-events:none;z-index:3;animation:drift linear forwards;opacity:.7}
+@keyframes float{50%{transform:translateY(-7px)}}@keyframes pulse{50%{transform:scale(1.13)}}@keyframes bob{50%{transform:translateY(5px)}}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes drift{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+@media(min-width:600px){main{padding:28px 24px 70px}.section{padding:36px 40px}.hero{min-height:82svh}.note-grid{gap:14px}.note-card{padding:20px}}
+@media(max-width:360px){main{padding-inline:12px}.section{padding:23px 17px}.note-grid{grid-template-columns:1fr}.hero{min-height:76svh}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body><div class="grain"></div>
+<main>
+  <div class="topline">a little page, just for you ♡</div>
+  <section class="hero">
+    <div class="eyebrow">✧ made with all my heart ✧</div>
+    <h1>For you,<br><em>Debjani.</em></h1>
+    <p class="intro">If I could turn everything I feel for you into something you could hold… it would look a little like this.</p>
+    <div class="heart-orbit"><span class="heart">♥</span></div>
+    <button class="primary" id="startBtn">A little something for you ♡</button>
+    <div class="tiny">take your time. this page is yours.</div>
+    <div class="scrollhint">THERE'S MORE FOR YOU<span>⌄</span></div>
+  </section>
+
+  <section class="section">
+    <p class="kicker">if you ever wonder</p>
+    <h2>Why you matter to me</h2>
+    <p class="bodycopy">It's not just the big moments. It's the little things, too. The way your name can change the feeling of an ordinary day. The comfort of hearing your voice. The way you stay on my mind even when life gets loud.</p>
+    <div class="note-grid">
+      <div class="note-card"><span class="emoji">🌷</span><p>You make ordinary moments feel special.</p></div>
+      <div class="note-card"><span class="emoji">🌙</span><p>You are in so many of my quiet thoughts.</p></div>
+      <div class="note-card"><span class="emoji">🫶</span><p>Your feelings deserve patience and care.</p></div>
+      <div class="note-card"><span class="emoji">🏡</span><p>With you, I imagine a thousand little tomorrows.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="kicker">not just words</p>
+    <h2>What I want to give you</h2>
+    <div class="promise"><b>01</b><span>Honesty, even when a conversation is difficult. You deserve the truth from me.</span></div>
+    <div class="promise"><b>02</b><span>Consistency—not only sweet words today, but effort you can actually feel over time.</span></div>
+    <div class="promise"><b>03</b><span>Space to feel what you feel, without pressure to be okay before you're ready.</span></div>
+    <div class="promise"><b>04</b><span>A love that listens, learns, and keeps choosing to do better.</span></div>
+  </section>
+
+  <section class="section letter">
+    <p class="kicker">from my heart to yours</p>
+    <h2>A letter I wish I could say perfectly</h2>
+    <div class="letter-text">My Debjani,
+
+I know love isn't proved by a beautiful paragraph or a cute website. It's proved in the way I treat your heart when nobody is watching.
+
+I know there have been moments when my actions made it harder for you to trust my words. I'm sorry for the hurt I caused. You never deserved confusion where you needed honesty, or silence where you needed reassurance. I can't rewrite those moments, and I won't ask you to pretend they didn't hurt.
+
+But I can be more honest. I can listen without getting defensive. I can be patient with the time trust needs. And I can show you, little by little, that my love is something you can see in my actions—not something you have to keep guessing.
+
+You don't have to be perfect for me. You don't have to hide your sad days or always know what to say. I want to know the real you: your happy chaos, your overthinking, your dreams, your quiet moments, all of it.
+
+I can't promise that every day will be magical. I can promise that you matter to me, that your feelings matter, and that I want to keep learning how to love you better.
+
+If the world feels too heavy sometimes, I hope you remember that you don't have to carry every feeling alone. And if you need time, I'll respect that too.
+
+Out of all the things I could ask for, one of my favourites is simple: more ordinary days with you. More silly conversations, more little memories, more chances to make you smile for real.
+
+I love you—not because this page says so, but because I want my everyday choices to say it too. ♡</div>
+    <div class="signature">always learning to love you better ♡</div>
+  </section>
+
+  <section class="section">
+    <p class="kicker">one last little thing</p>
+    <h2>I saved you a tiny note</h2>
+    <p class="bodycopy">Open it whenever you're ready. No rush, no expectations—just a little reminder from me to you.</p>
+    <div class="envelope-wrap">
+      <button class="envelope" id="envelope" aria-expanded="false" aria-controls="secretNote"><span class="big">💌</span><strong>For Debjani only</strong><span>tap to open your note</span></button>
+      <div class="hidden-letter" id="secretNote">Hey, pretty girl. ♡<br><br>Just in case today was hard, or your mind is being a little unkind to you: please be gentle with yourself. You are allowed to rest, to feel, to take your time, and to ask for the care you need.<br><br>You don't owe me a perfect reaction to this page. I just wanted to make something that reminds you that you are loved, that you are important, and that I want to keep showing up with a softer heart and better actions.<br><br>One day at a time, okay? Sending you the biggest hug I can fit through a screen. 🫂💗</div>
+    </div>
+  </section>
+  <footer class="footer">made slowly, thought of you the whole time.<span class="lastheart">♡</span><span>— your Sanskar</span></footer>
+</main>
+<script>
+const start=document.getElementById('startBtn');
+start.addEventListener('click',()=>document.querySelector('.section').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+const envelope=document.getElementById('envelope'),note=document.getElementById('secretNote');
+envelope.addEventListener('click',()=>{const open=note.style.display==='block';note.style.display=open?'none':'block';envelope.setAttribute('aria-expanded',String(!open));envelope.querySelector('strong').textContent=open?'For Debjani only':'A little hug, in words';envelope.querySelector('span:last-child').textContent=open?'tap to open your note':'tap again to close';if(!open)note.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});});
+let lastHeart=0;
+document.addEventListener('pointerdown',e=>{const now=Date.now();if(now-lastHeart<220)return;lastHeart=now;const h=document.createElement('span');h.className='floating';h.textContent=['♡','♥','✧','💕'][Math.floor(Math.random()*4)];h.style.left=Math.max(4,Math.min(94,e.clientX/window.innerWidth*100))+'%';h.style.fontSize=(15+Math.random()*13)+'px';h.style.animationDuration=(3+Math.random()*2)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),5200)});
+</script>
+</body>
+</html>
