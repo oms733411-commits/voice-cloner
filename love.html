@@ -3,116 +3,114 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#fff3f5">
-<meta name="description" content="A little corner of the internet, made with love for Debjani.">
-<title>For Debjani, with love ♡</title>
+<meta name="theme-color" content="#171327">
+<meta name="description" content="A tiny universe made with love for Debjani, from Sanskar.">
+<title>Baby Jaan — our little universe ♡</title>
 <style>
-:root{--rose:#d85f7c;--deep:#7d2849;--ink:#503443;--paper:#fffaf8;--pink:#ffe8ed;--gold:#d6a75d}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:ui-rounded,"SF Pro Rounded",system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 10% 0%,#ffe1e9 0,transparent 38%),radial-gradient(ellipse at 100% 20%,#fce8d9 0,transparent 35%),var(--paper);overflow-x:hidden}
-button{font:inherit;cursor:pointer}.grain{position:fixed;inset:0;pointer-events:none;opacity:.15;background-image:radial-gradient(#9e6173 0.5px,transparent .5px);background-size:7px 7px;z-index:0}
-main{position:relative;z-index:1;width:min(760px,100%);margin:auto;padding:22px 18px 52px}.topline{text-align:center;color:#b36b81;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin:10px 0 26px}
-.hero{text-align:center;min-height:78svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 0 42px;position:relative}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid #f2c9d3;background:#fff8f9c9;border-radius:999px;font-size:11px;letter-spacing:1.4px;color:#a14c68;text-transform:uppercase}
-h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(43px,12vw,78px);font-weight:500;line-height:.98;letter-spacing:-2.6px;margin:25px 0 17px;color:var(--deep)}
-h1 em{font-weight:400;color:var(--rose)}.intro{font-family:Georgia,serif;font-size:clamp(17px,4.5vw,21px);line-height:1.7;max-width:450px;color:#8a6573;margin:0 auto 26px}
-.heart-orbit{height:84px;width:84px;border:1px solid #efc2ce;border-radius:50%;display:grid;place-items:center;margin:5px auto 25px;position:relative;animation:float 4s ease-in-out infinite}.heart-orbit:before,.heart-orbit:after{content:"";position:absolute;border:1px solid #f3d4dc;border-radius:50%;inset:-9px}.heart-orbit:after{inset:-18px;border-style:dashed;opacity:.7}.heart{font-size:35px;color:var(--rose);filter:drop-shadow(0 5px 10px #eaa1b4aa);animation:pulse 1.8s infinite}
-.primary{border:0;background:var(--deep);color:white;padding:15px 23px;border-radius:999px;box-shadow:0 9px 24px #8a31512b;font-size:14px;transition:transform .2s,box-shadow .2s}.primary:active{transform:scale(.97)}.tiny{font-size:11px;color:#bd8c9b;margin-top:13px}
-.scrollhint{position:absolute;bottom:8px;color:#bd8798;font-size:11px;letter-spacing:1px}.scrollhint span{display:block;font-size:20px;margin-top:5px;animation:bob 1.6s infinite}
-.section{margin:22px 0 26px;padding:28px 23px;border:1px solid #f2d8de;border-radius:26px;background:#fffdfbc9;box-shadow:0 12px 40px #b55c7610}
-.kicker{text-align:center;color:#c07a8f;font-size:10px;letter-spacing:2.4px;text-transform:uppercase;margin:0 0 12px}
-h2{font-family:Georgia,serif;font-weight:500;font-size:clamp(28px,7vw,39px);line-height:1.15;text-align:center;color:var(--deep);margin:0 0 17px;letter-spacing:-.8px}
-.bodycopy{font-family:Georgia,serif;font-size:17px;line-height:1.85;color:#775968;text-align:center;margin:0 auto;max-width:540px}
-.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:21px}
-.note-card{padding:17px 13px;border-radius:18px;background:linear-gradient(145deg,#fff0f3,#fff9f4);border:1px solid #f5dce2;text-align:center;min-height:112px;display:flex;flex-direction:column;justify-content:center;gap:8px}.note-card .emoji{font-size:23px}.note-card p{margin:0;font-family:Georgia,serif;font-size:14px;line-height:1.5;color:#8a596c}
-.promise{display:flex;gap:12px;align-items:flex-start;text-align:left;padding:12px 0;border-bottom:1px solid #f5e5e8;font-family:Georgia,serif;font-size:16px;line-height:1.65;color:#795d69}.promise:last-child{border-bottom:0}.promise b{color:var(--rose);font-family:system-ui,sans-serif;font-size:12px;margin-top:4px}
-.letter{background:linear-gradient(145deg,#fff8f4,#fff0f4);position:relative;overflow:hidden}.letter:after{content:"♡";position:absolute;right:12px;top:-35px;font-size:140px;color:#f8dce3;opacity:.45;pointer-events:none}
-.letter-text{position:relative;z-index:1;font-family:Georgia,serif;font-size:17px;line-height:1.9;color:#775566;white-space:pre-line}
-.signature{font-family:"Brush Script MT","Segoe Script",cursive;font-size:30px;color:var(--rose);text-align:right;margin-top:17px}
-.envelope-wrap{text-align:center;padding:12px 0 4px}.envelope{border:1px solid #f0c5d0;background:linear-gradient(145deg,#ffe9ef,#fff7f2);width:100%;max-width:330px;min-height:150px;border-radius:18px;margin:15px auto 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#a04b67;box-shadow:0 12px 30px #ad4c6915;transition:transform .25s}.envelope:active{transform:scale(.98)}.envelope .big{font-size:35px}.envelope span:last-child{font-size:12px;letter-spacing:.5px}
-.hidden-letter{display:none;text-align:left;background:#fffaf7;border:1px dashed #e9bdc9;border-radius:18px;padding:21px;margin-top:15px;font-family:Georgia,serif;font-size:16px;line-height:1.85;animation:rise .5s ease;color:#775566}
-.footer{text-align:center;padding:30px 0 0;color:#b17b8d;font-family:Georgia,serif;font-size:14px;line-height:1.8}.footer .lastheart{font-size:24px;display:block;margin:8px}
-.floating{position:fixed;bottom:-30px;pointer-events:none;z-index:3;animation:drift linear forwards;opacity:.7}
-@keyframes float{50%{transform:translateY(-7px)}}@keyframes pulse{50%{transform:scale(1.13)}}@keyframes bob{50%{transform:translateY(5px)}}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes drift{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
-@media(min-width:600px){main{padding:28px 24px 70px}.section{padding:36px 40px}.hero{min-height:82svh}.note-grid{gap:14px}.note-card{padding:20px}}
-@media(max-width:360px){main{padding-inline:12px}.section{padding:23px 17px}.note-grid{grid-template-columns:1fr}.hero{min-height:76svh}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+:root{color-scheme:dark;--bg:#171327;--panel:#211b38;--panel2:#2a2141;--rose:#ff9eb9;--pink:#ffd5e1;--lilac:#c8b7ff;--gold:#f5d6a2;--text:#fff4f7;--muted:#c7b9d1;--line:#ffffff20}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#453052 0,transparent 38%),radial-gradient(ellipse at 100% 38%,#272448 0,transparent 38%),var(--bg);color:var(--text);font-family:ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:4px}a{color:var(--pink)}main{width:min(820px,100%);padding:18px 17px 55px;margin:auto;position:relative;z-index:1}.stars-bg{position:fixed;inset:0;pointer-events:none;opacity:.45;background-image:radial-gradient(#fff 0.7px,transparent .9px),radial-gradient(#d6c8ff .8px,transparent 1px);background-size:43px 43px,71px 71px;background-position:0 0,18px 24px;mask-image:linear-gradient(#000,transparent 90%);z-index:0}.nav{text-align:center;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);padding:10px 0 24px}.hero{min-height:82svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 4px 55px;position:relative}.pill{display:inline-block;border:1px solid #ffb9ce50;background:#ff9eb914;color:var(--pink);border-radius:99px;padding:7px 13px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}h1,h2,h3,p{margin-top:0}h1{font:500 clamp(48px,13vw,88px)/.99 Georgia,serif;letter-spacing:-3px;margin:24px 0 18px}h1 em{font-weight:400;color:var(--rose)}.hero p{max-width:460px;font:19px/1.8 Georgia,serif;color:var(--muted);margin-bottom:25px}.orb{width:105px;height:105px;display:grid;place-items:center;border:1px solid #ffb8d35c;border-radius:50%;margin:16px 0 26px;box-shadow:0 0 50px #ff8ab41c,inset 0 0 28px #c4a1ff12;position:relative}.orb:before,.orb:after{content:"";position:absolute;inset:-10px;border:1px dashed #c8b7ff55;border-radius:50%;animation:spin 24s linear infinite}.orb:after{inset:-19px;border-style:solid;border-color:#ff9eb929;animation-direction:reverse}.orb span{font-size:42px;color:var(--rose);text-shadow:0 0 25px #ff8fb8}.btn{border:1px solid #ff9eb95c;background:linear-gradient(120deg,#bd628d,#8e70bc);color:white;border-radius:99px;padding:13px 19px;box-shadow:0 9px 28px #09071355;transition:transform .2s}.btn:active{transform:scale(.98)}.btn.secondary{background:#ffffff08;border-color:var(--line);box-shadow:none;color:var(--pink)}.micro{font-size:11px;color:#b9a9c8;margin-top:12px}.down{position:absolute;bottom:8px;color:#c9b8d7;font-size:11px;letter-spacing:1.8px}.down span{display:block;font-size:20px}.section{margin:17px 0 23px;padding:27px 20px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(145deg,#ffffff0a,#ffffff03);box-shadow:0 16px 50px #09071320;backdrop-filter:blur(10px)}.kicker{text-align:center;color:var(--rose);text-transform:uppercase;letter-spacing:2.2px;font-size:10px;margin-bottom:9px}.section h2{text-align:center;font:500 clamp(29px,7vw,43px)/1.15 Georgia,serif;letter-spacing:-.7px;margin-bottom:15px}.copy{max-width:570px;text-align:center;margin:0 auto;color:var(--muted);font:17px/1.85 Georgia,serif}.cards{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:20px}.mini{border:1px solid #ffffff13;background:#ffffff06;border-radius:18px;padding:17px 14px;text-align:center}.mini .emoji{font-size:24px;display:block;margin-bottom:7px}.mini p{font:14px/1.65 Georgia,serif;color:var(--muted);margin:0}.timeline{display:grid;gap:12px;margin-top:22px}.moment{border-left:2px solid #ff9eb97a;padding:3px 0 4px 17px}.moment strong{display:block;color:var(--pink);font:20px Georgia,serif;margin-bottom:5px}.moment p{margin:0;color:var(--muted);font-size:14px;line-height:1.75}.dream{margin-top:20px;padding:21px 17px;text-align:center;border-radius:20px;background:linear-gradient(145deg,#332746,#25213e);border:1px solid #c8b7ff2b}.dream .scene{font-size:31px;letter-spacing:7px;margin-bottom:9px}.dream p{font:16px/1.8 Georgia,serif;color:#e1d4eb;margin:0}.promise{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font:15px/1.75 Georgia,serif;color:var(--muted)}.promise:last-child{border-bottom:0}.promise b{color:var(--rose);font:12px system-ui;min-width:24px;padding-top:4px}.letter-list{display:grid;gap:10px;margin-top:18px}.letter-btn{width:100%;text-align:left;display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:#ffffff06;color:var(--text);border-radius:16px;padding:14px}.letter-btn .icon{font-size:23px}.letter-btn strong{display:block;font-size:14px}.letter-btn small{display:block;color:var(--muted);font-size:12px;margin-top:2px}.letter-body{display:none;margin:8px 0 5px;padding:17px;border-radius:15px;background:#ff9eb90b;border:1px solid #ff9eb925;color:#eadce8;font:16px/1.85 Georgia,serif}.letter-body.open{display:block;animation:rise .3s ease}.universe{position:relative;height:260px;overflow:hidden;border:1px solid #ffffff17;border-radius:20px;margin-top:20px;background:radial-gradient(ellipse at 50% 55%,#66517b70,transparent 57%),#100d20}.star{position:absolute;display:grid;place-items:center;width:34px;height:34px;border:0;background:transparent;color:#ffe5a7;font-size:22px;border-radius:50%;filter:drop-shadow(0 0 9px #ffe5a777);animation:twinkle 2.6s ease-in-out infinite alternate}.star:focus-visible{outline:2px solid white}.star-message{min-height:52px;text-align:center;margin:13px 0 0;color:var(--pink);font:16px/1.7 Georgia,serif}.quiz-options{display:grid;gap:9px;margin-top:17px}.quiz-options button{border:1px solid var(--line);border-radius:14px;padding:12px;background:#ffffff07;color:var(--text);text-align:left}.quiz-options button[aria-pressed="true"]{border-color:var(--rose);background:#ff9eb917}.feedback{min-height:48px;text-align:center;color:var(--pink);font:15px/1.7 Georgia,serif;margin:13px 0 0}.countdown{margin-top:18px;padding:18px;border:1px solid var(--line);border-radius:18px;background:#ffffff05}.countdown label{display:block;color:var(--muted);font-size:12px;margin-bottom:9px}.countdown input{width:100%;color:var(--text);background:#171327;border:1px solid #ffffff2b;border-radius:11px;padding:12px}.count-result{text-align:center;color:var(--pink);font:17px/1.7 Georgia,serif;margin:13px 0 0;min-height:28px}.final{text-align:center;padding:38px 8px 12px}.final .bigheart{font-size:30px;color:var(--rose)}.final h2{font:500 clamp(32px,8vw,48px)/1.15 Georgia,serif;margin:12px 0}.final p{max-width:510px;margin:auto;color:var(--muted);font:17px/1.9 Georgia,serif}.sign{font:29px "Brush Script MT","Segoe Script",cursive;color:var(--rose);margin-top:19px}.foot{text-align:center;font-size:11px;color:#9f91b1;margin-top:22px}#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#342543;color:#fff1f6;border:1px solid #ffffff25;border-radius:99px;padding:10px 15px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:5}#toast.show{opacity:1}@keyframes spin{to{transform:rotate(360deg)}}@keyframes twinkle{to{opacity:.48;transform:scale(.84)}}@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}@media(min-width:600px){main{padding:25px 24px 65px}.section{padding:36px 38px}.hero{min-height:86svh}.cards{gap:14px}.mini{padding:20px}}@media(max-width:360px){main{padding-inline:12px}.section{padding:23px 16px}.cards{grid-template-columns:1fr}.hero{min-height:78svh}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
-<body><div class="grain"></div>
+<body><div class="stars-bg" aria-hidden="true"></div>
 <main>
-  <div class="topline">a little page, just for you ♡</div>
-  <section class="hero">
-    <div class="eyebrow">✧ made with all my heart ✧</div>
-    <h1>For you,<br><em>Debjani.</em></h1>
-    <p class="intro">If I could turn everything I feel for you into something you could hold… it would look a little like this.</p>
-    <div class="heart-orbit"><span class="heart">♥</span></div>
-    <button class="primary" id="startBtn">A little something for you ♡</button>
-    <div class="tiny">take your time. this page is yours.</div>
-    <div class="scrollhint">THERE'S MORE FOR YOU<span>⌄</span></div>
-  </section>
+<div class="nav">a tiny universe · just for you ♡</div>
+<section class="hero" aria-labelledby="title">
+<div class="pill">for my baby jaan ✧</div>
+<h1 id="title">Hey,<br><em>Debjani.</em></h1>
+<p>Some feelings are too big for a text, so I made you a little corner of the universe. No pressure, no perfect words needed. Just us, in the way I dream of us.</p>
+<div class="orb" aria-hidden="true"><span>♥</span></div>
+<button class="btn" id="begin">Come inside, baby jaan ♡</button>
+<div class="micro">for my baby jaan, my favourite person</div>
+<div class="down" aria-hidden="true">THERE'S A LITTLE MORE<span>⌄</span></div>
+</section>
 
-  <section class="section">
-    <p class="kicker">if you ever wonder</p>
-    <h2>Why you matter to me</h2>
-    <p class="bodycopy">It's not just the big moments. It's the little things, too. The way your name can change the feeling of an ordinary day. The comfort of hearing your voice. The way you stay on my mind even when life gets loud.</p>
-    <div class="note-grid">
-      <div class="note-card"><span class="emoji">🌷</span><p>You make ordinary moments feel special.</p></div>
-      <div class="note-card"><span class="emoji">🌙</span><p>You are in so many of my quiet thoughts.</p></div>
-      <div class="note-card"><span class="emoji">🫶</span><p>Your feelings deserve patience and care.</p></div>
-      <div class="note-card"><span class="emoji">🏡</span><p>With you, I imagine a thousand little tomorrows.</p></div>
-    </div>
-  </section>
+<section class="section" id="story">
+<p class="kicker">our little story</p><h2>Little moments, big feelings</h2>
+<p class="copy">I don't need to invent a hundred memories to know the real ones matter. The ones I hold close are simple, and they're ours.</p>
+<div class="timeline">
+<div class="moment"><strong>🎥 The video calls</strong><p>When we're on video call and end up laughing together. I love that feeling when the screen is just a screen, but somehow you still make the distance feel smaller.</p></div>
+<div class="moment"><strong>😂 The laughing-too-much part</strong><p>Those moments when we're laughing and the whole day feels a little lighter. I want more of that—not a perfect love story, just more real moments with you.</p></div>
+<div class="moment"><strong>🏡 The dream we can imagine</strong><p>A little future I picture with you: a cottage in Sikkim, far from all the noise, with a cat, a dog, and maybe our little boy or girl one day—just us building a peaceful life together.</p></div>
+</div>
+<div class="dream"><div class="scene" aria-hidden="true">🏔️ 🏡 🐈 🐕</div><p>A quiet cottage. A warm home. Our little family.<br>Not a promise that life will be perfect—just a dream I love imagining with you.</p></div>
+</section>
 
-  <section class="section">
-    <p class="kicker">not just words</p>
-    <h2>What I want to give you</h2>
-    <div class="promise"><b>01</b><span>Honesty, even when a conversation is difficult. You deserve the truth from me.</span></div>
-    <div class="promise"><b>02</b><span>Consistency—not only sweet words today, but effort you can actually feel over time.</span></div>
-    <div class="promise"><b>03</b><span>Space to feel what you feel, without pressure to be okay before you're ready.</span></div>
-    <div class="promise"><b>04</b><span>A love that listens, learns, and keeps choosing to do better.</span></div>
-  </section>
+<section class="section">
+<p class="kicker">the things that matter</p><h2>What I want you to feel with me</h2>
+<div class="promise"><b>01</b><span>Safe enough to tell me the truth, even when it's difficult to hear.</span></div>
+<div class="promise"><b>02</b><span>Loved through consistent actions, not only beautiful words on a screen.</span></div>
+<div class="promise"><b>03</b><span>Free to have your own feelings and take your own time. You never have to rush your heart for me.</span></div>
+<div class="promise"><b>04</b><span>Chosen in ordinary moments too: in listening, honesty, patience, and trying again the right way.</span></div>
+</section>
 
-  <section class="section letter">
-    <p class="kicker">from my heart to yours</p>
-    <h2>A letter I wish I could say perfectly</h2>
-    <div class="letter-text">My Debjani,
+<section class="section" id="letters">
+<p class="kicker">open whenever you need</p><h2>Little letters for my jaan</h2>
+<p class="copy">Pick whichever one feels right today. You don't have to be okay all the time.</p>
+<div class="letter-list">
+<div><button class="letter-btn" aria-expanded="false" aria-controls="letter1"><span class="icon">🌧️</span><span><strong>Open when your day feels heavy</strong><small>A soft reminder to be gentle with yourself</small></span></button><div class="letter-body" id="letter1">Baby jaan, take a breath for a second. You don't have to solve your whole life today. Rest if you need to, cry if you need to, and let yourself be human. Your worth doesn't get smaller on a difficult day. I hope you give yourself the same kindness you'd give someone you love. ♡</div></div>
+<div><button class="letter-btn" aria-expanded="false" aria-controls="letter2"><span class="icon">🌙</span><span><strong>Open when you miss me</strong><small>A little closeness through the screen</small></span></button><div class="letter-body" id="letter2">My baby jaan, imagine me sitting beside you for a minute, listening to whatever you want to tell me. I wish I could turn a screen into a hug. Until then, I hope we get more calls, more laughter, and more little moments that make the distance feel less loud. 🫂</div></div>
+<div><button class="letter-btn" aria-expanded="false" aria-controls="letter3"><span class="icon">🫶</span><span><strong>Open when you need reassurance</strong><small>You deserve care that shows up</small></span></button><div class="letter-body" id="letter3">Baby jaan, you don't have to earn kindness by being cheerful, easy, or perfect. Your feelings matter even when they're complicated. I know words alone can't fix hurt, so I want to keep learning to show care through what I do, to listen properly, and to respect the time you need. No pressure to feel anything on command. ♡</div></div>
+<div><button class="letter-btn" aria-expanded="false" aria-controls="letter4"><span class="icon">🏡</span><span><strong>Open when you want to dream with me</strong><small>One little cottage, someday</small></span></button><div class="letter-body" id="letter4">Close your eyes and picture that Sikkim cottage with me: quiet mountains, a cat doing whatever cats want, a dog waiting for us, and a little family we may build someday if life takes us there. I imagine slow mornings and silly laughter. It's a dream, not a deadline—and I'd love to keep discovering the future with you, one honest day at a time.</div></div>
+</div>
+</section>
 
-I know love isn't proved by a beautiful paragraph or a cute website. It's proved in the way I treat your heart when nobody is watching.
+<section class="section" id="universe">
+<p class="kicker">tap a star, baby jaan</p><h2>Our little universe ✨</h2>
+<p class="copy">Every star has a tiny message. Tap one and see what it says.</p>
+<div class="universe" role="group" aria-label="Interactive stars with little messages">
+<button class="star" style="left:12%;top:18%" aria-label="Reveal star message 1" data-message="You deserve a love that feels honest, gentle, and real.">✦</button>
+<button class="star" style="left:38%;top:40%;animation-delay:.5s" aria-label="Reveal star message 2" data-message="My favourite future scenes have you in them, baby jaan.">✧</button>
+<button class="star" style="left:72%;top:16%;animation-delay:1s" aria-label="Reveal star message 3" data-message="I hope we always make room for laughter—even on ordinary days.">✦</button>
+<button class="star" style="left:83%;top:63%;animation-delay:.8s" aria-label="Reveal star message 4" data-message="Our Sikkim cottage dream: mountains, one cat, one dog, and us. 🏡">✧</button>
+<button class="star" style="left:23%;top:70%;animation-delay:1.4s" aria-label="Reveal star message 5" data-message="You don't need to be okay every minute. Take your time.">✦</button>
+<button class="star" style="left:57%;top:77%;animation-delay:.3s" aria-label="Reveal star message 6" data-message="I want my actions to say 'I love you' louder than a page ever could.">✧</button>
+</div>
+<p class="star-message" id="starMessage" aria-live="polite">Choose a star, meri jaan ♡</p>
+</section>
 
-I know there have been moments when my actions made it harder for you to trust my words. I'm sorry for the hurt I caused. You never deserved confusion where you needed honesty, or silence where you needed reassurance. I can't rewrite those moments, and I won't ask you to pretend they didn't hurt.
+<section class="section" id="quiz">
+<p class="kicker">a tiny no-pressure quiz</p><h2>Pick our kind of forever</h2>
+<p class="copy">No wrong answers. This is just a cute little dream game.</p>
+<div class="quiz-options" role="group" aria-label="Choose a dream date">
+<button data-answer="mountains">🏔️ A quiet morning in our Sikkim cottage</button>
+<button data-answer="laugh">😂 A video call where we laugh at absolutely nothing</button>
+<button data-answer="pets">🐈🐕 A lazy day with our cat and dog</button>
+<button data-answer="all">💗 All of it, slowly, together</button>
+</div>
+<p class="feedback" id="quizFeedback" aria-live="polite">Your turn, baby jaan.</p>
+</section>
 
-But I can be more honest. I can listen without getting defensive. I can be patient with the time trust needs. And I can show you, little by little, that my love is something you can see in my actions—not something you have to keep guessing.
+<section class="section" id="countdown">
+<p class="kicker">a little something to look forward to</p><h2>Our next special moment</h2>
+<p class="copy">Choose a date for a call, a visit, or any moment you want to look forward to. I haven't guessed a date for us—you get to choose it.</p>
+<div class="countdown"><label for="momentDate">Pick your date and time</label><input id="momentDate" type="datetime-local"><button class="btn" id="setCountdown" style="margin-top:12px;width:100%">Set our little countdown ♡</button><p class="count-result" id="countResult" aria-live="polite">A date picked by you, a moment to look forward to.</p></div>
+</section>
 
-You don't have to be perfect for me. You don't have to hide your sad days or always know what to say. I want to know the real you: your happy chaos, your overthinking, your dreams, your quiet moments, all of it.
+<section class="section">
+<p class="kicker">from me to you</p><h2>A letter, baby jaan</h2>
+<div style="font:16px/1.95 Georgia,serif;color:#e4d5e3">
+My Debjani, my baby jaan ♡<br><br>
+I know a beautiful page can't undo hurt, and I don't want to pretend that it can. Trust isn't something I can ask you to give me just because I say the right things. I want to earn it with honesty, patience, and actions that stay consistent after you close this website.<br><br>
+I love our video calls, especially when we're laughing together. Those moments feel so simple and so precious to me. And sometimes I picture that quiet cottage in Sikkim—with a cat, a dog, and maybe our little boy or girl someday. A peaceful life, away from all the noise, where we can make our own little home. It's a dream I hold gently, not something I want to pressure you with.<br><br>
+I want to keep making space for your real feelings, to hear you instead of rushing to defend myself, and to show you care in ways you can actually feel. I know I have to live that, not just write it here.<br><br>
+So if this page makes you smile, I'm happy. If it makes you emotional, that's okay too. You don't owe me a particular reaction. I made it because you matter to me, and I wanted you to have something soft to come back to.<br><br>
+More honest conversations. More laughing on calls. More little memories. And if life lets us, one day, that cottage and the family we dream about.<br><br>
+I love you, baby jaan. Let's keep choosing kindness, truth, and each other—one day at a time. ♡
+</div>
+<div class="sign">your Sanskar ♡</div>
+</section>
 
-I can't promise that every day will be magical. I can promise that you matter to me, that your feelings matter, and that I want to keep learning how to love you better.
-
-If the world feels too heavy sometimes, I hope you remember that you don't have to carry every feeling alone. And if you need time, I'll respect that too.
-
-Out of all the things I could ask for, one of my favourites is simple: more ordinary days with you. More silly conversations, more little memories, more chances to make you smile for real.
-
-I love you—not because this page says so, but because I want my everyday choices to say it too. ♡</div>
-    <div class="signature">always learning to love you better ♡</div>
-  </section>
-
-  <section class="section">
-    <p class="kicker">one last little thing</p>
-    <h2>I saved you a tiny note</h2>
-    <p class="bodycopy">Open it whenever you're ready. No rush, no expectations—just a little reminder from me to you.</p>
-    <div class="envelope-wrap">
-      <button class="envelope" id="envelope" aria-expanded="false" aria-controls="secretNote"><span class="big">💌</span><strong>For Debjani only</strong><span>tap to open your note</span></button>
-      <div class="hidden-letter" id="secretNote">Hey, pretty girl. ♡<br><br>Just in case today was hard, or your mind is being a little unkind to you: please be gentle with yourself. You are allowed to rest, to feel, to take your time, and to ask for the care you need.<br><br>You don't owe me a perfect reaction to this page. I just wanted to make something that reminds you that you are loved, that you are important, and that I want to keep showing up with a softer heart and better actions.<br><br>One day at a time, okay? Sending you the biggest hug I can fit through a screen. 🫂💗</div>
-    </div>
-  </section>
-  <footer class="footer">made slowly, thought of you the whole time.<span class="lastheart">♡</span><span>— your Sanskar</span></footer>
-</main>
+<footer class="final"><div class="bigheart">♥</div><h2>Always, my baby jaan.</h2><p>No website could fit everything I feel. So here's the simple version: you matter to me. I hope I keep showing you that in ways that feel real.</p><div class="sign">baby jaan & Sanskar's little universe</div></footer>
+<div class="foot">made with love · no perfect words, just a real heart ♡</div>
+</main><div id="toast" role="status" aria-live="polite"></div>
 <script>
-const start=document.getElementById('startBtn');
-start.addEventListener('click',()=>document.querySelector('.section').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
-const envelope=document.getElementById('envelope'),note=document.getElementById('secretNote');
-envelope.addEventListener('click',()=>{const open=note.style.display==='block';note.style.display=open?'none':'block';envelope.setAttribute('aria-expanded',String(!open));envelope.querySelector('strong').textContent=open?'For Debjani only':'A little hug, in words';envelope.querySelector('span:last-child').textContent=open?'tap to open your note':'tap again to close';if(!open)note.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});});
-let lastHeart=0;
-document.addEventListener('pointerdown',e=>{const now=Date.now();if(now-lastHeart<220)return;lastHeart=now;const h=document.createElement('span');h.className='floating';h.textContent=['♡','♥','✧','💕'][Math.floor(Math.random()*4)];h.style.left=Math.max(4,Math.min(94,e.clientX/window.innerWidth*100))+'%';h.style.fontSize=(15+Math.random()*13)+'px';h.style.animationDuration=(3+Math.random()*2)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),5200)});
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('begin').addEventListener('click',()=>document.getElementById('story').scrollIntoView({behavior:reduced?'auto':'smooth'}));
+document.querySelectorAll('.letter-btn').forEach(btn=>btn.addEventListener('click',()=>{const panel=document.getElementById(btn.getAttribute('aria-controls'));const opening=!panel.classList.contains('open');panel.classList.toggle('open',opening);btn.setAttribute('aria-expanded',String(opening));}));
+document.querySelectorAll('.star').forEach(star=>star.addEventListener('click',()=>{document.getElementById('starMessage').textContent=star.dataset.message;}));
+const answers={mountains:'A quiet Sikkim morning, you beside me, and nowhere else we need to be. 🏔️',laugh:'Honestly, those laughing video calls already sound like a perfect little date. 😂',pets:'The cat acts like it owns the cottage, the dog is everyone's best friend, and we are just happy. 🐈🐕',all:'All of it, slowly, together—with honesty, laughter, and room for real life. 💗'};
+document.querySelectorAll('[data-answer]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-answer]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));document.getElementById('quizFeedback').textContent=answers[btn.dataset.answer];}));
+const dateInput=document.getElementById('momentDate'), result=document.getElementById('countResult');
+document.getElementById('setCountdown').addEventListener('click',()=>{if(!dateInput.value){result.textContent='Pick a date and time first, baby jaan ♡';dateInput.focus();return;}const target=new Date(dateInput.value);if(Number.isNaN(target.getTime())){result.textContent='That date did not work—please choose it again.';return;}if(target.getTime()<=Date.now()){result.textContent='That moment is already here or has passed. Pick a future moment if you want a countdown. ♡';return;}const ms=target.getTime()-Date.now(),days=Math.floor(ms/86400000),hours=Math.floor(ms%86400000/3600000),mins=Math.floor(ms%3600000/60000);result.textContent='Only '+days+' day'+(days===1?'':'s')+', '+hours+' hour'+(hours===1?'':'s')+' and '+mins+' minute'+(mins===1?'':'s')+' until your chosen moment. ♡';});
 </script>
-</body>
-</html>
+</body></html>
