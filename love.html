@@ -81,9 +81,20 @@
 </section>
 
 <section class="section" id="countdown">
-<p class="kicker">a little something to look forward to</p><h2>Our next special moment</h2>
-<p class="copy">Choose a date for a call, a visit, or any moment you want to look forward to. I haven't guessed a date for us—you get to choose it.</p>
-<div class="countdown"><label for="momentDate">Pick your date and time</label><input id="momentDate" type="datetime-local"><button class="btn" id="setCountdown" style="margin-top:12px;width:100%">Set our little countdown ♡</button><p class="count-result" id="countResult" aria-live="polite">A date picked by you, a moment to look forward to.</p></div>
+<p class="kicker">two moments we're looking forward to</p><h2>Our countdowns, baby jaan ♡</h2>
+<p class="copy">One step at a time until I get to see you, and one day closer to the future we dream about. The board-exam date below is only a planning estimate—not an official CBSE date.</p>
+<div class="countdown">
+<label for="boardsDate">🎓 Class 12 boards end — tentative estimate</label>
+<input id="boardsDate" type="datetime-local" value="2027-04-10T13:30">
+<p class="count-result" id="boardsResult" aria-live="polite">Counting down to the estimated end of boards…</p>
+<p style="font-size:11px;color:var(--muted);margin:10px 0 0">CBSE's official 2027 date sheet has not been confirmed in the information available. Change this date when your final exam date is announced.</p>
+</div>
+<div class="countdown" style="margin-top:13px">
+<label for="weddingDate">💍 Our wedding — choose the date when it's decided</label>
+<input id="weddingDate" type="date" min="2028-01-01" max="2028-12-31">
+<button class="btn" id="setWedding" style="margin-top:12px;width:100%">Set our wedding countdown ♡</button>
+<p class="count-result" id="weddingResult" aria-live="polite">2028 is our dream year. When the exact date is decided, choose it here and your wedding countdown will begin. ♡</p>
+</div>
 </section>
 
 <section class="section">
@@ -110,7 +121,13 @@ document.querySelectorAll('.letter-btn').forEach(btn=>btn.addEventListener('clic
 document.querySelectorAll('.star').forEach(star=>star.addEventListener('click',()=>{document.getElementById('starMessage').textContent=star.dataset.message;}));
 const answers={mountains:'A quiet Sikkim morning, you beside me, and nowhere else we need to be. 🏔️',laugh:'Honestly, those laughing video calls already sound like a perfect little date. 😂',pets:'The cat acts like it owns the cottage, the dog is everyone's best friend, and we are just happy. 🐈🐕',all:'All of it, slowly, together—with honesty, laughter, and room for real life. 💗'};
 document.querySelectorAll('[data-answer]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-answer]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));document.getElementById('quizFeedback').textContent=answers[btn.dataset.answer];}));
-const dateInput=document.getElementById('momentDate'), result=document.getElementById('countResult');
-document.getElementById('setCountdown').addEventListener('click',()=>{if(!dateInput.value){result.textContent='Pick a date and time first, baby jaan ♡';dateInput.focus();return;}const target=new Date(dateInput.value);if(Number.isNaN(target.getTime())){result.textContent='That date did not work—please choose it again.';return;}if(target.getTime()<=Date.now()){result.textContent='That moment is already here or has passed. Pick a future moment if you want a countdown. ♡';return;}const ms=target.getTime()-Date.now(),days=Math.floor(ms/86400000),hours=Math.floor(ms%86400000/3600000),mins=Math.floor(ms%3600000/60000);result.textContent='Only '+days+' day'+(days===1?'':'s')+', '+hours+' hour'+(hours===1?'':'s')+' and '+mins+' minute'+(mins===1?'':'s')+' until your chosen moment. ♡';});
+function countdownText(target, label){const ms=target.getTime()-Date.now();if(!Number.isFinite(ms))return 'Please choose a valid date.';if(ms<=0)return label+' is here—or this date has passed. ♡';const days=Math.floor(ms/86400000),hours=Math.floor(ms%86400000/3600000),mins=Math.floor(ms%3600000/60000);return days+' days, '+hours+' hours and '+mins+' minutes until '+label+'. ♡';}
+const boardsDate=document.getElementById('boardsDate'),boardsResult=document.getElementById('boardsResult');
+function updateBoards(){const d=new Date(boardsDate.value);boardsResult.textContent=countdownText(d,'your estimated last board exam');}
+boardsDate.addEventListener('change',updateBoards);updateBoards();
+const weddingDate=document.getElementById('weddingDate'),weddingResult=document.getElementById('weddingResult');
+function updateWedding(){if(!weddingDate.value){weddingResult.textContent='2028 is our dream year. When the exact date is decided, choose it here and your wedding countdown will begin. ♡';return;}const d=new Date(weddingDate.value+'T00:00:00');if(d.getFullYear()!==2028){weddingResult.textContent='Choose a date in 2028 for your wedding countdown, baby jaan. ♡';return;}weddingResult.textContent=countdownText(d,'our wedding day');}
+document.getElementById('setWedding').addEventListener('click',updateWedding);weddingDate.addEventListener('change',updateWedding);
+
 </script>
 </body></html>
