@@ -37,6 +37,8 @@
 @media(max-width:360px){.ador-choices{gap:8px}.ador-choice{padding:11px 6px}.ador-soft-list{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.ador-petal{animation:none;display:none}}
 
+
+.alfaaz-paper{margin:22px auto;max-width:540px;padding:28px 17px;background:linear-gradient(145deg,#fff6e9,#ffe9e9);color:#533348;border-radius:18px;text-align:center;box-shadow:0 12px 32px #08051433}.alfaaz-paper p{font:clamp(15px,3.8vw,19px)/1.85 Georgia,serif;margin:0 0 21px}.alfaaz-paper p:last-child{margin-bottom:0}.alfaaz-paper .alfaaz-label{font:600 11px/1.5 system-ui;letter-spacing:1.5px;text-transform:uppercase;color:#9b6680}.alfaaz-paper p:nth-last-child(2){font-weight:bold}.ador-actions a.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}.ador-note[hidden]{display:none!important}
 </style>
 </head>
 <body><div class="stars-bg" aria-hidden="true"></div>
@@ -91,6 +93,22 @@
 <p class="ador-tiny-note">Made with love, not as a replacement for a real hug. Whenever you need a real call, you can ask me, baby. — Sanskar ♡</p>
 </section>
 
+<section class="section" id="alfaaz" aria-labelledby="alfaazTitle">
+<p class="kicker">our song · a little dedication</p>
+<h2 id="alfaazTitle">Alfaaz — for my baby jaan 🌹</h2>
+<p class="copy">You once shared these words with me. This is the part of the song that makes me think of you, Debjani. Tap the heart to reveal my little dedication.</p>
+<div class="alfaaz-paper">
+<p class="alfaaz-label">Alfaaz · Hamza Malik &amp; Zain Zohaib</p>
+<p>Ankhiyan De Samne Tu<br>Baitha Rawein Der Tak<br>Vekhan Tainu Raat Saari<br>Chadhdi Saver Tak</p>
+<p>Baaghan Vichon Main Te Tode<br>Tere Layi Gulaab Ve<br>Main Te Bas Kehnda Rehnda<br>Aap Janaab Ve</p>
+<p>Tu Te Taareyan Ton Vi Sohna Ae<br>Tere Varga Koyi Na Hona Ae</p>
+<p>Jinna Aanda Si Mainu Pyar Karna Ji<br>Main Te Tere Naal Kar Leya Ae<br>Main Te Chum Lavan Ohna Raahwan Nu<br>Jithon Ik Vari Kadi Langheya Tu</p>
+<p>Gallan Do Hi Ne Hor Koi Vi Nai<br>Ya Te Tu Vi Ae Ya Te Koyi Vi Nai</p>
+</div>
+<div class="ador-actions"><button class="btn" id="alfaazHeart" type="button" aria-expanded="false" aria-controls="alfaazDedication">Open my dedication 💗</button><a class="btn secondary" href="https://www.youtube.com/results?search_query=Alfaaz+Hamza+Malik+Zain+Zohaib+official" target="_blank" rel="noopener noreferrer">Find our song ↗</a></div>
+<p class="ador-note" id="alfaazDedication" hidden>Baby jaan, that line about kissing the paths you walk on makes me think of how deeply I want to cherish you. Not just with pretty words, but with the everyday tenderness you call ador. I wish I could hold you close and tell you, slowly: amar shona, you are so precious to me. — Sanskar ♡</p>
+<p class="micro">A personal excerpt from the screenshot you shared. This page does not play or host the recording.</p>
+</section>
 <section class="section" id="story">
 <p class="kicker">our little story</p><h2>Little moments, big feelings</h2>
 <p class="copy">I don't need to invent a hundred memories to know the real ones matter. The ones I hold close are simple, and they're ours.</p>
@@ -245,5 +263,11 @@ const adorNotes=[
 ];
 let noteCount=-1;document.getElementById('adorNoteBtn').addEventListener('click',()=>{noteCount=(noteCount+1)%adorNotes.length;document.getElementById('adorNote').textContent=adorNotes[noteCount];adorFloat();});
 
+
+// All affection and song controls are native buttons; their handlers attach after the DOM exists.
+const alfaazButton=document.getElementById('alfaazHeart');
+if(alfaazButton){alfaazButton.addEventListener('click',()=>{const note=document.getElementById('alfaazDedication');const opening=note.hidden;note.hidden=!opening;alfaazButton.setAttribute('aria-expanded',String(opening));alfaazButton.textContent=opening?'Close my dedication ♡':'Open my dedication 💗';if(opening)note.scrollIntoView({block:'nearest',behavior:reduced?'auto':'smooth'});});}
+// Explicit button types prevent accidental form submissions on embedded browsers.
+document.querySelectorAll('button:not([type])').forEach(button=>button.type='button');
 </script>
 </body></html>
