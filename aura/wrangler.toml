@@ -1,0 +1,16 @@
+name = "aura-market-engine"
+main = "worker.js"
+compatibility_date = "2026-11-06"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aura-market-db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
