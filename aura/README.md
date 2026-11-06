@@ -1,30 +1,27 @@
-# AURA AI — automated market data engine
+# AURA AI — Vercel deployment
 
-AURA is being added as an isolated app inside the existing `oms733411-commits/voice-cloner` repository. Existing voice-cloner pages and APIs are not modified.
+AURA is an isolated dashboard inside `oms733411-commits/voice-cloner`. Existing Voice Cloner files are not modified.
 
-## Current data adapters
-- Crypto: Binance public REST klines. No API key is needed for public market data.
-- Indian equities: Yahoo Finance chart endpoint as a best-effort free source. This is unofficial, may be delayed/rate-limited, and is not an exchange-guaranteed feed.
-- Watchlist: RELIANCE, TCS, TATASTEEL, TATAMOTORS, BTCUSDT, ETHUSDT.
-- Timeframes exposed: 5m, 15m, 1H, 1D. 4H/1W aggregation and additional symbols are planned.
+## Deploy on Vercel
+1. Open https://vercel.com/new and import `oms733411-commits/voice-cloner`.
+2. Set **Root Directory** to `aura`.
+3. Framework preset: **Other**. Leave Build Command and Output Directory empty.
+4. Deploy. Open the deployment URL; health endpoint: `/api/health`.
 
-## Deploy on Cloudflare (free tier, subject to current quotas)
-1. Install Wrangler and log in: `npx wrangler login`.
-2. From this folder create the database: `npx wrangler d1 create aura-market-db`.
-3. Copy the returned database_id into `wrangler.toml`.
-4. Initialize schema: `npx wrangler d1 execute aura-market-db --file=./schema.sql`.
-5. Deploy: `npx wrangler deploy`.
-6. Open the Worker URL. The dashboard is served at the root; API health is at `/api/health`.
+## Automated data fetching
+The dashboard requests candles from `/api/candles` when a symbol/timeframe is selected and refreshes the active chart periodically. Vercel's CDN caches responses briefly to reduce provider calls.
 
-The five-minute Cron Trigger collects the configured 5m watchlist into D1. The API can fetch on demand and uses cached candles as a fallback. A D1 binding is required for persistence and scheduled collection.
+- Crypto: Binance public REST market-data API, no API key for public klines.
+- Indian stocks: Yahoo Finance chart endpoint, unofficial best-effort data. It can be delayed, rate-limited or changed without notice.
+- Symbols: RELIANCE, TCS, TATASTEEL, TATAMOTORS, BTCUSDT, ETHUSDT.
+- Timeframes: 5m, 15m, 1H, 1D.
 
-## Local preview
-From this directory: `npx wrangler dev`. Configure D1 locally using Wrangler's local D1 workflow.
+## Important free-plan limitation
+This Vercel deployment does not run a permanent background collector or persist candles to a database. Dashboard requests fetch current historical candle windows on demand; CDN caching reduces repeated requests. Vercel Hobby Cron Jobs are limited to once per day, so they cannot replace a five-minute collector. For persistent history and frequent scheduled ingestion, connect a database and an external scheduler or use a provider with an appropriate free streaming plan.
 
-## Important limitations
-- This is a data-pipeline foundation, not a guaranteed real-time exchange terminal.
-- Yahoo Finance is an unofficial best-effort source for Indian equities. If it rate-limits or changes, the dashboard reports the error instead of inventing candles.
-- Binance public market data is used for crypto; exchange availability and regional access can vary.
-- Strategy scores are rule-based evidence scores, not win probabilities. The current dashboard's AI panel is explicitly a transparent heuristic placeholder, not a trained ML model.
-- Validate source licensing/terms before redistributing market data or using it commercially.
-- No broker credentials, API secrets, or paid data services are required by this initial build.
+## Accuracy and safety
+- Provider timestamps are Unix seconds; candle values are validated before returning.
+- If a provider fails, API returns an error; the dashboard hides signals rather than inventing data.
+- Technical scores are evidence scores, not win probabilities.
+- This is a prototype, not investment advice. Verify market data, exchange terms, and licensing before relying on or redistributing it.
+- No API keys or paid credentials are required by this initial implementation.
