@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100d20">
+<meta name="description" content="A little Diwali daydream for Debjani — one quiet night, one car, one little family, and a sky full of light.">
+<title>Our Little Diwali ✨</title>
+<style>
+:root{color-scheme:dark;--night:#100d20;--cream:#fff1d5;--gold:#ffd58a;--rose:#ffb6c9;--muted:#d7c6c7;--glass:#ffffff0d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#49304b 0,transparent 45%),linear-gradient(#100d20,#191329 60%,#100d20);color:var(--cream);font-family:Georgia,serif;line-height:1.7;overflow-x:hidden}button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}main{position:relative;z-index:1;width:min(850px,100%);margin:auto;padding:18px 17px 65px}.top{text-align:center;letter-spacing:3px;text-transform:uppercase;font:10px system-ui;color:#e9c9a7;padding:12px 0 25px}.hero{min-height:88svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 4px 55px}.tag{border:1px solid #ffd58a55;border-radius:99px;padding:7px 14px;color:#ffe0a8;background:#ffd58a0c;font:10px system-ui;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(52px,13vw,100px);line-height:.98;font-weight:400;letter-spacing:-3px;margin:25px 0 15px;text-shadow:0 0 45px #ffb45c44}.hero h1 em{color:#ffcf91;font-weight:400}.hero p{max-width:520px;color:#e3d2d1;font-size:18px;line-height:1.9;margin:0 auto 24px}.lantern{font-size:55px;filter:drop-shadow(0 0 22px #ffbd65);animation:sway 4s ease-in-out infinite}.btn{border:1px solid #ffcf91aa;background:linear-gradient(120deg,#a65b57,#b77b56);color:#fff8e9;border-radius:99px;padding:13px 21px;box-shadow:0 9px 28px #0005;transition:transform .2s}.btn:active{transform:scale(.97)}.btn.ghost{background:#ffffff0a;border-color:#ffffff30;box-shadow:none}.hint{font:11px system-ui;color:#c9b5b6;margin-top:12px}.section{margin:18px 0;padding:29px 21px;border:1px solid #ffffff20;border-radius:25px;background:linear-gradient(145deg,#ffffff0e,#ffffff04);backdrop-filter:blur(12px);box-shadow:0 18px 50px #0002}.eyebrow{text-align:center;text-transform:uppercase;letter-spacing:2px;color:#ffcb91;font:10px system-ui;margin:0 0 9px}.section h2{text-align:center;font-weight:400;font-size:clamp(30px,7vw,45px);line-height:1.2;margin:0 0 14px}.copy{max-width:610px;text-align:center;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.9}.scene{margin:22px auto 0;max-width:650px;min-height:280px;border:1px solid #ffda9c38;border-radius:22px;overflow:hidden;position:relative;background:radial-gradient(ellipse at 50% 0%,#4b3156,#171327 72%);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:24px 15px}.moon{position:absolute;top:28px;right:12%;font-size:37px;filter:drop-shadow(0 0 18px #ffe4a0)}.horizon{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(transparent,#0b0a14 70%);border-radius:50% 50% 0 0/20% 20% 0 0}.car{position:relative;z-index:1;font-size:clamp(54px,12vw,82px);filter:drop-shadow(0 9px 10px #0009);margin-bottom:-6px}.family{position:relative;z-index:2;font-size:clamp(27px,7vw,43px);letter-spacing:5px;text-shadow:0 0 15px #ffc56a66}.scene-caption{position:relative;z-index:2;text-align:center;color:#ffe7c8;font:14px/1.8 Georgia,serif;margin-top:12px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0}.choice{border:1px solid #ffffff25;background:#ffffff08;color:#fff1d5;border-radius:16px;padding:14px 10px;min-height:74px}.choice[aria-pressed=true]{border-color:#ffd58a;background:#ffd58a18}.reply{min-height:130px;border:1px solid #ffcf9140;background:#ffcf910c;border-radius:18px;padding:20px;text-align:center;display:flex;flex-direction:column;justify-content:center}.reply strong{font-size:22px;color:#ffe0a8;font-weight:400}.reply p{margin:8px 0 0;color:#e7d5d2;font-size:15px;line-height:1.8}.center{text-align:center;margin-top:16px}.moments{display:grid;gap:12px;margin-top:20px}.moment{padding:16px;border-left:2px solid #e7b777;background:#ffffff07;border-radius:0 14px 14px 0}.moment b{display:block;color:#ffdaa0;font-size:18px;font-weight:400}.moment p{color:#d9c9ca;margin:4px 0 0;font-size:14px}.reveal{display:none;margin-top:15px;padding:19px;border-radius:16px;background:#ffcf9110;border:1px solid #ffcf9140;text-align:center;color:#ffe7d2;font-size:17px;line-height:1.9}.reveal.show{display:block;animation:rise .35s ease}.final{text-align:center;padding:45px 8px 15px}.final .heart{font-size:34px;color:#ffb6c9}.final h2{font-size:clamp(34px,8vw,52px);font-weight:400;line-height:1.2;margin:10px 0}.final p{max-width:570px;margin:auto;color:#d9c9ca;font-size:17px;line-height:1.9}.signature{font-style:italic;color:#ffcf91;font-size:26px;margin-top:17px}.footer{text-align:center;color:#9f8e9e;font:10px system-ui;margin-top:25px}@keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(min-width:600px){main{padding:24px 25px 75px}.section{padding:38px 40px}.hero{min-height:92svh}}@media(max-width:370px){main{padding-inline:12px}.section{padding:23px 15px}.choices{gap:7px}.choice{font-size:13px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main>
+<div class="top">a little future · a little forever · ♡</div>
+<header class="hero">
+<div class="tag">a diwali daydream for my baby jaan</div>
+<div class="lantern" aria-hidden="true">🏮</div>
+<h1>Our Little<br><em>Diwali.</em></h1>
+<p>One quiet place away from all the noise. You, me, our little one, and a sky that keeps blooming with light. I made a tiny dream you can step into, jaan.</p>
+<button class="btn" id="begin">Take me to our night ✨</button>
+<div class="hint">sound off · just soft lights & little feelings</div>
+</header>
+
+<section class="section" id="dream">
+<p class="eyebrow">scene one · somewhere peaceful</p>
+<h2>Just us, under the open sky.</h2>
+<p class="copy">Imagine we drive somewhere calm, far from the crowded streets. The car is parked safely, the night is cool, and there's no rush to go anywhere. We sit close together near the car, watching the first fireworks appear.</p>
+<div class="scene" role="img" aria-label="An imagined family sitting together beside a parked car beneath a starry sky">
+<div class="moon">☾</div><div class="horizon"></div>
+<div class="car" aria-hidden="true">🚙</div>
+<div class="family" aria-hidden="true">👩🏻‍❤️‍👨🏻 🧒🏻</div>
+<div class="scene-caption">Our little team. Our own quiet corner of the world. ♡</div>
+</div>
+</section>
+
+<section class="section">
+<p class="eyebrow">scene two · choose our little moment</p>
+<h2>What happens first, baby?</h2>
+<p class="copy">Tap one. I'll show you the version playing in my head.</p>
+<div class="choices" role="group" aria-label="Choose a Diwali moment">
+<button class="choice" data-moment="sky" aria-pressed="false">🎆 Watch the sky</button>
+<button class="choice" data-moment="tease" aria-pressed="false">🤭 Tease each other</button>
+<button class="choice" data-moment="kid" aria-pressed="false">🧒 Our little one</button>
+<button class="choice" data-moment="quiet" aria-pressed="false">🫶 A quiet cuddle</button>
+</div>
+<div class="reply" id="momentReply" aria-live="polite">
+<strong>Pick our first little moment ♡</strong><p>Every version has you in it. That's my favourite part.</p>
+</div>
+</section>
+
+<section class="section">
+<p class="eyebrow">scene three · little things i can already imagine</p>
+<h2>The kind of night I'd keep forever.</h2>
+<div class="moments">
+<div class="moment"><b>🎇 The sky starts sparkling</b><p>One golden firework, then another. You point at the prettiest one, and I pretend I was looking at the sky too.</p></div>
+<div class="moment"><b>🤭 You catch me staring</b><p>You ask, “Sky dekh rahe ho ya mujhe?” And I act innocent. Obviously, I was looking at my favourite view.</p></div>
+<div class="moment"><b>🧸 Our tiny chaos partner</b><p>Our little one gets excited at every colourful burst, asks a hundred questions, and somehow steals both our attention.</p></div>
+<div class="moment"><b>🌙 The world gets quiet</b><p>The fireworks slow down. You lean closer, I hold your hand, and for a while there's nothing else we need.</p></div>
+</div>
+</section>
+
+<section class="section">
+<p class="eyebrow">one tiny surprise</p>
+<h2>Baby, look at me for a second.</h2>
+<p class="copy">There's something I would probably whisper while you're busy watching the sky.</p>
+<div class="center"><button class="btn" id="secret">Open your little surprise 💌</button></div>
+<div class="reveal" id="secretNote">“I hope one day we get to live a thousand ordinary, beautiful nights like this. I'll still tease you, steal your attention, and look at you when you think I'm watching the fireworks. And our little one will probably be the boss of both of us. I wouldn't have it any other way.”<br><br>— Your Sanskar ♡</div>
+</section>
+
+<footer class="final">
+<div class="heart">♡</div>
+<h2>Happy Diwali,<br>my favourite person.</h2>
+<p>This isn't a promise that every day will be perfect. It's a little picture of the future I love imagining with you: laughter, patience, silly teasing, a warm family, and choosing each other in all the ordinary moments too.</p>
+<div class="signature">Until our little sky is real — Sanskar</div>
+<p style="font-size:13px;margin-top:17px;color:#c7b5b9">For Debjani, with all my love. 🪔</p>
+</footer>
+<div class="footer">a little daydream made with love · fireworks are only visual on this page</div>
+</main>
+<script>
+(()=>{
+const canvas=document.getElementById('sky'),ctx=canvas.getContext('2d');
+let w=0,h=0,dpr=1,bursts=[],last=0;
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function resize(){dpr=Math.min(window.devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);}
+addEventListener('resize',resize);resize();
+function burst(x,y){const hue=[35,42,345,22,285][Math.floor(Math.random()*5)];const particles=[];const n=reduce?12:48;for(let i=0;i<n;i++){const a=Math.PI*2*i/n+Math.random()*.08,s=1.1+Math.random()*3.2;particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:45+Math.random()*30,max:75,r:1+Math.random()*1.8});}bursts.push({particles,hue});}
+function draw(t){ctx.clearRect(0,0,w,h);if(!reduce&&t-last>1250){burst(w*(.18+Math.random()*.64),h*(.12+Math.random()*.35));last=t;}bursts=bursts.filter(b=>b.particles.some(p=>p.life>0));for(const b of bursts){for(const p of b.particles){if(p.life<=0)continue;p.x+=p.vx;p.y+=p.vy;p.vy+=.025;p.vx*=.992;p.life--;ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle='hsl('+b.hue+' 95% 75%)';ctx.shadowBlur=12;ctx.shadowColor=ctx.fillStyle;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();}}ctx.globalAlpha=1;ctx.shadowBlur=0;if(!reduce)requestAnimationFrame(draw);}
+if(reduce){burst(w*.5,h*.25);draw(0);}else requestAnimationFrame(draw);
+document.getElementById('begin').addEventListener('click',()=>document.getElementById('dream').scrollIntoView({behavior:reduce?'auto':'smooth'}));
+const scenes={
+sky:['Look at that one, jaan 🎆','The whole sky lights up and you go quiet for a second. I nudge your shoulder and say, “Make a wish.” Mine is sitting right next to me.'],
+tease:['Caught you staring 🤭','You ask if I am watching the fireworks or you. I say the fireworks, then immediately smile because you know I am lying. One tiny forehead kiss and you pretend to be annoyed.'],
+kid:['Our little fireworks expert 🧒','Our little one points at every colour and gives each firework a funny name. We look at each other and try not to laugh too loudly. Tiny hands holding ours.'],
+quiet:['Come closer, baby 🫶','The sky is doing all the talking. I wrap an arm around you, you rest your head close, and we just watch. No hurry, no noise between us.']
+};
+document.querySelectorAll('[data-moment]').forEach(btn=>btn.addEventListener('click',()=>{const s=scenes[btn.dataset.moment],box=document.getElementById('momentReply');box.replaceChildren();const b=document.createElement('strong'),p=document.createElement('p');b.textContent=s[0];p.textContent=s[1];box.append(b,p);document.querySelectorAll('[data-moment]').forEach(x=>x.setAttribute('aria-pressed',String(x===btn)));if(!reduce)burst(w*.5,h*.3);}));
+document.getElementById('secret').addEventListener('click',()=>{const n=document.getElementById('secretNote');n.classList.toggle('show');document.getElementById('secret').textContent=n.classList.contains('show')?'Keep this little note close ♡':'Open your little surprise 💌';if(!reduce)burst(w*.5,h*.27);});
+})();
+</script>
+</body>
+</html>
