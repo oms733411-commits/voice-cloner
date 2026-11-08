@@ -9,6 +9,43 @@
 <style>
 :root{color-scheme:dark;--night:#100d20;--cream:#fff1d5;--gold:#ffd58a;--rose:#ffb6c9;--muted:#d7c6c7;--glass:#ffffff0d}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#49304b 0,transparent 45%),linear-gradient(#100d20,#191329 60%,#100d20);color:var(--cream);font-family:Georgia,serif;line-height:1.7;overflow-x:hidden}button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}main{position:relative;z-index:1;width:min(850px,100%);margin:auto;padding:18px 17px 65px}.top{text-align:center;letter-spacing:3px;text-transform:uppercase;font:10px system-ui;color:#e9c9a7;padding:12px 0 25px}.hero{min-height:88svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 4px 55px}.tag{border:1px solid #ffd58a55;border-radius:99px;padding:7px 14px;color:#ffe0a8;background:#ffd58a0c;font:10px system-ui;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(52px,13vw,100px);line-height:.98;font-weight:400;letter-spacing:-3px;margin:25px 0 15px;text-shadow:0 0 45px #ffb45c44}.hero h1 em{color:#ffcf91;font-weight:400}.hero p{max-width:520px;color:#e3d2d1;font-size:18px;line-height:1.9;margin:0 auto 24px}.lantern{font-size:55px;filter:drop-shadow(0 0 22px #ffbd65);animation:sway 4s ease-in-out infinite}.btn{border:1px solid #ffcf91aa;background:linear-gradient(120deg,#a65b57,#b77b56);color:#fff8e9;border-radius:99px;padding:13px 21px;box-shadow:0 9px 28px #0005;transition:transform .2s}.btn:active{transform:scale(.97)}.btn.ghost{background:#ffffff0a;border-color:#ffffff30;box-shadow:none}.hint{font:11px system-ui;color:#c9b5b6;margin-top:12px}.section{margin:18px 0;padding:29px 21px;border:1px solid #ffffff20;border-radius:25px;background:linear-gradient(145deg,#ffffff0e,#ffffff04);backdrop-filter:blur(12px);box-shadow:0 18px 50px #0002}.eyebrow{text-align:center;text-transform:uppercase;letter-spacing:2px;color:#ffcb91;font:10px system-ui;margin:0 0 9px}.section h2{text-align:center;font-weight:400;font-size:clamp(30px,7vw,45px);line-height:1.2;margin:0 0 14px}.copy{max-width:610px;text-align:center;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.9}.scene{margin:22px auto 0;max-width:650px;min-height:280px;border:1px solid #ffda9c38;border-radius:22px;overflow:hidden;position:relative;background:radial-gradient(ellipse at 50% 0%,#4b3156,#171327 72%);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:24px 15px}.moon{position:absolute;top:28px;right:12%;font-size:37px;filter:drop-shadow(0 0 18px #ffe4a0)}.horizon{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(transparent,#0b0a14 70%);border-radius:50% 50% 0 0/20% 20% 0 0}.car{position:relative;z-index:1;font-size:clamp(54px,12vw,82px);filter:drop-shadow(0 9px 10px #0009);margin-bottom:-6px}.family{position:relative;z-index:2;font-size:clamp(27px,7vw,43px);letter-spacing:5px;text-shadow:0 0 15px #ffc56a66}.scene-caption{position:relative;z-index:2;text-align:center;color:#ffe7c8;font:14px/1.8 Georgia,serif;margin-top:12px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0}.choice{border:1px solid #ffffff25;background:#ffffff08;color:#fff1d5;border-radius:16px;padding:14px 10px;min-height:74px}.choice[aria-pressed=true]{border-color:#ffd58a;background:#ffd58a18}.reply{min-height:130px;border:1px solid #ffcf9140;background:#ffcf910c;border-radius:18px;padding:20px;text-align:center;display:flex;flex-direction:column;justify-content:center}.reply strong{font-size:22px;color:#ffe0a8;font-weight:400}.reply p{margin:8px 0 0;color:#e7d5d2;font-size:15px;line-height:1.8}.center{text-align:center;margin-top:16px}.moments{display:grid;gap:12px;margin-top:20px}.moment{padding:16px;border-left:2px solid #e7b777;background:#ffffff07;border-radius:0 14px 14px 0}.moment b{display:block;color:#ffdaa0;font-size:18px;font-weight:400}.moment p{color:#d9c9ca;margin:4px 0 0;font-size:14px}.reveal{display:none;margin-top:15px;padding:19px;border-radius:16px;background:#ffcf9110;border:1px solid #ffcf9140;text-align:center;color:#ffe7d2;font-size:17px;line-height:1.9}.reveal.show{display:block;animation:rise .35s ease}.final{text-align:center;padding:45px 8px 15px}.final .heart{font-size:34px;color:#ffb6c9}.final h2{font-size:clamp(34px,8vw,52px);font-weight:400;line-height:1.2;margin:10px 0}.final p{max-width:570px;margin:auto;color:#d9c9ca;font-size:17px;line-height:1.9}.signature{font-style:italic;color:#ffcf91;font-size:26px;margin-top:17px}.footer{text-align:center;color:#9f8e9e;font:10px system-ui;margin-top:25px}@keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(min-width:600px){main{padding:24px 25px 75px}.section{padding:38px 40px}.hero{min-height:92svh}}@media(max-width:370px){main{padding-inline:12px}.section{padding:23px 15px}.choices{gap:7px}.choice{font-size:13px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+
+/* Cinematic photo-like scene upgrade */
+.cinematic-scene{
+ min-height:390px;isolation:isolate;overflow:hidden;
+ background:
+  linear-gradient(180deg,rgba(12,10,25,.10) 0%,rgba(12,10,25,.06) 40%,rgba(8,8,16,.82) 100%),
+  url('https://images.unsplash.com/photo-1467810563316-b5476525c0f9?auto=format&fit=crop&w=1400&q=85') center 43%/cover,
+  radial-gradient(ellipse at 50% 20%,#67435c,#151225 78%);
+ box-shadow:inset 0 0 90px #080711aa,0 20px 55px #0007;
+}
+.cinematic-scene:before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(110deg,#130e20aa,transparent 50%,#ffb66b16);animation:sceneBreath 8s ease-in-out infinite alternate}
+.cinematic-scene:after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;background:radial-gradient(circle at 22% 24%,#ffd18c55 0 1px,transparent 3px),radial-gradient(circle at 78% 35%,#ffd18c66 0 1px,transparent 3px),radial-gradient(circle at 55% 17%,#fff0d755 0 1px,transparent 3px);background-size:180px 150px;animation:embers 12s linear infinite}
+.cinematic-scene .moon{width:42px;height:42px;border-radius:50%;background:#fff0c9;box-shadow:0 0 25px #ffe0a5,0 0 65px #ffbf7144;font-size:0;top:30px;right:12%;z-index:1}
+.distant-lights{position:absolute;left:0;right:0;bottom:28%;height:30%;z-index:1;background:radial-gradient(ellipse at 15% 70%,#ffd58a 0 2px,transparent 4px),radial-gradient(ellipse at 33% 56%,#ffd58a 0 2px,transparent 5px),radial-gradient(ellipse at 68% 66%,#ffd58a 0 2px,transparent 5px),radial-gradient(ellipse at 88% 48%,#ffd58a 0 2px,transparent 5px);filter:drop-shadow(0 0 8px #ffca76)}
+.car-silhouette{position:absolute;z-index:2;bottom:53px;left:7%;width:86%;height:78px;border-radius:48% 42% 16px 16px/70% 65% 12px 12px;background:linear-gradient(180deg,#5d6478,#171a2b 48%,#080a13 85%);border:2px solid #9ba5bd88;box-shadow:0 0 28px #ffb76a33,inset 0 8px 12px #ffffff25}
+.car-silhouette:before{content:"";position:absolute;left:22%;right:22%;top:-38px;height:49px;border-radius:70% 70% 5px 5px;background:linear-gradient(120deg,#22283b,#667087 48%,#202538);border:2px solid #9ba5bd88;clip-path:polygon(13% 0,87% 0,100% 100%,0 100%)}
+.car-window{position:absolute;left:28%;right:28%;top:-31px;height:33px;background:linear-gradient(120deg,#9bb5c255,#1a2036 70%);clip-path:polygon(13% 0,87% 0,100% 100%,0 100%)}
+.car-wheel{position:absolute;bottom:-13px;width:36px;height:36px;border-radius:50%;background:radial-gradient(circle,#9da1ad 0 4px,#202330 5px 11px,#05060b 12px);border:3px solid #080a11}
+.car-wheel.left{left:13%}.car-wheel.right{right:13%}
+.family-silhouette{position:absolute;z-index:3;bottom:112px;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:clamp(9px,4vw,25px);filter:drop-shadow(0 8px 10px #0009)}
+.person{display:block;position:relative;width:48px;height:95px;border-radius:24px 24px 10px 10px;background:linear-gradient(100deg,#090b15,#303044 65%,#0b0c16);transform-origin:bottom;animation:swayPerson 4.5s ease-in-out infinite}
+.person:before{content:"";position:absolute;width:35px;height:35px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#493d39,#17151b 70%);top:-28px;left:7px}
+.person.dad{height:112px;width:55px}.person.mum{height:101px;width:53px;background:linear-gradient(100deg,#17121f,#6b3b4e 65%,#1b1420);animation-delay:-1.2s}
+.person.mum:before{background:radial-gradient(circle at 35% 30%,#4a3030,#17131a 70%);box-shadow:8px 4px 0 4px #17111b}
+.person.child{height:68px;width:39px;background:linear-gradient(100deg,#242032,#65516a 65%,#211b2a);animation-delay:-.6s}
+.person.child:before{width:27px;height:27px;top:-22px;left:6px;background:#30252a}
+.scene-caption{z-index:4;margin-top:0;text-shadow:0 2px 8px #000;position:absolute;bottom:17px;left:10px;right:10px}
+.scene-glint{position:absolute;z-index:4;width:7px;height:7px;border-radius:50%;background:#fff0c2;box-shadow:0 0 12px 4px #ffcb7c;animation:glint 2.2s ease-in-out infinite}
+.glint-one{top:30%;left:18%}.glint-two{top:43%;right:17%;animation-delay:1s}
+@keyframes sceneBreath{from{opacity:.35;transform:scale(1)}to{opacity:.8;transform:scale(1.08)}}
+@keyframes embers{from{transform:translateY(0)}to{transform:translateY(-35px)}}
+@keyframes swayPerson{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+@keyframes glint{0%,100%{opacity:.25;transform:scale(.65)}50%{opacity:1;transform:scale(1.5)}}
+.final .closing-line{margin:24px auto 0;max-width:650px;padding:22px 18px;border:1px solid #ffcf9166;border-radius:20px;background:linear-gradient(120deg,#ffcf9114,#ff9fba12);color:#ffe0c9;font-size:clamp(19px,4.5vw,25px);font-style:italic;box-shadow:0 0 35px #ffbd6a12;text-shadow:0 0 16px #ffbd6a33}
+@media(max-width:420px){.cinematic-scene{min-height:350px}.car-silhouette{bottom:52px}.family-silhouette{bottom:108px}.person.dad{height:95px}.person.mum{height:88px}}
+@media(prefers-reduced-motion:reduce){.cinematic-scene:before,.cinematic-scene:after,.person,.scene-glint{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -28,11 +65,15 @@
 <p class="eyebrow">scene one · somewhere peaceful</p>
 <h2>Just us, under the open sky.</h2>
 <p class="copy">Imagine we drive somewhere calm, far from the crowded streets. The car is parked safely, the night is cool, and there's no rush to go anywhere. We sit close together near the car, watching the first fireworks appear.</p>
-<div class="scene" role="img" aria-label="An imagined family sitting together beside a parked car beneath a starry sky">
-<div class="moon">☾</div><div class="horizon"></div>
-<div class="car" aria-hidden="true">🚙</div>
-<div class="family" aria-hidden="true">👩🏻‍❤️‍👨🏻 🧒🏻</div>
-<div class="scene-caption">Our little team. Our own quiet corner of the world. ♡</div>
+<div class="scene cinematic-scene" role="img" aria-label="A cinematic imagined Diwali night with a family beside their parked car under fireworks">
+  <div class="sky-glow"></div><div class="moon"></div>
+  <div class="distant-lights"></div>
+  <div class="family-silhouette" aria-hidden="true">
+    <span class="person dad"></span><span class="person mum"></span><span class="person child"></span>
+  </div>
+  <div class="car-silhouette" aria-hidden="true"><span class="car-window"></span><span class="car-wheel left"></span><span class="car-wheel right"></span></div>
+  <div class="scene-caption">Our little team. Our own quiet corner of the world. ♡</div>
+  <div class="scene-glint glint-one"></div><div class="scene-glint glint-two"></div>
 </div>
 </section>
 
@@ -72,6 +113,7 @@
 
 <footer class="final">
 <div class="heart">♡</div>
+<div class="closing-line">“My Diwali was bad… how can I make ours beautiful, baby? ❤️”</div>
 <h2>Happy Diwali,<br>my favourite person.</h2>
 <p>This isn't a promise that every day will be perfect. It's a little picture of the future I love imagining with you: laughter, patience, silly teasing, a warm family, and choosing each other in all the ordinary moments too.</p>
 <div class="signature">Until our little sky is real — Sanskar</div>
