@@ -1,1 +1,0 @@
-Optional far/mid/near PNG layers go in each map id folder. See ART_PROMPTS.md.

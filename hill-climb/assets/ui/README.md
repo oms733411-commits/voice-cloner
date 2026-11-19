@@ -1,1 +1,0 @@
-Optional UI art can live here. CSS/canvas fallbacks are built in.

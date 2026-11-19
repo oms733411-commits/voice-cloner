@@ -1,91 +1,78 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name="theme-color" content="#070b14">
-<title>Sherlock • Username Intelligence</title>
-<style>
-*{box-sizing:border-box}html{background:#070b14}body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at 50% -10%,#17284a 0,#070b14 42%);color:#eef2ff;padding:18px}
-.app{width:min(920px,100%);margin:auto;background:linear-gradient(180deg,#101827ee,#0a101bee);border:1px solid #26334a;border-radius:30px;padding:28px;box-shadow:0 28px 100px #0009}
-.top{display:flex;justify-content:space-between;gap:16px;align-items:center}.badge{display:inline-flex;padding:8px 12px;border-radius:999px;background:#172238;color:#9fc0ff;font-size:12px;font-weight:800;letter-spacing:.6px}.mini{font-size:11px;color:#61708a}
-h1{font-size:clamp(38px,8vw,64px);line-height:.95;margin:20px 0 12px;letter-spacing:-3px}.sub{color:#9aa9bf;line-height:1.6;max-width:720px;margin:0 0 24px}
-.search{display:flex;gap:10px}input{flex:1;min-width:0;border:1px solid #2c3a54;background:#070d18;color:#fff;border-radius:16px;padding:17px;font-size:17px;outline:none}input:focus{border-color:#79a4ff;box-shadow:0 0 0 4px #79a4ff1c}button{border:0;border-radius:16px;padding:0 24px;background:#fff;color:#07101d;font-weight:850;font-size:15px;cursor:pointer;min-width:118px}button:disabled{opacity:.55;cursor:wait}
-.options{display:flex;flex-wrap:wrap;gap:12px;margin:13px 2px 0}.check{display:flex;align-items:center;gap:8px;color:#8292aa;font-size:12px}.check input{width:15px;height:15px;accent-color:#8fb3ff;padding:0}.note{font-size:12px;color:#5f6e85;margin:12px 2px 0}
-.status{margin-top:20px;padding:15px;border-radius:15px;background:#0b1422;color:#9fb0c9;display:none}.summary{display:none;margin-top:18px;padding:18px;border:1px solid #202d42;background:#0d1523;border-radius:18px}.summary strong{font-size:26px}.summaryline{color:#7f8fa7;font-size:12px;margin-top:3px}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.chip{padding:7px 10px;border-radius:999px;background:#172238;color:#a9c5ff;font-size:11px;font-weight:800}.chip.miss{color:#66758d;background:#111927}
-.toolbar{display:none;gap:8px;flex-wrap:wrap;margin:14px 0 0}.filter{border:1px solid #26344a;background:#101a2a;color:#9db0ce;padding:8px 11px;border-radius:10px;font-size:12px}.filter.active{background:#1a2b49;color:#cfe0ff}
-.results{margin-top:12px;display:grid;gap:9px}.card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 16px;border:1px solid #202d42;background:#0d1523;border-radius:16px}.site{font-weight:800}.url{font-size:12px;color:#71839e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:650px;margin-top:4px}.open{flex:none;color:#9fc0ff;text-decoration:none;font-size:13px;font-weight:800}.empty{padding:25px;text-align:center;color:#8190a8;border:1px dashed #26344a;border-radius:16px}
-.quick{margin-top:22px}.quick h3{font-size:13px;margin:0 0 10px;color:#8999b2}.quickgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.q{display:block;padding:11px;border:1px solid #202d42;background:#0d1523;border-radius:12px;color:#a9b9d0;text-decoration:none;font-size:12px;font-weight:750}.q:hover{border-color:#5573a8;color:#d7e4ff}
-.actions{display:none;gap:8px;margin-top:12px}.secondary{min-width:auto;padding:10px 13px;background:#121d2d;color:#a9bad4;border:1px solid #26344a;font-size:12px}
-@media(max-width:650px){body{padding:10px}.app{padding:19px;border-radius:23px}.top .mini{display:none}.search{flex-direction:column}button{height:52px}.card{align-items:flex-start}.url{max-width:230px}.quickgrid{grid-template-columns:repeat(2,1fr)}}
-</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f1eb"><meta name="description" content="A little private world made with love, for Devi.">
+<title>For My Devi — a little world of ours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main class="app">
-  <div class="top"><span class="badge">SHERLOCK • USERNAME INTELLIGENCE</span><span class="mini">PUBLIC WEB ONLY</span></div>
-  <h1>Find a username.</h1>
-  <p class="sub">Search one username across Sherlock's supported network list, then inspect the public profile links that were found.</p>
-  <form class="search" id="form">
-    <input id="username" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Enter username, e.g. sanskar123" maxlength="80" required>
-    <button id="btn" type="submit">Search</button>
-  </form>
-  <div class="options">
-    <label class="check"><input id="variants" type="checkbox"> Check common username variants</label>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <a class="brand" href="#" data-view="home"><span class="brand-mark">♡</span><span><b>for my devi</b><small>a little world of ours</small></span></a>
+  <div class="side-label">OUR LITTLE WORLD</div>
+  <nav class="nav">
+    <button class="nav-link active" data-view="home"><span>⌂</span> Home</button>
+    <button class="nav-link" data-view="her"><span>✿</span> Her world</button>
+    <button class="nav-link" data-view="repair"><span>♡</span> Repair room</button>
+    <button class="nav-link" data-view="canvas"><span>✎</span> Together canvas</button>
+    <button class="nav-link" data-view="letters"><span>✉</span> Love notes</button>
+    <button class="nav-link" data-view="memories"><span>▧</span> Memories</button>
+    <button class="nav-link" data-view="future"><span>✧</span> Our future</button>
+  </nav>
+  <div class="sidebar-bottom"><div class="tiny-heart">♡</div><p>Love is in the little things.</p><small>Made with care, for Devi.</small></div>
+</aside>
+<main class="main">
+<header class="topbar"><button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button><div class="crumb" id="crumb">A LITTLE SPACE FOR TWO</div><div class="top-actions"><span class="date-pill" id="today"></span><span class="avatar">D</span></div></header>
+<section class="view active" id="view-home">
+  <div class="hero">
+    <div class="hero-copy"><span class="eyebrow">A PLACE TO PAUSE, CONNECT & GROW</span><h1>For my <em>Devi.</em></h1><p class="hero-sub">A little corner of the world that belongs to us.<br>For the ordinary days, and the unforgettable ones.</p><button class="primary-btn" data-jump="letters">Leave her a little note <span>↗</span></button></div>
+    <div class="hero-art"><div class="art-sun"></div><div class="art-arch"><div class="art-inner"><span>you</span><i>♡</i><span>me</span></div></div><span class="art-caption">in every little way</span><span class="floating f1">✿</span><span class="floating f2">♡</span></div>
   </div>
-  <div class="note">No passwords, login attempts or private account data. Results can contain false positives.</div>
-  <div class="status" id="status"></div>
-  <div class="summary" id="summary"></div>
-  <div class="toolbar" id="toolbar">
-    <button class="filter active" data-filter="all">All</button><button class="filter" data-filter="social">Social</button><button class="filter" data-filter="dev">Developer</button><button class="filter" data-filter="community">Community</button>
+  <div class="section-head"><div><span class="eyebrow">TODAY, TOGETHER</span><h2>Our little things</h2></div><span class="soft-note">One day at a time <b>♡</b></span></div>
+  <div class="quick-grid">
+    <button class="quick-card blush" data-view="her"><span class="q-icon">✿</span><span class="q-title">Her world</span><small>A gentle check-in</small><span class="q-arrow">↗</span></button>
+    <button class="quick-card sage" data-view="repair"><span class="q-icon">♡</span><span class="q-title">Repair room</span><small>Understand, then heal</small><span class="q-arrow">↗</span></button>
+    <button class="quick-card lilac" data-view="canvas"><span class="q-icon">✎</span><span class="q-title">Together canvas</span><small>Draw something together</small><span class="q-arrow">↗</span></button>
+    <button class="quick-card sand" data-view="memories"><span class="q-icon">▧</span><span class="q-title">Memory garden</span><small>Keep the little moments</small><span class="q-arrow">↗</span></button>
   </div>
-  <div class="actions" id="actions"><button class="secondary" id="copyBtn">Copy results</button><button class="secondary" id="jsonBtn">Export JSON</button></div>
-  <section class="results" id="results"></section>
-  <section class="quick">
-    <h3>Quick public profile checks</h3>
-    <div class="quickgrid" id="quick"></div>
-  </section>
-</main>
-<script>
-const form=document.getElementById('form'),input=document.getElementById('username'),btn=document.getElementById('btn'),status=document.getElementById('status'),summary=document.getElementById('summary'),results=document.getElementById('results'),toolbar=document.getElementById('toolbar'),actions=document.getElementById('actions'),variants=document.getElementById('variants');
-const quickSites=[
- ['Instagram','https://www.instagram.com/{}'],['Facebook','https://www.facebook.com/{}'],['TikTok','https://www.tiktok.com/@{}'],['X / Twitter','https://x.com/{}'],
- ['GitHub','https://github.com/{}'],['Reddit','https://www.reddit.com/user/{}'],['YouTube','https://www.youtube.com/@{}'],['Telegram','https://t.me/{}'],
- ['Twitch','https://www.twitch.tv/{}'],['Discord','https://discord.com/users/{}'],['GitLab','https://gitlab.com/{}'],['LinkedIn','https://www.linkedin.com/in/{}']
-];
-let current=[];
-let filter='all';
-const cats={social:['instagram','facebook','tiktok','twitter','x / twitter','reddit','youtube','telegram','twitch','discord','linkedin'],dev:['github','gitlab','bitbucket','codeberg','stackoverflow','npm','pypi'],community:['forum','community','medium','dev.to','hacker news','product hunt']};
-function showStatus(t){status.textContent=t;status.style.display='block'}
-function hideStatus(){status.style.display='none'}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-function category(site){const s=site.toLowerCase();for(const [k,list] of Object.entries(cats))if(list.some(x=>s.includes(x)))return k;return 'other'}
-function render(){
- const arr=filter==='all'?current:current.filter(x=>category(x.site)===filter);
- results.innerHTML=arr.length?arr.map(x=>'<article class="card"><div><div class="site">'+esc(x.site)+'</div><div class="url">'+esc(x.url)+'</div></div><a class="open" href="'+encodeURI(x.url)+'" target="_blank" rel="noopener noreferrer">Open ↗</a></article>').join(''):'<div class="empty">No matches in this filter.</div>';
-}
-quickSites.forEach(([name,url])=>{const a=document.createElement('a');a.className='q';a.target='_blank';a.rel='noopener noreferrer';a.textContent=name;a.href=url.replace('{}',encodeURIComponent(input.value.trim()||'username'));document.getElementById('quick').appendChild(a)});
-function refreshQuick(){document.querySelectorAll('.q').forEach((a,i)=>a.href=quickSites[i][1].replace('{}',encodeURIComponent(input.value.trim()||'username')))}
-input.addEventListener('input',refreshQuick);
-document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;render()}));
-form.addEventListener('submit',async e=>{
- e.preventDefault();const username=input.value.trim();
- if(!/^[A-Za-z0-9._-]{1,80}$/.test(username)){showStatus('Use only letters, numbers, dots, underscores or hyphens.');return}
- btn.disabled=true;btn.textContent='Searching…';results.innerHTML='';summary.style.display='none';toolbar.style.display='none';actions.style.display='none';
- showStatus('Checking the Sherlock network list'+(variants.checked?' + username variants':'')+'…');
- try{
-  const r=await fetch('/api/sherlock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,variants:variants.checked})});
-  const data=await r.json();if(!r.ok)throw new Error(data.error||'Search failed.');
-  current=data.results||[];
-  hideStatus();
-  const found=current.length, names=new Set(current.map(x=>x.site.toLowerCase()));
-  const important=['Instagram','Facebook','TikTok','X / Twitter','GitHub','Reddit','YouTube','Telegram','Twitch','Discord'];
-  summary.innerHTML='<strong>'+found+'</strong> public matches found<div class="summaryline">Exact username'+(data.variants_checked?' + variants checked':' checked')+'</div><div class="chips">'+important.map(n=>'<span class="chip '+(names.has(n.toLowerCase())?'':'miss')+'">'+(names.has(n.toLowerCase())?'✓ ':'')+esc(n)+'</span>').join('')+'</div>';
-  summary.style.display='block';toolbar.style.display='flex';actions.style.display='flex';render();refreshQuick();
- }catch(err){showStatus(err.message||'Something went wrong.')}
- finally{btn.disabled=false;btn.textContent='Search'}
-});
-document.getElementById('copyBtn').addEventListener('click',async()=>{await navigator.clipboard.writeText(current.map(x=>x.site+' — '+x.url).join('\n'));showStatus('Results copied.');setTimeout(hideStatus,1800)});
-document.getElementById('jsonBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({username:input.value.trim(),results:current},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='sherlock-'+input.value.trim()+'.json';a.click();URL.revokeObjectURL(a.href)});
-</script>
-</body>
-</html>
+  <div class="home-lower">
+    <article class="quote-card"><span class="eyebrow">A NOTE TO REMEMBER</span><p>“I want to be someone whose love feels like a safe place, not another thing you have to worry about.”</p><small>— a promise in progress</small></article>
+    <article class="activity-card"><div class="card-heading"><div><span class="eyebrow">GROWING WITH CARE</span><h3>Little commitments</h3></div><span class="flower">✿</span></div><div id="commitmentPreview" class="commitment-list"></div><button class="text-btn" data-view="repair">Open commitments <span>→</span></button></article>
+  </div>
+</section>
+<section class="view" id="view-her">
+  <div class="page-intro"><span class="eyebrow">HER WORLD, HER PACE</span><h1>A little space for <em>her.</em></h1><p>Listen with curiosity. No assumptions, no pressure.</p></div>
+  <div class="content-grid"><article class="panel wide"><span class="eyebrow">TODAY'S CHECK-IN</span><h2>How is your heart today?</h2><p class="muted">Choose whatever feels closest. You can change it anytime.</p><div class="mood-options" id="moodOptions"><button data-mood="Soft & peaceful">☁️<small>Peaceful</small></button><button data-mood="Happy & light">🌷<small>Happy</small></button><button data-mood="A little low">🌧️<small>Low</small></button><button data-mood="Overwhelmed">🍃<small>Overwhelmed</small></button><button data-mood="Not sure yet">🌙<small>Not sure</small></button></div><label class="field-label" for="herNote">Anything you'd like me to understand?</label><textarea id="herNote" rows="4" placeholder="You can put it into words, or leave this blank..."></textarea><button class="primary-btn" id="saveCheckin">Save today's check-in</button><p class="save-status" id="checkinStatus"></p></article>
+  <article class="panel"><span class="eyebrow">LOVE HER BETTER</span><h2>Things to remember</h2><p class="muted">A living list of what helps each of you feel cared for.</p><div class="preference-list"><div>♡ <span>Ask before giving advice</span></div><div>♡ <span>Respect study and rest time</span></div><div>♡ <span>Be honest, even when it's hard</span></div><div>♡ <span>Listen without rushing to fix</span></div></div><label class="field-label" for="preferenceInput">Add a reminder</label><div class="inline-form"><input id="preferenceInput" placeholder="Something to remember..."><button class="icon-btn" id="addPreference">＋</button></div><div id="customPreferences"></div></article></div>
+</section>
+<section class="view" id="view-repair">
+  <div class="page-intro"><span class="eyebrow">SAME TEAM, EVEN ON HARD DAYS</span><h1>The <em>repair room.</em></h1><p>Not a place to decide who's right. A place to understand what happened and choose what changes next.</p></div>
+  <div class="repair-layout"><div class="repair-steps"><div class="step active"><b>01</b><span>What happened?</span></div><div class="step"><b>02</b><span>What did I feel?</span></div><div class="step"><b>03</b><span>What was my part?</span></div><div class="step"><b>04</b><span>What do I need?</span></div><div class="step"><b>05</b><span>What changes now?</span></div></div>
+  <article class="panel repair-panel"><div class="step-count" id="stepCount">STEP 01 / 05</div><h2 id="repairTitle">What happened?</h2><p class="muted" id="repairHint">Describe the moment as clearly as you can, without trying to prove a point.</p><textarea id="repairAnswer" rows="7" placeholder="Take your time..."></textarea><div class="repair-controls"><button class="secondary-btn" id="repairBack" disabled>Back</button><button class="primary-btn" id="repairNext">Continue <span>→</span></button></div><p class="save-status" id="repairStatus"></p></article></div>
+  <article class="panel commitments-panel"><div class="card-heading"><div><span class="eyebrow">SMALL PROMISES, REAL ACTIONS</span><h2>My commitments</h2></div><span class="flower">✿</span></div><p class="muted">Track your own actions. This is for accountability, never for scoring or policing each other.</p><div id="commitments"></div><div class="inline-form"><input id="commitmentInput" placeholder="A small action I want to practise..."><button class="icon-btn" id="addCommitment">＋</button></div></article>
+</section>
+<section class="view" id="view-canvas">
+  <div class="page-intro compact"><span class="eyebrow">MAKE A LITTLE SOMETHING TOGETHER</span><h1>Our shared <em>canvas.</em></h1><p>Doodle, write, leave a tiny surprise. There's no wrong way to make art.</p></div>
+  <div class="canvas-panel"><div class="canvas-toolbar"><div class="tool-group"><button class="tool active" data-tool="pen" title="Pen">✎</button><button class="tool" data-tool="eraser" title="Eraser">◩</button></div><div class="tool-group colors"><button class="swatch active" data-color="#563b4b" style="--swatch:#563b4b"></button><button class="swatch" data-color="#b96f78" style="--swatch:#b96f78"></button><button class="swatch" data-color="#d5a66d" style="--swatch:#d5a66d"></button><button class="swatch" data-color="#789083" style="--swatch:#789083"></button><button class="swatch" data-color="#9a86a6" style="--swatch:#9a86a6"></button><input type="color" id="customColor" value="#563b4b" aria-label="Custom colour"></div><label class="size-control">Size <input id="brushSize" type="range" min="1" max="28" value="4"></label><div class="tool-group"><button class="tool" id="undoCanvas" title="Undo">↶</button><button class="tool" id="redoCanvas" title="Redo">↷</button><button class="tool" id="clearCanvas" title="Clear">⌫</button></div><button class="secondary-btn export-btn" id="exportCanvas">Save PNG ↓</button></div><div class="canvas-wrap"><canvas id="drawingCanvas" aria-label="Shared drawing canvas"></canvas></div><div class="canvas-foot"><span><i class="live-dot"></i><span id="canvasStatus">Canvas ready · local mode</span></span><span>Made with two hands, and a little love ♡</span></div></div>
+  <p class="canvas-hint">Tip: On touch screens, draw with your finger. Connect Supabase in the setup guide to enable live drawing between devices.</p>
+</section>
+<section class="view" id="view-letters">
+  <div class="page-intro"><span class="eyebrow">WORDS THAT CAN WAIT FOR THE RIGHT MOMENT</span><h1>Little <em>love notes.</em></h1><p>Write something kind. Save it for a quiet moment, or leave it here for her.</p></div>
+  <div class="letter-layout"><article class="panel letter-compose"><span class="eyebrow">A LETTER FROM YOU</span><input id="letterTitle" class="title-input" placeholder="Give this note a little title..."><textarea id="letterBody" rows="8" placeholder="My Devi, ..."></textarea><div class="letter-bottom"><span class="muted">Write from the heart. Keep it yours.</span><button class="primary-btn" id="saveLetter">Save this note ♡</button></div></article><article class="panel"><span class="eyebrow">KEPT WITH CARE</span><h2>Our letters</h2><div id="lettersList" class="saved-list empty-state">Your first little note will live here.</div></article></div>
+</section>
+<section class="view" id="view-memories">
+  <div class="page-intro"><span class="eyebrow">THE LITTLE THINGS BECOME THE BIG THINGS</span><h1>Our memory <em>garden.</em></h1><p>Keep the moments you never want to become just another day.</p></div>
+  <div class="panel memory-add"><div><span class="eyebrow">SAVE A MOMENT</span><h2>A memory worth keeping</h2></div><div class="memory-form"><input id="memoryTitle" placeholder="What should we remember?"><input id="memoryDate" type="date"><textarea id="memoryDetail" rows="2" placeholder="A little detail that makes this moment yours..."></textarea><button class="primary-btn" id="saveMemory">Add to our garden</button></div></div><div id="memoriesList" class="memory-grid"></div>
+</section>
+<section class="view" id="view-future">
+  <div class="page-intro"><span class="eyebrow">TWO PEOPLE, TWO INDIVIDUAL DREAMS, ONE SHARED HORIZON</span><h1>Things we <em>look forward to.</em></h1><p>Make room for her dreams, your dreams, and the things you hope to build together.</p></div>
+  <div class="future-grid"><article class="panel"><span class="eyebrow">HER DREAMS</span><h2>Her own sky ✿</h2><p class="muted">Her goals deserve space to grow.</p><div id="herGoals"></div><div class="inline-form"><input id="herGoalInput" placeholder="A dream or milestone..."><button class="icon-btn" data-add-goal="herGoals">＋</button></div></article><article class="panel"><span class="eyebrow">OUR SHARED DREAMS</span><h2>Somewhere, someday ♡</h2><p class="muted">Little plans for the life you imagine together.</p><div id="ourGoals"></div><div class="inline-form"><input id="ourGoalInput" placeholder="A place, plan or promise..."><button class="icon-btn" data-add-goal="ourGoals">＋</button></div></article></div>
+</section>
+<footer class="footer">Made with patience, honesty & a whole lot of love. <span>♡</span></footer>
+</main></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script>
+</body></html>
