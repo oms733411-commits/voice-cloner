@@ -31,3 +31,9 @@ To enable realtime drawing, create a Supabase project, enable Realtime, then put
 
 ## Privacy
 Do not use this public repository for private photos, voice notes, or personal relationship records. The current demo stores data locally in each browser. Add authenticated backend storage and strict RLS before using it as a private shared space.
+
+## Pixel Colour Studio
+Open pixel-art.html from the main site. It converts a locally selected image into a pixel grid with adjustable detail, paint/drag, connected-region fill, colour picker, undo/reset and PNG export.
+
+### Image privacy
+Pixel Colour Studio processes the selected image entirely in the browser using the Canvas API. It does not upload the photo, call an image API, use analytics, or save the photo to localStorage/cloud storage. The image exists in the active page session; download the result before closing the tab. This is a browser-side design, not a formal security audit or guarantee against a compromised device/browser.
